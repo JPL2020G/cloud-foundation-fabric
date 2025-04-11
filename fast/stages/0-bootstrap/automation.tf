@@ -21,7 +21,7 @@ module "automation-project" {
   billing_account = var.billing_account.id
   name            = var.resource_names["project-automation"]
   parent = coalesce(
-    var.project_parent_ids.automation, "organizations/${var.organization.id}"
+    var.project_parent_ids.automation, module.my_custom_folder.id, "organizations/${var.organization.id}"
   )
   prefix   = var.prefix
   universe = var.universe

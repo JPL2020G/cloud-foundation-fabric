@@ -45,7 +45,7 @@ module "log-export-project" {
   source = "../../../modules/project"
   name   = var.resource_names["project-logs"]
   parent = coalesce(
-    var.project_parent_ids.logging, "organizations/${var.organization.id}"
+    var.project_parent_ids.logging, module.my_custom_folder.id, "organizations/${var.organization.id}"
   )
   prefix          = var.prefix
   universe        = var.universe

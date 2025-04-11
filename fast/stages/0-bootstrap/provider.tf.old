@@ -1,0 +1,16 @@
+provider "google" {
+ impersonate_service_account = "iac-terraform-sa@prj-seed-core.iam.gserviceaccount.com"
+ 
+}
+
+provider "google-beta" {
+ impersonate_service_account = "iac-terraform-sa@prj-seed-core.iam.gserviceaccount.com"
+}
+
+
+#terraform {
+#  backend "gcs" {
+#    bucket  = "tstez-prod-iac-core-bootstrap-0"
+#    prefix  = "state"
+#  }
+#}
