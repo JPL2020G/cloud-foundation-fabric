@@ -1,0 +1,1444 @@
+digraph G {
+  rankdir = "RL";
+  node [shape = rect, fontname = "sans-serif"];
+  "google_monitoring_alert_policy.vpn_tunnel_bandwidth" [label="google_monitoring_alert_policy.vpn_tunnel_bandwidth"];
+  "google_monitoring_alert_policy.vpn_tunnel_established" [label="google_monitoring_alert_policy.vpn_tunnel_established"];
+  "google_monitoring_dashboard.dashboard" [label="google_monitoring_dashboard.dashboard"];
+  "google_network_connectivity_hub.default" [label="google_network_connectivity_hub.default"];
+  "google_network_connectivity_spoke.onprem-primary-vpn" [label="google_network_connectivity_spoke.onprem-primary-vpn"];
+  "google_network_connectivity_spoke.spoke-dev" [label="google_network_connectivity_spoke.spoke-dev"];
+  "google_network_connectivity_spoke.spoke-prod" [label="google_network_connectivity_spoke.spoke-prod"];
+  "google_storage_bucket_object.tfvars" [label="google_storage_bucket_object.tfvars"];
+  "local_file.tfvars" [label="local_file.tfvars"];
+  subgraph "cluster_module.dev-dns-peer-landing-rev-10" {
+    label = "module.dev-dns-peer-landing-rev-10"
+    fontname = "sans-serif"
+    "module.dev-dns-peer-landing-rev-10.data.google_dns_keys.dns_keys" [label="data.google_dns_keys.dns_keys"];
+    "module.dev-dns-peer-landing-rev-10.data.google_dns_managed_zone.dns_managed_zone" [label="data.google_dns_managed_zone.dns_managed_zone"];
+    "module.dev-dns-peer-landing-rev-10.google_dns_managed_zone.dns_managed_zone" [label="google_dns_managed_zone.dns_managed_zone"];
+    "module.dev-dns-peer-landing-rev-10.google_dns_managed_zone_iam_binding.iam_bindings" [label="google_dns_managed_zone_iam_binding.iam_bindings"];
+    "module.dev-dns-peer-landing-rev-10.google_dns_record_set.dns_record_set" [label="google_dns_record_set.dns_record_set"];
+  }
+  subgraph "cluster_module.dev-dns-peer-landing-root" {
+    label = "module.dev-dns-peer-landing-root"
+    fontname = "sans-serif"
+    "module.dev-dns-peer-landing-root.data.google_dns_keys.dns_keys" [label="data.google_dns_keys.dns_keys"];
+    "module.dev-dns-peer-landing-root.data.google_dns_managed_zone.dns_managed_zone" [label="data.google_dns_managed_zone.dns_managed_zone"];
+    "module.dev-dns-peer-landing-root.google_dns_managed_zone.dns_managed_zone" [label="google_dns_managed_zone.dns_managed_zone"];
+    "module.dev-dns-peer-landing-root.google_dns_managed_zone_iam_binding.iam_bindings" [label="google_dns_managed_zone_iam_binding.iam_bindings"];
+    "module.dev-dns-peer-landing-root.google_dns_record_set.dns_record_set" [label="google_dns_record_set.dns_record_set"];
+  }
+  subgraph "cluster_module.dev-dns-priv-example" {
+    label = "module.dev-dns-priv-example"
+    fontname = "sans-serif"
+    "module.dev-dns-priv-example.data.google_dns_keys.dns_keys" [label="data.google_dns_keys.dns_keys"];
+    "module.dev-dns-priv-example.data.google_dns_managed_zone.dns_managed_zone" [label="data.google_dns_managed_zone.dns_managed_zone"];
+    "module.dev-dns-priv-example.google_dns_managed_zone.dns_managed_zone" [label="google_dns_managed_zone.dns_managed_zone"];
+    "module.dev-dns-priv-example.google_dns_managed_zone_iam_binding.iam_bindings" [label="google_dns_managed_zone_iam_binding.iam_bindings"];
+    "module.dev-dns-priv-example.google_dns_record_set.dns_record_set" [label="google_dns_record_set.dns_record_set"];
+  }
+  subgraph "cluster_module.dev-firewall-policy" {
+    label = "module.dev-firewall-policy"
+    fontname = "sans-serif"
+    "module.dev-firewall-policy.google_compute_firewall_policy.hierarchical" [label="google_compute_firewall_policy.hierarchical"];
+    "module.dev-firewall-policy.google_compute_firewall_policy_association.hierarchical" [label="google_compute_firewall_policy_association.hierarchical"];
+    "module.dev-firewall-policy.google_compute_firewall_policy_rule.hierarchical" [label="google_compute_firewall_policy_rule.hierarchical"];
+    "module.dev-firewall-policy.google_compute_network_firewall_policy.net-global" [label="google_compute_network_firewall_policy.net-global"];
+    "module.dev-firewall-policy.google_compute_network_firewall_policy_association.net-global" [label="google_compute_network_firewall_policy_association.net-global"];
+    "module.dev-firewall-policy.google_compute_network_firewall_policy_rule.net-global" [label="google_compute_network_firewall_policy_rule.net-global"];
+    "module.dev-firewall-policy.google_compute_region_network_firewall_policy.net-regional" [label="google_compute_region_network_firewall_policy.net-regional"];
+    "module.dev-firewall-policy.google_compute_region_network_firewall_policy_association.net-regional" [label="google_compute_region_network_firewall_policy_association.net-regional"];
+    "module.dev-firewall-policy.google_compute_region_network_firewall_policy_rule.net-regional" [label="google_compute_region_network_firewall_policy_rule.net-regional"];
+  }
+  subgraph "cluster_module.dev-spoke-cloudnat" {
+    label = "module.dev-spoke-cloudnat"
+    fontname = "sans-serif"
+    "module.dev-spoke-cloudnat.google_compute_router.router" [label="google_compute_router.router"];
+    "module.dev-spoke-cloudnat.google_compute_router_nat.nat" [label="google_compute_router_nat.nat"];
+  }
+  subgraph "cluster_module.dev-spoke-firewall" {
+    label = "module.dev-spoke-firewall"
+    fontname = "sans-serif"
+    "module.dev-spoke-firewall.google_compute_firewall.allow-admins" [label="google_compute_firewall.allow-admins"];
+    "module.dev-spoke-firewall.google_compute_firewall.allow-tag-http" [label="google_compute_firewall.allow-tag-http"];
+    "module.dev-spoke-firewall.google_compute_firewall.allow-tag-https" [label="google_compute_firewall.allow-tag-https"];
+    "module.dev-spoke-firewall.google_compute_firewall.allow-tag-ssh" [label="google_compute_firewall.allow-tag-ssh"];
+    "module.dev-spoke-firewall.google_compute_firewall.custom-rules" [label="google_compute_firewall.custom-rules"];
+  }
+  subgraph "cluster_module.dev-spoke-project" {
+    label = "module.dev-spoke-project"
+    fontname = "sans-serif"
+    "module.dev-spoke-project.data.google_bigquery_default_service_account.bq_sa" [label="data.google_bigquery_default_service_account.bq_sa"];
+    "module.dev-spoke-project.data.google_project.project" [label="data.google_project.project"];
+    "module.dev-spoke-project.data.google_storage_project_service_account.gcs_sa" [label="data.google_storage_project_service_account.gcs_sa"];
+    "module.dev-spoke-project.google_access_context_manager_service_perimeter_dry_run_resource.default" [label="google_access_context_manager_service_perimeter_dry_run_resource.default"];
+    "module.dev-spoke-project.google_access_context_manager_service_perimeter_resource.default" [label="google_access_context_manager_service_perimeter_resource.default"];
+    "module.dev-spoke-project.google_bigquery_dataset_iam_member.bq-sinks-binding" [label="google_bigquery_dataset_iam_member.bq-sinks-binding"];
+    "module.dev-spoke-project.google_cloud_quotas_quota_preference.default" [label="google_cloud_quotas_quota_preference.default"];
+    "module.dev-spoke-project.google_compute_project_metadata_item.default" [label="google_compute_project_metadata_item.default"];
+    "module.dev-spoke-project.google_compute_shared_vpc_host_project.shared_vpc_host" [label="google_compute_shared_vpc_host_project.shared_vpc_host"];
+    "module.dev-spoke-project.google_compute_shared_vpc_service_project.service_projects" [label="google_compute_shared_vpc_service_project.service_projects"];
+    "module.dev-spoke-project.google_compute_shared_vpc_service_project.shared_vpc_service" [label="google_compute_shared_vpc_service_project.shared_vpc_service"];
+    "module.dev-spoke-project.google_compute_subnetwork_iam_member.shared_vpc_host_robots" [label="google_compute_subnetwork_iam_member.shared_vpc_host_robots"];
+    "module.dev-spoke-project.google_compute_subnetwork_iam_member.shared_vpc_host_subnets_iam" [label="google_compute_subnetwork_iam_member.shared_vpc_host_subnets_iam"];
+    "module.dev-spoke-project.google_essential_contacts_contact.contact" [label="google_essential_contacts_contact.contact"];
+    "module.dev-spoke-project.google_kms_crypto_key_iam_member.service_agent_cmek" [label="google_kms_crypto_key_iam_member.service_agent_cmek"];
+    "module.dev-spoke-project.google_logging_log_scope.log-scopes" [label="google_logging_log_scope.log-scopes"];
+    "module.dev-spoke-project.google_logging_metric.metrics" [label="google_logging_metric.metrics"];
+    "module.dev-spoke-project.google_logging_project_exclusion.logging-exclusion" [label="google_logging_project_exclusion.logging-exclusion"];
+    "module.dev-spoke-project.google_logging_project_sink.sink" [label="google_logging_project_sink.sink"];
+    "module.dev-spoke-project.google_monitoring_alert_policy.alerts" [label="google_monitoring_alert_policy.alerts"];
+    "module.dev-spoke-project.google_monitoring_monitored_project.primary" [label="google_monitoring_monitored_project.primary"];
+    "module.dev-spoke-project.google_monitoring_notification_channel.channels" [label="google_monitoring_notification_channel.channels"];
+    "module.dev-spoke-project.google_org_policy_policy.default" [label="google_org_policy_policy.default"];
+    "module.dev-spoke-project.google_project.project" [label="google_project.project"];
+    "module.dev-spoke-project.google_project_default_service_accounts.default_service_accounts" [label="google_project_default_service_accounts.default_service_accounts"];
+    "module.dev-spoke-project.google_project_iam_audit_config.default" [label="google_project_iam_audit_config.default"];
+    "module.dev-spoke-project.google_project_iam_binding.authoritative" [label="google_project_iam_binding.authoritative"];
+    "module.dev-spoke-project.google_project_iam_binding.bindings" [label="google_project_iam_binding.bindings"];
+    "module.dev-spoke-project.google_project_iam_custom_role.roles" [label="google_project_iam_custom_role.roles"];
+    "module.dev-spoke-project.google_project_iam_member.bindings" [label="google_project_iam_member.bindings"];
+    "module.dev-spoke-project.google_project_iam_member.bucket-sinks-binding" [label="google_project_iam_member.bucket-sinks-binding"];
+    "module.dev-spoke-project.google_project_iam_member.project-sinks-binding" [label="google_project_iam_member.project-sinks-binding"];
+    "module.dev-spoke-project.google_project_iam_member.service_agents" [label="google_project_iam_member.service_agents"];
+    "module.dev-spoke-project.google_project_iam_member.shared_vpc_host_iam" [label="google_project_iam_member.shared_vpc_host_iam"];
+    "module.dev-spoke-project.google_project_iam_member.shared_vpc_host_robots" [label="google_project_iam_member.shared_vpc_host_robots"];
+    "module.dev-spoke-project.google_project_service.project_services" [label="google_project_service.project_services"];
+    "module.dev-spoke-project.google_project_service_identity.default" [label="google_project_service_identity.default"];
+    "module.dev-spoke-project.google_pubsub_topic_iam_member.pubsub-sinks-binding" [label="google_pubsub_topic_iam_member.pubsub-sinks-binding"];
+    "module.dev-spoke-project.google_resource_manager_lien.lien" [label="google_resource_manager_lien.lien"];
+    "module.dev-spoke-project.google_storage_bucket_iam_member.gcs-sinks-binding" [label="google_storage_bucket_iam_member.gcs-sinks-binding"];
+    "module.dev-spoke-project.google_tags_tag_binding.binding" [label="google_tags_tag_binding.binding"];
+    "module.dev-spoke-project.google_tags_tag_key.default" [label="google_tags_tag_key.default"];
+    "module.dev-spoke-project.google_tags_tag_key_iam_binding.bindings" [label="google_tags_tag_key_iam_binding.bindings"];
+    "module.dev-spoke-project.google_tags_tag_key_iam_binding.default" [label="google_tags_tag_key_iam_binding.default"];
+    "module.dev-spoke-project.google_tags_tag_key_iam_member.bindings" [label="google_tags_tag_key_iam_member.bindings"];
+    "module.dev-spoke-project.google_tags_tag_value.default" [label="google_tags_tag_value.default"];
+    "module.dev-spoke-project.google_tags_tag_value_iam_binding.bindings" [label="google_tags_tag_value_iam_binding.bindings"];
+    "module.dev-spoke-project.google_tags_tag_value_iam_binding.default" [label="google_tags_tag_value_iam_binding.default"];
+    "module.dev-spoke-project.google_tags_tag_value_iam_member.bindings" [label="google_tags_tag_value_iam_member.bindings"];
+  }
+  subgraph "cluster_module.dev-spoke-vpc" {
+    label = "module.dev-spoke-vpc"
+    fontname = "sans-serif"
+    "module.dev-spoke-vpc.google_compute_global_address.psa_ranges" [label="google_compute_global_address.psa_ranges"];
+    "module.dev-spoke-vpc.google_compute_network.network" [label="google_compute_network.network"];
+    "module.dev-spoke-vpc.google_compute_network_attachment.default" [label="google_compute_network_attachment.default"];
+    "module.dev-spoke-vpc.google_compute_network_peering.local" [label="google_compute_network_peering.local"];
+    "module.dev-spoke-vpc.google_compute_network_peering.remote" [label="google_compute_network_peering.remote"];
+    "module.dev-spoke-vpc.google_compute_network_peering_routes_config.psa_routes" [label="google_compute_network_peering_routes_config.psa_routes"];
+    "module.dev-spoke-vpc.google_compute_route.gateway" [label="google_compute_route.gateway"];
+    "module.dev-spoke-vpc.google_compute_route.ilb" [label="google_compute_route.ilb"];
+    "module.dev-spoke-vpc.google_compute_route.instance" [label="google_compute_route.instance"];
+    "module.dev-spoke-vpc.google_compute_route.ip" [label="google_compute_route.ip"];
+    "module.dev-spoke-vpc.google_compute_route.vpn_tunnel" [label="google_compute_route.vpn_tunnel"];
+    "module.dev-spoke-vpc.google_compute_shared_vpc_host_project.shared_vpc_host" [label="google_compute_shared_vpc_host_project.shared_vpc_host"];
+    "module.dev-spoke-vpc.google_compute_shared_vpc_service_project.service_projects" [label="google_compute_shared_vpc_service_project.service_projects"];
+    "module.dev-spoke-vpc.google_compute_subnetwork.private_nat" [label="google_compute_subnetwork.private_nat"];
+    "module.dev-spoke-vpc.google_compute_subnetwork.proxy_only" [label="google_compute_subnetwork.proxy_only"];
+    "module.dev-spoke-vpc.google_compute_subnetwork.psc" [label="google_compute_subnetwork.psc"];
+    "module.dev-spoke-vpc.google_compute_subnetwork.subnetwork" [label="google_compute_subnetwork.subnetwork"];
+    "module.dev-spoke-vpc.google_compute_subnetwork_iam_binding.authoritative" [label="google_compute_subnetwork_iam_binding.authoritative"];
+    "module.dev-spoke-vpc.google_compute_subnetwork_iam_binding.bindings" [label="google_compute_subnetwork_iam_binding.bindings"];
+    "module.dev-spoke-vpc.google_compute_subnetwork_iam_member.bindings" [label="google_compute_subnetwork_iam_member.bindings"];
+    "module.dev-spoke-vpc.google_dns_policy.default" [label="google_dns_policy.default"];
+    "module.dev-spoke-vpc.google_network_connectivity_policy_based_route.default" [label="google_network_connectivity_policy_based_route.default"];
+    "module.dev-spoke-vpc.google_service_networking_connection.psa_connection" [label="google_service_networking_connection.psa_connection"];
+    "module.dev-spoke-vpc.google_service_networking_peered_dns_domain.name" [label="google_service_networking_peered_dns_domain.name"];
+  }
+  subgraph "cluster_module.dev-to-landing-primary-vpn" {
+    label = "module.dev-to-landing-primary-vpn"
+    fontname = "sans-serif"
+    "module.dev-to-landing-primary-vpn.google_compute_external_vpn_gateway.external_gateway" [label="google_compute_external_vpn_gateway.external_gateway"];
+    "module.dev-to-landing-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" [label="google_compute_ha_vpn_gateway.ha_gateway"];
+    "module.dev-to-landing-primary-vpn.google_compute_router.router" [label="google_compute_router.router"];
+    "module.dev-to-landing-primary-vpn.google_compute_router_interface.router_interface" [label="google_compute_router_interface.router_interface"];
+    "module.dev-to-landing-primary-vpn.google_compute_router_peer.bgp_peer" [label="google_compute_router_peer.bgp_peer"];
+    "module.dev-to-landing-primary-vpn.google_compute_vpn_tunnel.tunnels" [label="google_compute_vpn_tunnel.tunnels"];
+    "module.dev-to-landing-primary-vpn.random_id.md5_keys" [label="random_id.md5_keys"];
+    "module.dev-to-landing-primary-vpn.random_id.secret" [label="random_id.secret"];
+  }
+  subgraph "cluster_module.firewall-policy-default" {
+    label = "module.firewall-policy-default"
+    fontname = "sans-serif"
+    "module.firewall-policy-default.google_compute_firewall_policy.hierarchical" [label="google_compute_firewall_policy.hierarchical"];
+    "module.firewall-policy-default.google_compute_firewall_policy_association.hierarchical" [label="google_compute_firewall_policy_association.hierarchical"];
+    "module.firewall-policy-default.google_compute_firewall_policy_rule.hierarchical" [label="google_compute_firewall_policy_rule.hierarchical"];
+    "module.firewall-policy-default.google_compute_network_firewall_policy.net-global" [label="google_compute_network_firewall_policy.net-global"];
+    "module.firewall-policy-default.google_compute_network_firewall_policy_association.net-global" [label="google_compute_network_firewall_policy_association.net-global"];
+    "module.firewall-policy-default.google_compute_network_firewall_policy_rule.net-global" [label="google_compute_network_firewall_policy_rule.net-global"];
+    "module.firewall-policy-default.google_compute_region_network_firewall_policy.net-regional" [label="google_compute_region_network_firewall_policy.net-regional"];
+    "module.firewall-policy-default.google_compute_region_network_firewall_policy_association.net-regional" [label="google_compute_region_network_firewall_policy_association.net-regional"];
+    "module.firewall-policy-default.google_compute_region_network_firewall_policy_rule.net-regional" [label="google_compute_region_network_firewall_policy_rule.net-regional"];
+  }
+  subgraph "cluster_module.folder" {
+    label = "module.folder"
+    fontname = "sans-serif"
+    "module.folder.google_assured_workloads_workload.folder" [label="google_assured_workloads_workload.folder"];
+    "module.folder.google_bigquery_dataset_iam_member.bq-sinks-binding" [label="google_bigquery_dataset_iam_member.bq-sinks-binding"];
+    "module.folder.google_compute_firewall_policy_association.default" [label="google_compute_firewall_policy_association.default"];
+    "module.folder.google_essential_contacts_contact.contact" [label="google_essential_contacts_contact.contact"];
+    "module.folder.google_folder.folder" [label="google_folder.folder"];
+    "module.folder.google_folder_iam_audit_config.default" [label="google_folder_iam_audit_config.default"];
+    "module.folder.google_folder_iam_binding.authoritative" [label="google_folder_iam_binding.authoritative"];
+    "module.folder.google_folder_iam_binding.bindings" [label="google_folder_iam_binding.bindings"];
+    "module.folder.google_folder_iam_member.bindings" [label="google_folder_iam_member.bindings"];
+    "module.folder.google_logging_folder_exclusion.logging-exclusion" [label="google_logging_folder_exclusion.logging-exclusion"];
+    "module.folder.google_logging_folder_settings.default" [label="google_logging_folder_settings.default"];
+    "module.folder.google_logging_folder_sink.sink" [label="google_logging_folder_sink.sink"];
+    "module.folder.google_org_policy_policy.default" [label="google_org_policy_policy.default"];
+    "module.folder.google_project_iam_member.bucket-sinks-binding" [label="google_project_iam_member.bucket-sinks-binding"];
+    "module.folder.google_project_iam_member.project-sinks-binding" [label="google_project_iam_member.project-sinks-binding"];
+    "module.folder.google_pubsub_topic_iam_member.pubsub-sinks-binding" [label="google_pubsub_topic_iam_member.pubsub-sinks-binding"];
+    "module.folder.google_storage_bucket_iam_member.gcs-sinks-binding" [label="google_storage_bucket_iam_member.gcs-sinks-binding"];
+    "module.folder.google_tags_tag_binding.binding" [label="google_tags_tag_binding.binding"];
+  }
+  subgraph "cluster_module.landing-dns-fwd-onprem-example" {
+    label = "module.landing-dns-fwd-onprem-example"
+    fontname = "sans-serif"
+    "module.landing-dns-fwd-onprem-example.data.google_dns_keys.dns_keys" [label="data.google_dns_keys.dns_keys"];
+    "module.landing-dns-fwd-onprem-example.data.google_dns_managed_zone.dns_managed_zone" [label="data.google_dns_managed_zone.dns_managed_zone"];
+    "module.landing-dns-fwd-onprem-example.google_dns_managed_zone.dns_managed_zone" [label="google_dns_managed_zone.dns_managed_zone"];
+    "module.landing-dns-fwd-onprem-example.google_dns_managed_zone_iam_binding.iam_bindings" [label="google_dns_managed_zone_iam_binding.iam_bindings"];
+    "module.landing-dns-fwd-onprem-example.google_dns_record_set.dns_record_set" [label="google_dns_record_set.dns_record_set"];
+  }
+  subgraph "cluster_module.landing-dns-fwd-onprem-rev-10" {
+    label = "module.landing-dns-fwd-onprem-rev-10"
+    fontname = "sans-serif"
+    "module.landing-dns-fwd-onprem-rev-10.data.google_dns_keys.dns_keys" [label="data.google_dns_keys.dns_keys"];
+    "module.landing-dns-fwd-onprem-rev-10.data.google_dns_managed_zone.dns_managed_zone" [label="data.google_dns_managed_zone.dns_managed_zone"];
+    "module.landing-dns-fwd-onprem-rev-10.google_dns_managed_zone.dns_managed_zone" [label="google_dns_managed_zone.dns_managed_zone"];
+    "module.landing-dns-fwd-onprem-rev-10.google_dns_managed_zone_iam_binding.iam_bindings" [label="google_dns_managed_zone_iam_binding.iam_bindings"];
+    "module.landing-dns-fwd-onprem-rev-10.google_dns_record_set.dns_record_set" [label="google_dns_record_set.dns_record_set"];
+  }
+  subgraph "cluster_module.landing-dns-policy-googleapis" {
+    label = "module.landing-dns-policy-googleapis"
+    fontname = "sans-serif"
+    "module.landing-dns-policy-googleapis.google_dns_response_policy.default" [label="google_dns_response_policy.default"];
+    "module.landing-dns-policy-googleapis.google_dns_response_policy_rule.default" [label="google_dns_response_policy_rule.default"];
+  }
+  subgraph "cluster_module.landing-dns-priv-gcp" {
+    label = "module.landing-dns-priv-gcp"
+    fontname = "sans-serif"
+    "module.landing-dns-priv-gcp.data.google_dns_keys.dns_keys" [label="data.google_dns_keys.dns_keys"];
+    "module.landing-dns-priv-gcp.data.google_dns_managed_zone.dns_managed_zone" [label="data.google_dns_managed_zone.dns_managed_zone"];
+    "module.landing-dns-priv-gcp.google_dns_managed_zone.dns_managed_zone" [label="google_dns_managed_zone.dns_managed_zone"];
+    "module.landing-dns-priv-gcp.google_dns_managed_zone_iam_binding.iam_bindings" [label="google_dns_managed_zone_iam_binding.iam_bindings"];
+    "module.landing-dns-priv-gcp.google_dns_record_set.dns_record_set" [label="google_dns_record_set.dns_record_set"];
+  }
+  subgraph "cluster_module.landing-dns-priv-googleapis" {
+    label = "module.landing-dns-priv-googleapis"
+    fontname = "sans-serif"
+    "module.landing-dns-priv-googleapis.data.google_dns_keys.dns_keys" [label="data.google_dns_keys.dns_keys"];
+    "module.landing-dns-priv-googleapis.data.google_dns_managed_zone.dns_managed_zone" [label="data.google_dns_managed_zone.dns_managed_zone"];
+    "module.landing-dns-priv-googleapis.google_dns_managed_zone.dns_managed_zone" [label="google_dns_managed_zone.dns_managed_zone"];
+    "module.landing-dns-priv-googleapis.google_dns_managed_zone_iam_binding.iam_bindings" [label="google_dns_managed_zone_iam_binding.iam_bindings"];
+    "module.landing-dns-priv-googleapis.google_dns_record_set.dns_record_set" [label="google_dns_record_set.dns_record_set"];
+  }
+  subgraph "cluster_module.landing-firewall" {
+    label = "module.landing-firewall"
+    fontname = "sans-serif"
+    "module.landing-firewall.google_compute_firewall.allow-admins" [label="google_compute_firewall.allow-admins"];
+    "module.landing-firewall.google_compute_firewall.allow-tag-http" [label="google_compute_firewall.allow-tag-http"];
+    "module.landing-firewall.google_compute_firewall.allow-tag-https" [label="google_compute_firewall.allow-tag-https"];
+    "module.landing-firewall.google_compute_firewall.allow-tag-ssh" [label="google_compute_firewall.allow-tag-ssh"];
+    "module.landing-firewall.google_compute_firewall.custom-rules" [label="google_compute_firewall.custom-rules"];
+  }
+  subgraph "cluster_module.landing-firewall-policy" {
+    label = "module.landing-firewall-policy"
+    fontname = "sans-serif"
+    "module.landing-firewall-policy.google_compute_firewall_policy.hierarchical" [label="google_compute_firewall_policy.hierarchical"];
+    "module.landing-firewall-policy.google_compute_firewall_policy_association.hierarchical" [label="google_compute_firewall_policy_association.hierarchical"];
+    "module.landing-firewall-policy.google_compute_firewall_policy_rule.hierarchical" [label="google_compute_firewall_policy_rule.hierarchical"];
+    "module.landing-firewall-policy.google_compute_network_firewall_policy.net-global" [label="google_compute_network_firewall_policy.net-global"];
+    "module.landing-firewall-policy.google_compute_network_firewall_policy_association.net-global" [label="google_compute_network_firewall_policy_association.net-global"];
+    "module.landing-firewall-policy.google_compute_network_firewall_policy_rule.net-global" [label="google_compute_network_firewall_policy_rule.net-global"];
+    "module.landing-firewall-policy.google_compute_region_network_firewall_policy.net-regional" [label="google_compute_region_network_firewall_policy.net-regional"];
+    "module.landing-firewall-policy.google_compute_region_network_firewall_policy_association.net-regional" [label="google_compute_region_network_firewall_policy_association.net-regional"];
+    "module.landing-firewall-policy.google_compute_region_network_firewall_policy_rule.net-regional" [label="google_compute_region_network_firewall_policy_rule.net-regional"];
+  }
+  subgraph "cluster_module.landing-nat-primary" {
+    label = "module.landing-nat-primary"
+    fontname = "sans-serif"
+    "module.landing-nat-primary.google_compute_router.router" [label="google_compute_router.router"];
+    "module.landing-nat-primary.google_compute_router_nat.nat" [label="google_compute_router_nat.nat"];
+  }
+  subgraph "cluster_module.landing-project" {
+    label = "module.landing-project"
+    fontname = "sans-serif"
+    "module.landing-project.data.google_bigquery_default_service_account.bq_sa" [label="data.google_bigquery_default_service_account.bq_sa"];
+    "module.landing-project.data.google_project.project" [label="data.google_project.project"];
+    "module.landing-project.data.google_storage_project_service_account.gcs_sa" [label="data.google_storage_project_service_account.gcs_sa"];
+    "module.landing-project.google_access_context_manager_service_perimeter_dry_run_resource.default" [label="google_access_context_manager_service_perimeter_dry_run_resource.default"];
+    "module.landing-project.google_access_context_manager_service_perimeter_resource.default" [label="google_access_context_manager_service_perimeter_resource.default"];
+    "module.landing-project.google_bigquery_dataset_iam_member.bq-sinks-binding" [label="google_bigquery_dataset_iam_member.bq-sinks-binding"];
+    "module.landing-project.google_cloud_quotas_quota_preference.default" [label="google_cloud_quotas_quota_preference.default"];
+    "module.landing-project.google_compute_project_metadata_item.default" [label="google_compute_project_metadata_item.default"];
+    "module.landing-project.google_compute_shared_vpc_host_project.shared_vpc_host" [label="google_compute_shared_vpc_host_project.shared_vpc_host"];
+    "module.landing-project.google_compute_shared_vpc_service_project.service_projects" [label="google_compute_shared_vpc_service_project.service_projects"];
+    "module.landing-project.google_compute_shared_vpc_service_project.shared_vpc_service" [label="google_compute_shared_vpc_service_project.shared_vpc_service"];
+    "module.landing-project.google_compute_subnetwork_iam_member.shared_vpc_host_robots" [label="google_compute_subnetwork_iam_member.shared_vpc_host_robots"];
+    "module.landing-project.google_compute_subnetwork_iam_member.shared_vpc_host_subnets_iam" [label="google_compute_subnetwork_iam_member.shared_vpc_host_subnets_iam"];
+    "module.landing-project.google_essential_contacts_contact.contact" [label="google_essential_contacts_contact.contact"];
+    "module.landing-project.google_kms_crypto_key_iam_member.service_agent_cmek" [label="google_kms_crypto_key_iam_member.service_agent_cmek"];
+    "module.landing-project.google_logging_log_scope.log-scopes" [label="google_logging_log_scope.log-scopes"];
+    "module.landing-project.google_logging_metric.metrics" [label="google_logging_metric.metrics"];
+    "module.landing-project.google_logging_project_exclusion.logging-exclusion" [label="google_logging_project_exclusion.logging-exclusion"];
+    "module.landing-project.google_logging_project_sink.sink" [label="google_logging_project_sink.sink"];
+    "module.landing-project.google_monitoring_alert_policy.alerts" [label="google_monitoring_alert_policy.alerts"];
+    "module.landing-project.google_monitoring_monitored_project.primary" [label="google_monitoring_monitored_project.primary"];
+    "module.landing-project.google_monitoring_notification_channel.channels" [label="google_monitoring_notification_channel.channels"];
+    "module.landing-project.google_org_policy_policy.default" [label="google_org_policy_policy.default"];
+    "module.landing-project.google_project.project" [label="google_project.project"];
+    "module.landing-project.google_project_default_service_accounts.default_service_accounts" [label="google_project_default_service_accounts.default_service_accounts"];
+    "module.landing-project.google_project_iam_audit_config.default" [label="google_project_iam_audit_config.default"];
+    "module.landing-project.google_project_iam_binding.authoritative" [label="google_project_iam_binding.authoritative"];
+    "module.landing-project.google_project_iam_binding.bindings" [label="google_project_iam_binding.bindings"];
+    "module.landing-project.google_project_iam_custom_role.roles" [label="google_project_iam_custom_role.roles"];
+    "module.landing-project.google_project_iam_member.bindings" [label="google_project_iam_member.bindings"];
+    "module.landing-project.google_project_iam_member.bucket-sinks-binding" [label="google_project_iam_member.bucket-sinks-binding"];
+    "module.landing-project.google_project_iam_member.project-sinks-binding" [label="google_project_iam_member.project-sinks-binding"];
+    "module.landing-project.google_project_iam_member.service_agents" [label="google_project_iam_member.service_agents"];
+    "module.landing-project.google_project_iam_member.shared_vpc_host_iam" [label="google_project_iam_member.shared_vpc_host_iam"];
+    "module.landing-project.google_project_iam_member.shared_vpc_host_robots" [label="google_project_iam_member.shared_vpc_host_robots"];
+    "module.landing-project.google_project_service.project_services" [label="google_project_service.project_services"];
+    "module.landing-project.google_project_service_identity.default" [label="google_project_service_identity.default"];
+    "module.landing-project.google_pubsub_topic_iam_member.pubsub-sinks-binding" [label="google_pubsub_topic_iam_member.pubsub-sinks-binding"];
+    "module.landing-project.google_resource_manager_lien.lien" [label="google_resource_manager_lien.lien"];
+    "module.landing-project.google_storage_bucket_iam_member.gcs-sinks-binding" [label="google_storage_bucket_iam_member.gcs-sinks-binding"];
+    "module.landing-project.google_tags_tag_binding.binding" [label="google_tags_tag_binding.binding"];
+    "module.landing-project.google_tags_tag_key.default" [label="google_tags_tag_key.default"];
+    "module.landing-project.google_tags_tag_key_iam_binding.bindings" [label="google_tags_tag_key_iam_binding.bindings"];
+    "module.landing-project.google_tags_tag_key_iam_binding.default" [label="google_tags_tag_key_iam_binding.default"];
+    "module.landing-project.google_tags_tag_key_iam_member.bindings" [label="google_tags_tag_key_iam_member.bindings"];
+    "module.landing-project.google_tags_tag_value.default" [label="google_tags_tag_value.default"];
+    "module.landing-project.google_tags_tag_value_iam_binding.bindings" [label="google_tags_tag_value_iam_binding.bindings"];
+    "module.landing-project.google_tags_tag_value_iam_binding.default" [label="google_tags_tag_value_iam_binding.default"];
+    "module.landing-project.google_tags_tag_value_iam_member.bindings" [label="google_tags_tag_value_iam_member.bindings"];
+  }
+  subgraph "cluster_module.landing-to-onprem-primary-vpn" {
+    label = "module.landing-to-onprem-primary-vpn"
+    fontname = "sans-serif"
+    "module.landing-to-onprem-primary-vpn.google_compute_external_vpn_gateway.external_gateway" [label="google_compute_external_vpn_gateway.external_gateway"];
+    "module.landing-to-onprem-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" [label="google_compute_ha_vpn_gateway.ha_gateway"];
+    "module.landing-to-onprem-primary-vpn.google_compute_router.router" [label="google_compute_router.router"];
+    "module.landing-to-onprem-primary-vpn.google_compute_router_interface.router_interface" [label="google_compute_router_interface.router_interface"];
+    "module.landing-to-onprem-primary-vpn.google_compute_router_peer.bgp_peer" [label="google_compute_router_peer.bgp_peer"];
+    "module.landing-to-onprem-primary-vpn.google_compute_vpn_tunnel.tunnels" [label="google_compute_vpn_tunnel.tunnels"];
+    "module.landing-to-onprem-primary-vpn.random_id.md5_keys" [label="random_id.md5_keys"];
+    "module.landing-to-onprem-primary-vpn.random_id.secret" [label="random_id.secret"];
+  }
+  subgraph "cluster_module.landing-to-spokes-primary-vpn" {
+    label = "module.landing-to-spokes-primary-vpn"
+    fontname = "sans-serif"
+    "module.landing-to-spokes-primary-vpn.google_compute_external_vpn_gateway.external_gateway" [label="google_compute_external_vpn_gateway.external_gateway"];
+    "module.landing-to-spokes-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" [label="google_compute_ha_vpn_gateway.ha_gateway"];
+    "module.landing-to-spokes-primary-vpn.google_compute_router.router" [label="google_compute_router.router"];
+    "module.landing-to-spokes-primary-vpn.google_compute_router_interface.router_interface" [label="google_compute_router_interface.router_interface"];
+    "module.landing-to-spokes-primary-vpn.google_compute_router_peer.bgp_peer" [label="google_compute_router_peer.bgp_peer"];
+    "module.landing-to-spokes-primary-vpn.google_compute_vpn_tunnel.tunnels" [label="google_compute_vpn_tunnel.tunnels"];
+    "module.landing-to-spokes-primary-vpn.random_id.md5_keys" [label="random_id.md5_keys"];
+    "module.landing-to-spokes-primary-vpn.random_id.secret" [label="random_id.secret"];
+  }
+  subgraph "cluster_module.landing-to-spokes-secondary-vpn" {
+    label = "module.landing-to-spokes-secondary-vpn"
+    fontname = "sans-serif"
+    "module.landing-to-spokes-secondary-vpn.google_compute_external_vpn_gateway.external_gateway" [label="google_compute_external_vpn_gateway.external_gateway"];
+    "module.landing-to-spokes-secondary-vpn.google_compute_ha_vpn_gateway.ha_gateway" [label="google_compute_ha_vpn_gateway.ha_gateway"];
+    "module.landing-to-spokes-secondary-vpn.google_compute_router.router" [label="google_compute_router.router"];
+    "module.landing-to-spokes-secondary-vpn.google_compute_router_interface.router_interface" [label="google_compute_router_interface.router_interface"];
+    "module.landing-to-spokes-secondary-vpn.google_compute_router_peer.bgp_peer" [label="google_compute_router_peer.bgp_peer"];
+    "module.landing-to-spokes-secondary-vpn.google_compute_vpn_tunnel.tunnels" [label="google_compute_vpn_tunnel.tunnels"];
+    "module.landing-to-spokes-secondary-vpn.random_id.md5_keys" [label="random_id.md5_keys"];
+    "module.landing-to-spokes-secondary-vpn.random_id.secret" [label="random_id.secret"];
+  }
+  subgraph "cluster_module.landing-vpc" {
+    label = "module.landing-vpc"
+    fontname = "sans-serif"
+    "module.landing-vpc.google_compute_global_address.psa_ranges" [label="google_compute_global_address.psa_ranges"];
+    "module.landing-vpc.google_compute_network.network" [label="google_compute_network.network"];
+    "module.landing-vpc.google_compute_network_attachment.default" [label="google_compute_network_attachment.default"];
+    "module.landing-vpc.google_compute_network_peering.local" [label="google_compute_network_peering.local"];
+    "module.landing-vpc.google_compute_network_peering.remote" [label="google_compute_network_peering.remote"];
+    "module.landing-vpc.google_compute_network_peering_routes_config.psa_routes" [label="google_compute_network_peering_routes_config.psa_routes"];
+    "module.landing-vpc.google_compute_route.gateway" [label="google_compute_route.gateway"];
+    "module.landing-vpc.google_compute_route.ilb" [label="google_compute_route.ilb"];
+    "module.landing-vpc.google_compute_route.instance" [label="google_compute_route.instance"];
+    "module.landing-vpc.google_compute_route.ip" [label="google_compute_route.ip"];
+    "module.landing-vpc.google_compute_route.vpn_tunnel" [label="google_compute_route.vpn_tunnel"];
+    "module.landing-vpc.google_compute_shared_vpc_host_project.shared_vpc_host" [label="google_compute_shared_vpc_host_project.shared_vpc_host"];
+    "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects" [label="google_compute_shared_vpc_service_project.service_projects"];
+    "module.landing-vpc.google_compute_subnetwork.private_nat" [label="google_compute_subnetwork.private_nat"];
+    "module.landing-vpc.google_compute_subnetwork.proxy_only" [label="google_compute_subnetwork.proxy_only"];
+    "module.landing-vpc.google_compute_subnetwork.psc" [label="google_compute_subnetwork.psc"];
+    "module.landing-vpc.google_compute_subnetwork.subnetwork" [label="google_compute_subnetwork.subnetwork"];
+    "module.landing-vpc.google_compute_subnetwork_iam_binding.authoritative" [label="google_compute_subnetwork_iam_binding.authoritative"];
+    "module.landing-vpc.google_compute_subnetwork_iam_binding.bindings" [label="google_compute_subnetwork_iam_binding.bindings"];
+    "module.landing-vpc.google_compute_subnetwork_iam_member.bindings" [label="google_compute_subnetwork_iam_member.bindings"];
+    "module.landing-vpc.google_dns_policy.default" [label="google_dns_policy.default"];
+    "module.landing-vpc.google_network_connectivity_policy_based_route.default" [label="google_network_connectivity_policy_based_route.default"];
+    "module.landing-vpc.google_service_networking_connection.psa_connection" [label="google_service_networking_connection.psa_connection"];
+    "module.landing-vpc.google_service_networking_peered_dns_domain.name" [label="google_service_networking_peered_dns_domain.name"];
+  }
+  subgraph "cluster_module.peering-dev" {
+    label = "module.peering-dev"
+    fontname = "sans-serif"
+    "module.peering-dev.google_compute_network_peering.local_network_peering" [label="google_compute_network_peering.local_network_peering"];
+    "module.peering-dev.google_compute_network_peering.peer_network_peering" [label="google_compute_network_peering.peer_network_peering"];
+  }
+  subgraph "cluster_module.peering-prod" {
+    label = "module.peering-prod"
+    fontname = "sans-serif"
+    "module.peering-prod.google_compute_network_peering.local_network_peering" [label="google_compute_network_peering.local_network_peering"];
+    "module.peering-prod.google_compute_network_peering.peer_network_peering" [label="google_compute_network_peering.peer_network_peering"];
+  }
+  subgraph "cluster_module.prod-dns-peer-landing-rev-10" {
+    label = "module.prod-dns-peer-landing-rev-10"
+    fontname = "sans-serif"
+    "module.prod-dns-peer-landing-rev-10.data.google_dns_keys.dns_keys" [label="data.google_dns_keys.dns_keys"];
+    "module.prod-dns-peer-landing-rev-10.data.google_dns_managed_zone.dns_managed_zone" [label="data.google_dns_managed_zone.dns_managed_zone"];
+    "module.prod-dns-peer-landing-rev-10.google_dns_managed_zone.dns_managed_zone" [label="google_dns_managed_zone.dns_managed_zone"];
+    "module.prod-dns-peer-landing-rev-10.google_dns_managed_zone_iam_binding.iam_bindings" [label="google_dns_managed_zone_iam_binding.iam_bindings"];
+    "module.prod-dns-peer-landing-rev-10.google_dns_record_set.dns_record_set" [label="google_dns_record_set.dns_record_set"];
+  }
+  subgraph "cluster_module.prod-dns-peer-landing-root" {
+    label = "module.prod-dns-peer-landing-root"
+    fontname = "sans-serif"
+    "module.prod-dns-peer-landing-root.data.google_dns_keys.dns_keys" [label="data.google_dns_keys.dns_keys"];
+    "module.prod-dns-peer-landing-root.data.google_dns_managed_zone.dns_managed_zone" [label="data.google_dns_managed_zone.dns_managed_zone"];
+    "module.prod-dns-peer-landing-root.google_dns_managed_zone.dns_managed_zone" [label="google_dns_managed_zone.dns_managed_zone"];
+    "module.prod-dns-peer-landing-root.google_dns_managed_zone_iam_binding.iam_bindings" [label="google_dns_managed_zone_iam_binding.iam_bindings"];
+    "module.prod-dns-peer-landing-root.google_dns_record_set.dns_record_set" [label="google_dns_record_set.dns_record_set"];
+  }
+  subgraph "cluster_module.prod-dns-priv-example" {
+    label = "module.prod-dns-priv-example"
+    fontname = "sans-serif"
+    "module.prod-dns-priv-example.data.google_dns_keys.dns_keys" [label="data.google_dns_keys.dns_keys"];
+    "module.prod-dns-priv-example.data.google_dns_managed_zone.dns_managed_zone" [label="data.google_dns_managed_zone.dns_managed_zone"];
+    "module.prod-dns-priv-example.google_dns_managed_zone.dns_managed_zone" [label="google_dns_managed_zone.dns_managed_zone"];
+    "module.prod-dns-priv-example.google_dns_managed_zone_iam_binding.iam_bindings" [label="google_dns_managed_zone_iam_binding.iam_bindings"];
+    "module.prod-dns-priv-example.google_dns_record_set.dns_record_set" [label="google_dns_record_set.dns_record_set"];
+  }
+  subgraph "cluster_module.prod-firewall-policy" {
+    label = "module.prod-firewall-policy"
+    fontname = "sans-serif"
+    "module.prod-firewall-policy.google_compute_firewall_policy.hierarchical" [label="google_compute_firewall_policy.hierarchical"];
+    "module.prod-firewall-policy.google_compute_firewall_policy_association.hierarchical" [label="google_compute_firewall_policy_association.hierarchical"];
+    "module.prod-firewall-policy.google_compute_firewall_policy_rule.hierarchical" [label="google_compute_firewall_policy_rule.hierarchical"];
+    "module.prod-firewall-policy.google_compute_network_firewall_policy.net-global" [label="google_compute_network_firewall_policy.net-global"];
+    "module.prod-firewall-policy.google_compute_network_firewall_policy_association.net-global" [label="google_compute_network_firewall_policy_association.net-global"];
+    "module.prod-firewall-policy.google_compute_network_firewall_policy_rule.net-global" [label="google_compute_network_firewall_policy_rule.net-global"];
+    "module.prod-firewall-policy.google_compute_region_network_firewall_policy.net-regional" [label="google_compute_region_network_firewall_policy.net-regional"];
+    "module.prod-firewall-policy.google_compute_region_network_firewall_policy_association.net-regional" [label="google_compute_region_network_firewall_policy_association.net-regional"];
+    "module.prod-firewall-policy.google_compute_region_network_firewall_policy_rule.net-regional" [label="google_compute_region_network_firewall_policy_rule.net-regional"];
+  }
+  subgraph "cluster_module.prod-spoke-cloudnat" {
+    label = "module.prod-spoke-cloudnat"
+    fontname = "sans-serif"
+    "module.prod-spoke-cloudnat.google_compute_router.router" [label="google_compute_router.router"];
+    "module.prod-spoke-cloudnat.google_compute_router_nat.nat" [label="google_compute_router_nat.nat"];
+  }
+  subgraph "cluster_module.prod-spoke-firewall" {
+    label = "module.prod-spoke-firewall"
+    fontname = "sans-serif"
+    "module.prod-spoke-firewall.google_compute_firewall.allow-admins" [label="google_compute_firewall.allow-admins"];
+    "module.prod-spoke-firewall.google_compute_firewall.allow-tag-http" [label="google_compute_firewall.allow-tag-http"];
+    "module.prod-spoke-firewall.google_compute_firewall.allow-tag-https" [label="google_compute_firewall.allow-tag-https"];
+    "module.prod-spoke-firewall.google_compute_firewall.allow-tag-ssh" [label="google_compute_firewall.allow-tag-ssh"];
+    "module.prod-spoke-firewall.google_compute_firewall.custom-rules" [label="google_compute_firewall.custom-rules"];
+  }
+  subgraph "cluster_module.prod-spoke-project" {
+    label = "module.prod-spoke-project"
+    fontname = "sans-serif"
+    "module.prod-spoke-project.data.google_bigquery_default_service_account.bq_sa" [label="data.google_bigquery_default_service_account.bq_sa"];
+    "module.prod-spoke-project.data.google_project.project" [label="data.google_project.project"];
+    "module.prod-spoke-project.data.google_storage_project_service_account.gcs_sa" [label="data.google_storage_project_service_account.gcs_sa"];
+    "module.prod-spoke-project.google_access_context_manager_service_perimeter_dry_run_resource.default" [label="google_access_context_manager_service_perimeter_dry_run_resource.default"];
+    "module.prod-spoke-project.google_access_context_manager_service_perimeter_resource.default" [label="google_access_context_manager_service_perimeter_resource.default"];
+    "module.prod-spoke-project.google_bigquery_dataset_iam_member.bq-sinks-binding" [label="google_bigquery_dataset_iam_member.bq-sinks-binding"];
+    "module.prod-spoke-project.google_cloud_quotas_quota_preference.default" [label="google_cloud_quotas_quota_preference.default"];
+    "module.prod-spoke-project.google_compute_project_metadata_item.default" [label="google_compute_project_metadata_item.default"];
+    "module.prod-spoke-project.google_compute_shared_vpc_host_project.shared_vpc_host" [label="google_compute_shared_vpc_host_project.shared_vpc_host"];
+    "module.prod-spoke-project.google_compute_shared_vpc_service_project.service_projects" [label="google_compute_shared_vpc_service_project.service_projects"];
+    "module.prod-spoke-project.google_compute_shared_vpc_service_project.shared_vpc_service" [label="google_compute_shared_vpc_service_project.shared_vpc_service"];
+    "module.prod-spoke-project.google_compute_subnetwork_iam_member.shared_vpc_host_robots" [label="google_compute_subnetwork_iam_member.shared_vpc_host_robots"];
+    "module.prod-spoke-project.google_compute_subnetwork_iam_member.shared_vpc_host_subnets_iam" [label="google_compute_subnetwork_iam_member.shared_vpc_host_subnets_iam"];
+    "module.prod-spoke-project.google_essential_contacts_contact.contact" [label="google_essential_contacts_contact.contact"];
+    "module.prod-spoke-project.google_kms_crypto_key_iam_member.service_agent_cmek" [label="google_kms_crypto_key_iam_member.service_agent_cmek"];
+    "module.prod-spoke-project.google_logging_log_scope.log-scopes" [label="google_logging_log_scope.log-scopes"];
+    "module.prod-spoke-project.google_logging_metric.metrics" [label="google_logging_metric.metrics"];
+    "module.prod-spoke-project.google_logging_project_exclusion.logging-exclusion" [label="google_logging_project_exclusion.logging-exclusion"];
+    "module.prod-spoke-project.google_logging_project_sink.sink" [label="google_logging_project_sink.sink"];
+    "module.prod-spoke-project.google_monitoring_alert_policy.alerts" [label="google_monitoring_alert_policy.alerts"];
+    "module.prod-spoke-project.google_monitoring_monitored_project.primary" [label="google_monitoring_monitored_project.primary"];
+    "module.prod-spoke-project.google_monitoring_notification_channel.channels" [label="google_monitoring_notification_channel.channels"];
+    "module.prod-spoke-project.google_org_policy_policy.default" [label="google_org_policy_policy.default"];
+    "module.prod-spoke-project.google_project.project" [label="google_project.project"];
+    "module.prod-spoke-project.google_project_default_service_accounts.default_service_accounts" [label="google_project_default_service_accounts.default_service_accounts"];
+    "module.prod-spoke-project.google_project_iam_audit_config.default" [label="google_project_iam_audit_config.default"];
+    "module.prod-spoke-project.google_project_iam_binding.authoritative" [label="google_project_iam_binding.authoritative"];
+    "module.prod-spoke-project.google_project_iam_binding.bindings" [label="google_project_iam_binding.bindings"];
+    "module.prod-spoke-project.google_project_iam_custom_role.roles" [label="google_project_iam_custom_role.roles"];
+    "module.prod-spoke-project.google_project_iam_member.bindings" [label="google_project_iam_member.bindings"];
+    "module.prod-spoke-project.google_project_iam_member.bucket-sinks-binding" [label="google_project_iam_member.bucket-sinks-binding"];
+    "module.prod-spoke-project.google_project_iam_member.project-sinks-binding" [label="google_project_iam_member.project-sinks-binding"];
+    "module.prod-spoke-project.google_project_iam_member.service_agents" [label="google_project_iam_member.service_agents"];
+    "module.prod-spoke-project.google_project_iam_member.shared_vpc_host_iam" [label="google_project_iam_member.shared_vpc_host_iam"];
+    "module.prod-spoke-project.google_project_iam_member.shared_vpc_host_robots" [label="google_project_iam_member.shared_vpc_host_robots"];
+    "module.prod-spoke-project.google_project_service.project_services" [label="google_project_service.project_services"];
+    "module.prod-spoke-project.google_project_service_identity.default" [label="google_project_service_identity.default"];
+    "module.prod-spoke-project.google_pubsub_topic_iam_member.pubsub-sinks-binding" [label="google_pubsub_topic_iam_member.pubsub-sinks-binding"];
+    "module.prod-spoke-project.google_resource_manager_lien.lien" [label="google_resource_manager_lien.lien"];
+    "module.prod-spoke-project.google_storage_bucket_iam_member.gcs-sinks-binding" [label="google_storage_bucket_iam_member.gcs-sinks-binding"];
+    "module.prod-spoke-project.google_tags_tag_binding.binding" [label="google_tags_tag_binding.binding"];
+    "module.prod-spoke-project.google_tags_tag_key.default" [label="google_tags_tag_key.default"];
+    "module.prod-spoke-project.google_tags_tag_key_iam_binding.bindings" [label="google_tags_tag_key_iam_binding.bindings"];
+    "module.prod-spoke-project.google_tags_tag_key_iam_binding.default" [label="google_tags_tag_key_iam_binding.default"];
+    "module.prod-spoke-project.google_tags_tag_key_iam_member.bindings" [label="google_tags_tag_key_iam_member.bindings"];
+    "module.prod-spoke-project.google_tags_tag_value.default" [label="google_tags_tag_value.default"];
+    "module.prod-spoke-project.google_tags_tag_value_iam_binding.bindings" [label="google_tags_tag_value_iam_binding.bindings"];
+    "module.prod-spoke-project.google_tags_tag_value_iam_binding.default" [label="google_tags_tag_value_iam_binding.default"];
+    "module.prod-spoke-project.google_tags_tag_value_iam_member.bindings" [label="google_tags_tag_value_iam_member.bindings"];
+  }
+  subgraph "cluster_module.prod-spoke-vpc" {
+    label = "module.prod-spoke-vpc"
+    fontname = "sans-serif"
+    "module.prod-spoke-vpc.google_compute_global_address.psa_ranges" [label="google_compute_global_address.psa_ranges"];
+    "module.prod-spoke-vpc.google_compute_network.network" [label="google_compute_network.network"];
+    "module.prod-spoke-vpc.google_compute_network_attachment.default" [label="google_compute_network_attachment.default"];
+    "module.prod-spoke-vpc.google_compute_network_peering.local" [label="google_compute_network_peering.local"];
+    "module.prod-spoke-vpc.google_compute_network_peering.remote" [label="google_compute_network_peering.remote"];
+    "module.prod-spoke-vpc.google_compute_network_peering_routes_config.psa_routes" [label="google_compute_network_peering_routes_config.psa_routes"];
+    "module.prod-spoke-vpc.google_compute_route.gateway" [label="google_compute_route.gateway"];
+    "module.prod-spoke-vpc.google_compute_route.ilb" [label="google_compute_route.ilb"];
+    "module.prod-spoke-vpc.google_compute_route.instance" [label="google_compute_route.instance"];
+    "module.prod-spoke-vpc.google_compute_route.ip" [label="google_compute_route.ip"];
+    "module.prod-spoke-vpc.google_compute_route.vpn_tunnel" [label="google_compute_route.vpn_tunnel"];
+    "module.prod-spoke-vpc.google_compute_shared_vpc_host_project.shared_vpc_host" [label="google_compute_shared_vpc_host_project.shared_vpc_host"];
+    "module.prod-spoke-vpc.google_compute_shared_vpc_service_project.service_projects" [label="google_compute_shared_vpc_service_project.service_projects"];
+    "module.prod-spoke-vpc.google_compute_subnetwork.private_nat" [label="google_compute_subnetwork.private_nat"];
+    "module.prod-spoke-vpc.google_compute_subnetwork.proxy_only" [label="google_compute_subnetwork.proxy_only"];
+    "module.prod-spoke-vpc.google_compute_subnetwork.psc" [label="google_compute_subnetwork.psc"];
+    "module.prod-spoke-vpc.google_compute_subnetwork.subnetwork" [label="google_compute_subnetwork.subnetwork"];
+    "module.prod-spoke-vpc.google_compute_subnetwork_iam_binding.authoritative" [label="google_compute_subnetwork_iam_binding.authoritative"];
+    "module.prod-spoke-vpc.google_compute_subnetwork_iam_binding.bindings" [label="google_compute_subnetwork_iam_binding.bindings"];
+    "module.prod-spoke-vpc.google_compute_subnetwork_iam_member.bindings" [label="google_compute_subnetwork_iam_member.bindings"];
+    "module.prod-spoke-vpc.google_dns_policy.default" [label="google_dns_policy.default"];
+    "module.prod-spoke-vpc.google_network_connectivity_policy_based_route.default" [label="google_network_connectivity_policy_based_route.default"];
+    "module.prod-spoke-vpc.google_service_networking_connection.psa_connection" [label="google_service_networking_connection.psa_connection"];
+    "module.prod-spoke-vpc.google_service_networking_peered_dns_domain.name" [label="google_service_networking_peered_dns_domain.name"];
+  }
+  subgraph "cluster_module.prod-to-landing-primary-vpn" {
+    label = "module.prod-to-landing-primary-vpn"
+    fontname = "sans-serif"
+    "module.prod-to-landing-primary-vpn.google_compute_external_vpn_gateway.external_gateway" [label="google_compute_external_vpn_gateway.external_gateway"];
+    "module.prod-to-landing-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" [label="google_compute_ha_vpn_gateway.ha_gateway"];
+    "module.prod-to-landing-primary-vpn.google_compute_router.router" [label="google_compute_router.router"];
+    "module.prod-to-landing-primary-vpn.google_compute_router_interface.router_interface" [label="google_compute_router_interface.router_interface"];
+    "module.prod-to-landing-primary-vpn.google_compute_router_peer.bgp_peer" [label="google_compute_router_peer.bgp_peer"];
+    "module.prod-to-landing-primary-vpn.google_compute_vpn_tunnel.tunnels" [label="google_compute_vpn_tunnel.tunnels"];
+    "module.prod-to-landing-primary-vpn.random_id.md5_keys" [label="random_id.md5_keys"];
+    "module.prod-to-landing-primary-vpn.random_id.secret" [label="random_id.secret"];
+  }
+  subgraph "cluster_module.prod-to-landing-secondary-vpn" {
+    label = "module.prod-to-landing-secondary-vpn"
+    fontname = "sans-serif"
+    "module.prod-to-landing-secondary-vpn.google_compute_external_vpn_gateway.external_gateway" [label="google_compute_external_vpn_gateway.external_gateway"];
+    "module.prod-to-landing-secondary-vpn.google_compute_ha_vpn_gateway.ha_gateway" [label="google_compute_ha_vpn_gateway.ha_gateway"];
+    "module.prod-to-landing-secondary-vpn.google_compute_router.router" [label="google_compute_router.router"];
+    "module.prod-to-landing-secondary-vpn.google_compute_router_interface.router_interface" [label="google_compute_router_interface.router_interface"];
+    "module.prod-to-landing-secondary-vpn.google_compute_router_peer.bgp_peer" [label="google_compute_router_peer.bgp_peer"];
+    "module.prod-to-landing-secondary-vpn.google_compute_vpn_tunnel.tunnels" [label="google_compute_vpn_tunnel.tunnels"];
+    "module.prod-to-landing-secondary-vpn.random_id.md5_keys" [label="random_id.md5_keys"];
+    "module.prod-to-landing-secondary-vpn.random_id.secret" [label="random_id.secret"];
+  }
+  "google_monitoring_alert_policy.vpn_tunnel_bandwidth" -> "module.landing-project.google_compute_shared_vpc_service_project.service_projects";
+  "google_monitoring_alert_policy.vpn_tunnel_bandwidth" -> "module.landing-project.google_compute_shared_vpc_service_project.shared_vpc_service";
+  "google_monitoring_alert_policy.vpn_tunnel_bandwidth" -> "module.landing-project.google_kms_crypto_key_iam_member.service_agent_cmek";
+  "google_monitoring_alert_policy.vpn_tunnel_bandwidth" -> "module.landing-project.google_project_iam_member.shared_vpc_host_robots";
+  "google_monitoring_alert_policy.vpn_tunnel_established" -> "module.landing-project.google_compute_shared_vpc_service_project.service_projects";
+  "google_monitoring_alert_policy.vpn_tunnel_established" -> "module.landing-project.google_compute_shared_vpc_service_project.shared_vpc_service";
+  "google_monitoring_alert_policy.vpn_tunnel_established" -> "module.landing-project.google_kms_crypto_key_iam_member.service_agent_cmek";
+  "google_monitoring_alert_policy.vpn_tunnel_established" -> "module.landing-project.google_project_iam_member.shared_vpc_host_robots";
+  "google_monitoring_dashboard.dashboard" -> "module.landing-project.google_compute_shared_vpc_service_project.service_projects";
+  "google_monitoring_dashboard.dashboard" -> "module.landing-project.google_compute_shared_vpc_service_project.shared_vpc_service";
+  "google_monitoring_dashboard.dashboard" -> "module.landing-project.google_kms_crypto_key_iam_member.service_agent_cmek";
+  "google_monitoring_dashboard.dashboard" -> "module.landing-project.google_project_iam_member.shared_vpc_host_robots";
+  "google_network_connectivity_hub.default" -> "module.landing-project.google_compute_shared_vpc_service_project.service_projects";
+  "google_network_connectivity_hub.default" -> "module.landing-project.google_compute_shared_vpc_service_project.shared_vpc_service";
+  "google_network_connectivity_hub.default" -> "module.landing-project.google_kms_crypto_key_iam_member.service_agent_cmek";
+  "google_network_connectivity_hub.default" -> "module.landing-project.google_project_iam_member.shared_vpc_host_robots";
+  "google_network_connectivity_spoke.onprem-primary-vpn" -> "google_network_connectivity_hub.default";
+  "google_network_connectivity_spoke.onprem-primary-vpn" -> "module.landing-to-onprem-primary-vpn.google_compute_vpn_tunnel.tunnels";
+  "google_network_connectivity_spoke.spoke-dev" -> "google_network_connectivity_hub.default";
+  "google_network_connectivity_spoke.spoke-dev" -> "module.dev-spoke-vpc.google_compute_network_peering.remote";
+  "google_network_connectivity_spoke.spoke-dev" -> "module.dev-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "google_network_connectivity_spoke.spoke-dev" -> "module.dev-spoke-vpc.google_service_networking_connection.psa_connection";
+  "google_network_connectivity_spoke.spoke-prod" -> "google_network_connectivity_hub.default";
+  "google_network_connectivity_spoke.spoke-prod" -> "module.prod-spoke-vpc.google_compute_network_peering.remote";
+  "google_network_connectivity_spoke.spoke-prod" -> "module.prod-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "google_network_connectivity_spoke.spoke-prod" -> "module.prod-spoke-vpc.google_service_networking_connection.psa_connection";
+  "google_storage_bucket_object.tfvars" -> "module.dev-spoke-vpc.google_compute_network_peering.remote";
+  "google_storage_bucket_object.tfvars" -> "module.dev-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "google_storage_bucket_object.tfvars" -> "module.dev-spoke-vpc.google_compute_subnetwork.proxy_only";
+  "google_storage_bucket_object.tfvars" -> "module.dev-spoke-vpc.google_compute_subnetwork.psc";
+  "google_storage_bucket_object.tfvars" -> "module.dev-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "google_storage_bucket_object.tfvars" -> "module.dev-spoke-vpc.google_service_networking_connection.psa_connection";
+  "google_storage_bucket_object.tfvars" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "google_storage_bucket_object.tfvars" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "google_storage_bucket_object.tfvars" -> "module.landing-vpc.google_compute_subnetwork.proxy_only";
+  "google_storage_bucket_object.tfvars" -> "module.landing-vpc.google_compute_subnetwork.psc";
+  "google_storage_bucket_object.tfvars" -> "module.landing-vpc.google_compute_subnetwork.subnetwork";
+  "google_storage_bucket_object.tfvars" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "google_storage_bucket_object.tfvars" -> "module.prod-spoke-vpc.google_compute_network_peering.remote";
+  "google_storage_bucket_object.tfvars" -> "module.prod-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "google_storage_bucket_object.tfvars" -> "module.prod-spoke-vpc.google_compute_subnetwork.proxy_only";
+  "google_storage_bucket_object.tfvars" -> "module.prod-spoke-vpc.google_compute_subnetwork.psc";
+  "google_storage_bucket_object.tfvars" -> "module.prod-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "google_storage_bucket_object.tfvars" -> "module.prod-spoke-vpc.google_service_networking_connection.psa_connection";
+  "local_file.tfvars" -> "module.dev-spoke-vpc.google_compute_network_peering.remote";
+  "local_file.tfvars" -> "module.dev-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "local_file.tfvars" -> "module.dev-spoke-vpc.google_compute_subnetwork.proxy_only";
+  "local_file.tfvars" -> "module.dev-spoke-vpc.google_compute_subnetwork.psc";
+  "local_file.tfvars" -> "module.dev-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "local_file.tfvars" -> "module.dev-spoke-vpc.google_service_networking_connection.psa_connection";
+  "local_file.tfvars" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "local_file.tfvars" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "local_file.tfvars" -> "module.landing-vpc.google_compute_subnetwork.proxy_only";
+  "local_file.tfvars" -> "module.landing-vpc.google_compute_subnetwork.psc";
+  "local_file.tfvars" -> "module.landing-vpc.google_compute_subnetwork.subnetwork";
+  "local_file.tfvars" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "local_file.tfvars" -> "module.prod-spoke-vpc.google_compute_network_peering.remote";
+  "local_file.tfvars" -> "module.prod-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "local_file.tfvars" -> "module.prod-spoke-vpc.google_compute_subnetwork.proxy_only";
+  "local_file.tfvars" -> "module.prod-spoke-vpc.google_compute_subnetwork.psc";
+  "local_file.tfvars" -> "module.prod-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "local_file.tfvars" -> "module.prod-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.dev-dns-peer-landing-rev-10.data.google_dns_keys.dns_keys" -> "module.dev-dns-peer-landing-rev-10.data.google_dns_managed_zone.dns_managed_zone";
+  "module.dev-dns-peer-landing-rev-10.data.google_dns_keys.dns_keys" -> "module.dev-dns-peer-landing-rev-10.google_dns_managed_zone.dns_managed_zone";
+  "module.dev-dns-peer-landing-rev-10.data.google_dns_managed_zone.dns_managed_zone" -> "module.dev-spoke-vpc.google_compute_network_peering.remote";
+  "module.dev-dns-peer-landing-rev-10.data.google_dns_managed_zone.dns_managed_zone" -> "module.dev-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-dns-peer-landing-rev-10.data.google_dns_managed_zone.dns_managed_zone" -> "module.dev-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.dev-dns-peer-landing-rev-10.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.dev-dns-peer-landing-rev-10.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-dns-peer-landing-rev-10.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.dev-dns-peer-landing-rev-10.google_dns_managed_zone.dns_managed_zone" -> "module.dev-spoke-vpc.google_compute_network_peering.remote";
+  "module.dev-dns-peer-landing-rev-10.google_dns_managed_zone.dns_managed_zone" -> "module.dev-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-dns-peer-landing-rev-10.google_dns_managed_zone.dns_managed_zone" -> "module.dev-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.dev-dns-peer-landing-rev-10.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.dev-dns-peer-landing-rev-10.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-dns-peer-landing-rev-10.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.dev-dns-peer-landing-rev-10.google_dns_managed_zone_iam_binding.iam_bindings" -> "module.dev-dns-peer-landing-rev-10.data.google_dns_managed_zone.dns_managed_zone";
+  "module.dev-dns-peer-landing-rev-10.google_dns_managed_zone_iam_binding.iam_bindings" -> "module.dev-dns-peer-landing-rev-10.google_dns_managed_zone.dns_managed_zone";
+  "module.dev-dns-peer-landing-rev-10.google_dns_record_set.dns_record_set" -> "module.dev-dns-peer-landing-rev-10.data.google_dns_managed_zone.dns_managed_zone";
+  "module.dev-dns-peer-landing-rev-10.google_dns_record_set.dns_record_set" -> "module.dev-dns-peer-landing-rev-10.google_dns_managed_zone.dns_managed_zone";
+  "module.dev-dns-peer-landing-root.data.google_dns_keys.dns_keys" -> "module.dev-dns-peer-landing-root.data.google_dns_managed_zone.dns_managed_zone";
+  "module.dev-dns-peer-landing-root.data.google_dns_keys.dns_keys" -> "module.dev-dns-peer-landing-root.google_dns_managed_zone.dns_managed_zone";
+  "module.dev-dns-peer-landing-root.data.google_dns_managed_zone.dns_managed_zone" -> "module.dev-spoke-vpc.google_compute_network_peering.remote";
+  "module.dev-dns-peer-landing-root.data.google_dns_managed_zone.dns_managed_zone" -> "module.dev-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-dns-peer-landing-root.data.google_dns_managed_zone.dns_managed_zone" -> "module.dev-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.dev-dns-peer-landing-root.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.dev-dns-peer-landing-root.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-dns-peer-landing-root.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.dev-dns-peer-landing-root.google_dns_managed_zone.dns_managed_zone" -> "module.dev-spoke-vpc.google_compute_network_peering.remote";
+  "module.dev-dns-peer-landing-root.google_dns_managed_zone.dns_managed_zone" -> "module.dev-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-dns-peer-landing-root.google_dns_managed_zone.dns_managed_zone" -> "module.dev-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.dev-dns-peer-landing-root.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.dev-dns-peer-landing-root.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-dns-peer-landing-root.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.dev-dns-peer-landing-root.google_dns_managed_zone_iam_binding.iam_bindings" -> "module.dev-dns-peer-landing-root.data.google_dns_managed_zone.dns_managed_zone";
+  "module.dev-dns-peer-landing-root.google_dns_managed_zone_iam_binding.iam_bindings" -> "module.dev-dns-peer-landing-root.google_dns_managed_zone.dns_managed_zone";
+  "module.dev-dns-peer-landing-root.google_dns_record_set.dns_record_set" -> "module.dev-dns-peer-landing-root.data.google_dns_managed_zone.dns_managed_zone";
+  "module.dev-dns-peer-landing-root.google_dns_record_set.dns_record_set" -> "module.dev-dns-peer-landing-root.google_dns_managed_zone.dns_managed_zone";
+  "module.dev-dns-priv-example.data.google_dns_keys.dns_keys" -> "module.dev-dns-priv-example.data.google_dns_managed_zone.dns_managed_zone";
+  "module.dev-dns-priv-example.data.google_dns_keys.dns_keys" -> "module.dev-dns-priv-example.google_dns_managed_zone.dns_managed_zone";
+  "module.dev-dns-priv-example.data.google_dns_managed_zone.dns_managed_zone" -> "module.dev-spoke-project.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-dns-priv-example.data.google_dns_managed_zone.dns_managed_zone" -> "module.dev-spoke-project.google_compute_shared_vpc_service_project.shared_vpc_service";
+  "module.dev-dns-priv-example.data.google_dns_managed_zone.dns_managed_zone" -> "module.dev-spoke-project.google_kms_crypto_key_iam_member.service_agent_cmek";
+  "module.dev-dns-priv-example.data.google_dns_managed_zone.dns_managed_zone" -> "module.dev-spoke-project.google_project_iam_member.shared_vpc_host_robots";
+  "module.dev-dns-priv-example.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.dev-dns-priv-example.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-dns-priv-example.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.dev-dns-priv-example.google_dns_managed_zone.dns_managed_zone" -> "module.dev-spoke-project.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-dns-priv-example.google_dns_managed_zone.dns_managed_zone" -> "module.dev-spoke-project.google_compute_shared_vpc_service_project.shared_vpc_service";
+  "module.dev-dns-priv-example.google_dns_managed_zone.dns_managed_zone" -> "module.dev-spoke-project.google_kms_crypto_key_iam_member.service_agent_cmek";
+  "module.dev-dns-priv-example.google_dns_managed_zone.dns_managed_zone" -> "module.dev-spoke-project.google_project_iam_member.shared_vpc_host_robots";
+  "module.dev-dns-priv-example.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.dev-dns-priv-example.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-dns-priv-example.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.dev-dns-priv-example.google_dns_managed_zone_iam_binding.iam_bindings" -> "module.dev-dns-priv-example.data.google_dns_managed_zone.dns_managed_zone";
+  "module.dev-dns-priv-example.google_dns_managed_zone_iam_binding.iam_bindings" -> "module.dev-dns-priv-example.google_dns_managed_zone.dns_managed_zone";
+  "module.dev-dns-priv-example.google_dns_record_set.dns_record_set" -> "module.dev-dns-priv-example.data.google_dns_managed_zone.dns_managed_zone";
+  "module.dev-dns-priv-example.google_dns_record_set.dns_record_set" -> "module.dev-dns-priv-example.google_dns_managed_zone.dns_managed_zone";
+  "module.dev-firewall-policy.google_compute_firewall_policy.hierarchical" -> "module.dev-spoke-project.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-firewall-policy.google_compute_firewall_policy.hierarchical" -> "module.dev-spoke-project.google_compute_shared_vpc_service_project.shared_vpc_service";
+  "module.dev-firewall-policy.google_compute_firewall_policy.hierarchical" -> "module.dev-spoke-project.google_kms_crypto_key_iam_member.service_agent_cmek";
+  "module.dev-firewall-policy.google_compute_firewall_policy.hierarchical" -> "module.dev-spoke-project.google_project_iam_member.shared_vpc_host_robots";
+  "module.dev-firewall-policy.google_compute_firewall_policy_association.hierarchical" -> "module.dev-firewall-policy.google_compute_firewall_policy.hierarchical";
+  "module.dev-firewall-policy.google_compute_firewall_policy_association.hierarchical" -> "module.dev-spoke-vpc.google_compute_network_peering.remote";
+  "module.dev-firewall-policy.google_compute_firewall_policy_association.hierarchical" -> "module.dev-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-firewall-policy.google_compute_firewall_policy_association.hierarchical" -> "module.dev-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.dev-firewall-policy.google_compute_firewall_policy_rule.hierarchical" -> "module.dev-firewall-policy.google_compute_firewall_policy.hierarchical";
+  "module.dev-firewall-policy.google_compute_network_firewall_policy.net-global" -> "module.dev-spoke-project.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-firewall-policy.google_compute_network_firewall_policy.net-global" -> "module.dev-spoke-project.google_compute_shared_vpc_service_project.shared_vpc_service";
+  "module.dev-firewall-policy.google_compute_network_firewall_policy.net-global" -> "module.dev-spoke-project.google_kms_crypto_key_iam_member.service_agent_cmek";
+  "module.dev-firewall-policy.google_compute_network_firewall_policy.net-global" -> "module.dev-spoke-project.google_project_iam_member.shared_vpc_host_robots";
+  "module.dev-firewall-policy.google_compute_network_firewall_policy_association.net-global" -> "module.dev-firewall-policy.google_compute_network_firewall_policy.net-global";
+  "module.dev-firewall-policy.google_compute_network_firewall_policy_association.net-global" -> "module.dev-spoke-vpc.google_compute_network_peering.remote";
+  "module.dev-firewall-policy.google_compute_network_firewall_policy_association.net-global" -> "module.dev-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-firewall-policy.google_compute_network_firewall_policy_association.net-global" -> "module.dev-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.dev-firewall-policy.google_compute_network_firewall_policy_rule.net-global" -> "module.dev-firewall-policy.google_compute_network_firewall_policy.net-global";
+  "module.dev-firewall-policy.google_compute_region_network_firewall_policy.net-regional" -> "module.dev-spoke-project.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-firewall-policy.google_compute_region_network_firewall_policy.net-regional" -> "module.dev-spoke-project.google_compute_shared_vpc_service_project.shared_vpc_service";
+  "module.dev-firewall-policy.google_compute_region_network_firewall_policy.net-regional" -> "module.dev-spoke-project.google_kms_crypto_key_iam_member.service_agent_cmek";
+  "module.dev-firewall-policy.google_compute_region_network_firewall_policy.net-regional" -> "module.dev-spoke-project.google_project_iam_member.shared_vpc_host_robots";
+  "module.dev-firewall-policy.google_compute_region_network_firewall_policy_association.net-regional" -> "module.dev-firewall-policy.google_compute_region_network_firewall_policy.net-regional";
+  "module.dev-firewall-policy.google_compute_region_network_firewall_policy_association.net-regional" -> "module.dev-spoke-vpc.google_compute_network_peering.remote";
+  "module.dev-firewall-policy.google_compute_region_network_firewall_policy_association.net-regional" -> "module.dev-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-firewall-policy.google_compute_region_network_firewall_policy_association.net-regional" -> "module.dev-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.dev-firewall-policy.google_compute_region_network_firewall_policy_rule.net-regional" -> "module.dev-firewall-policy.google_compute_region_network_firewall_policy.net-regional";
+  "module.dev-spoke-cloudnat.google_compute_router.router" -> "module.dev-spoke-vpc.google_compute_network_peering.remote";
+  "module.dev-spoke-cloudnat.google_compute_router.router" -> "module.dev-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-spoke-cloudnat.google_compute_router.router" -> "module.dev-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.dev-spoke-cloudnat.google_compute_router.router" -> "module.dev-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.dev-spoke-cloudnat.google_compute_router.router" -> "module.landing-vpc.google_compute_subnetwork.subnetwork";
+  "module.dev-spoke-cloudnat.google_compute_router.router" -> "module.prod-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.dev-spoke-cloudnat.google_compute_router_nat.nat" -> "module.dev-spoke-cloudnat.google_compute_router.router";
+  "module.dev-spoke-firewall.google_compute_firewall.allow-admins" -> "module.dev-spoke-vpc.google_compute_network_peering.remote";
+  "module.dev-spoke-firewall.google_compute_firewall.allow-admins" -> "module.dev-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-spoke-firewall.google_compute_firewall.allow-admins" -> "module.dev-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.dev-spoke-firewall.google_compute_firewall.allow-tag-http" -> "module.dev-spoke-vpc.google_compute_network_peering.remote";
+  "module.dev-spoke-firewall.google_compute_firewall.allow-tag-http" -> "module.dev-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-spoke-firewall.google_compute_firewall.allow-tag-http" -> "module.dev-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.dev-spoke-firewall.google_compute_firewall.allow-tag-https" -> "module.dev-spoke-vpc.google_compute_network_peering.remote";
+  "module.dev-spoke-firewall.google_compute_firewall.allow-tag-https" -> "module.dev-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-spoke-firewall.google_compute_firewall.allow-tag-https" -> "module.dev-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.dev-spoke-firewall.google_compute_firewall.allow-tag-ssh" -> "module.dev-spoke-vpc.google_compute_network_peering.remote";
+  "module.dev-spoke-firewall.google_compute_firewall.allow-tag-ssh" -> "module.dev-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-spoke-firewall.google_compute_firewall.allow-tag-ssh" -> "module.dev-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.dev-spoke-firewall.google_compute_firewall.custom-rules" -> "module.dev-spoke-vpc.google_compute_network_peering.remote";
+  "module.dev-spoke-firewall.google_compute_firewall.custom-rules" -> "module.dev-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-spoke-firewall.google_compute_firewall.custom-rules" -> "module.dev-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.dev-spoke-project.data.google_bigquery_default_service_account.bq_sa" -> "module.dev-spoke-project.google_project_service.project_services";
+  "module.dev-spoke-project.data.google_storage_project_service_account.gcs_sa" -> "module.dev-spoke-project.google_project_service.project_services";
+  "module.dev-spoke-project.google_access_context_manager_service_perimeter_dry_run_resource.default" -> "module.dev-spoke-project.data.google_project.project";
+  "module.dev-spoke-project.google_access_context_manager_service_perimeter_dry_run_resource.default" -> "module.dev-spoke-project.google_project.project";
+  "module.dev-spoke-project.google_access_context_manager_service_perimeter_resource.default" -> "module.dev-spoke-project.data.google_project.project";
+  "module.dev-spoke-project.google_access_context_manager_service_perimeter_resource.default" -> "module.dev-spoke-project.google_project.project";
+  "module.dev-spoke-project.google_bigquery_dataset_iam_member.bq-sinks-binding" -> "module.dev-spoke-project.google_logging_project_sink.sink";
+  "module.dev-spoke-project.google_cloud_quotas_quota_preference.default" -> "module.dev-spoke-project.google_project_service.project_services";
+  "module.dev-spoke-project.google_compute_project_metadata_item.default" -> "module.dev-spoke-project.google_project_service.project_services";
+  "module.dev-spoke-project.google_compute_shared_vpc_host_project.shared_vpc_host" -> "module.dev-spoke-project.google_project_service.project_services";
+  "module.dev-spoke-project.google_compute_shared_vpc_service_project.service_projects" -> "module.dev-spoke-project.google_compute_shared_vpc_host_project.shared_vpc_host";
+  "module.dev-spoke-project.google_compute_shared_vpc_service_project.shared_vpc_service" -> "module.dev-spoke-project.google_access_context_manager_service_perimeter_dry_run_resource.default";
+  "module.dev-spoke-project.google_compute_shared_vpc_service_project.shared_vpc_service" -> "module.dev-spoke-project.google_access_context_manager_service_perimeter_resource.default";
+  "module.dev-spoke-project.google_compute_subnetwork_iam_member.shared_vpc_host_robots" -> "module.dev-spoke-project.data.google_bigquery_default_service_account.bq_sa";
+  "module.dev-spoke-project.google_compute_subnetwork_iam_member.shared_vpc_host_robots" -> "module.dev-spoke-project.data.google_storage_project_service_account.gcs_sa";
+  "module.dev-spoke-project.google_compute_subnetwork_iam_member.shared_vpc_host_robots" -> "module.dev-spoke-project.google_project_default_service_accounts.default_service_accounts";
+  "module.dev-spoke-project.google_compute_subnetwork_iam_member.shared_vpc_host_robots" -> "module.dev-spoke-project.google_project_service_identity.default";
+  "module.dev-spoke-project.google_essential_contacts_contact.contact" -> "module.dev-spoke-project.google_project_iam_binding.authoritative";
+  "module.dev-spoke-project.google_essential_contacts_contact.contact" -> "module.dev-spoke-project.google_project_iam_binding.bindings";
+  "module.dev-spoke-project.google_essential_contacts_contact.contact" -> "module.dev-spoke-project.google_project_iam_member.bindings";
+  "module.dev-spoke-project.google_kms_crypto_key_iam_member.service_agent_cmek" -> "module.dev-spoke-project.data.google_bigquery_default_service_account.bq_sa";
+  "module.dev-spoke-project.google_kms_crypto_key_iam_member.service_agent_cmek" -> "module.dev-spoke-project.data.google_storage_project_service_account.gcs_sa";
+  "module.dev-spoke-project.google_kms_crypto_key_iam_member.service_agent_cmek" -> "module.dev-spoke-project.google_project_iam_member.service_agents";
+  "module.dev-spoke-project.google_logging_log_scope.log-scopes" -> "module.dev-spoke-project.data.google_project.project";
+  "module.dev-spoke-project.google_logging_log_scope.log-scopes" -> "module.dev-spoke-project.google_project.project";
+  "module.dev-spoke-project.google_logging_metric.metrics" -> "module.dev-spoke-project.data.google_project.project";
+  "module.dev-spoke-project.google_logging_metric.metrics" -> "module.dev-spoke-project.google_project.project";
+  "module.dev-spoke-project.google_logging_project_exclusion.logging-exclusion" -> "module.dev-spoke-project.data.google_project.project";
+  "module.dev-spoke-project.google_logging_project_exclusion.logging-exclusion" -> "module.dev-spoke-project.google_project.project";
+  "module.dev-spoke-project.google_logging_project_sink.sink" -> "module.dev-spoke-project.google_project_iam_binding.authoritative";
+  "module.dev-spoke-project.google_logging_project_sink.sink" -> "module.dev-spoke-project.google_project_iam_binding.bindings";
+  "module.dev-spoke-project.google_logging_project_sink.sink" -> "module.dev-spoke-project.google_project_iam_member.bindings";
+  "module.dev-spoke-project.google_monitoring_alert_policy.alerts" -> "module.dev-spoke-project.google_monitoring_notification_channel.channels";
+  "module.dev-spoke-project.google_monitoring_monitored_project.primary" -> "module.dev-spoke-project.data.google_project.project";
+  "module.dev-spoke-project.google_monitoring_monitored_project.primary" -> "module.dev-spoke-project.google_project.project";
+  "module.dev-spoke-project.google_monitoring_monitored_project.primary" -> "module.landing-project.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-spoke-project.google_monitoring_monitored_project.primary" -> "module.landing-project.google_compute_shared_vpc_service_project.shared_vpc_service";
+  "module.dev-spoke-project.google_monitoring_monitored_project.primary" -> "module.landing-project.google_kms_crypto_key_iam_member.service_agent_cmek";
+  "module.dev-spoke-project.google_monitoring_monitored_project.primary" -> "module.landing-project.google_project_iam_member.shared_vpc_host_robots";
+  "module.dev-spoke-project.google_monitoring_notification_channel.channels" -> "module.dev-spoke-project.data.google_project.project";
+  "module.dev-spoke-project.google_monitoring_notification_channel.channels" -> "module.dev-spoke-project.google_project.project";
+  "module.dev-spoke-project.google_org_policy_policy.default" -> "module.dev-spoke-project.data.google_project.project";
+  "module.dev-spoke-project.google_org_policy_policy.default" -> "module.dev-spoke-project.google_project.project";
+  "module.dev-spoke-project.google_project_default_service_accounts.default_service_accounts" -> "module.dev-spoke-project.google_project_service.project_services";
+  "module.dev-spoke-project.google_project_iam_audit_config.default" -> "module.dev-spoke-project.data.google_project.project";
+  "module.dev-spoke-project.google_project_iam_audit_config.default" -> "module.dev-spoke-project.google_project.project";
+  "module.dev-spoke-project.google_project_iam_binding.authoritative" -> "module.dev-spoke-project.google_project_iam_custom_role.roles";
+  "module.dev-spoke-project.google_project_iam_binding.authoritative" -> "module.dev-spoke-project.google_project_service.project_services";
+  "module.dev-spoke-project.google_project_iam_binding.bindings" -> "module.dev-spoke-project.google_project_iam_custom_role.roles";
+  "module.dev-spoke-project.google_project_iam_binding.bindings" -> "module.dev-spoke-project.google_project_service.project_services";
+  "module.dev-spoke-project.google_project_iam_custom_role.roles" -> "module.dev-spoke-project.data.google_project.project";
+  "module.dev-spoke-project.google_project_iam_custom_role.roles" -> "module.dev-spoke-project.google_project.project";
+  "module.dev-spoke-project.google_project_iam_member.bindings" -> "module.dev-spoke-project.google_project_iam_custom_role.roles";
+  "module.dev-spoke-project.google_project_iam_member.bindings" -> "module.dev-spoke-project.google_project_service.project_services";
+  "module.dev-spoke-project.google_project_iam_member.bucket-sinks-binding" -> "module.dev-spoke-project.google_logging_project_sink.sink";
+  "module.dev-spoke-project.google_project_iam_member.project-sinks-binding" -> "module.dev-spoke-project.google_logging_project_sink.sink";
+  "module.dev-spoke-project.google_project_iam_member.service_agents" -> "module.dev-spoke-project.google_project_service_identity.default";
+  "module.dev-spoke-project.google_project_iam_member.shared_vpc_host_robots" -> "module.dev-spoke-project.data.google_bigquery_default_service_account.bq_sa";
+  "module.dev-spoke-project.google_project_iam_member.shared_vpc_host_robots" -> "module.dev-spoke-project.data.google_storage_project_service_account.gcs_sa";
+  "module.dev-spoke-project.google_project_iam_member.shared_vpc_host_robots" -> "module.dev-spoke-project.google_project_default_service_accounts.default_service_accounts";
+  "module.dev-spoke-project.google_project_iam_member.shared_vpc_host_robots" -> "module.dev-spoke-project.google_project_service_identity.default";
+  "module.dev-spoke-project.google_project_service.project_services" -> "module.dev-spoke-project.google_org_policy_policy.default";
+  "module.dev-spoke-project.google_project_service_identity.default" -> "module.dev-spoke-project.google_project_service.project_services";
+  "module.dev-spoke-project.google_pubsub_topic_iam_member.pubsub-sinks-binding" -> "module.dev-spoke-project.google_logging_project_sink.sink";
+  "module.dev-spoke-project.google_resource_manager_lien.lien" -> "module.dev-spoke-project.data.google_project.project";
+  "module.dev-spoke-project.google_resource_manager_lien.lien" -> "module.dev-spoke-project.google_project.project";
+  "module.dev-spoke-project.google_storage_bucket_iam_member.gcs-sinks-binding" -> "module.dev-spoke-project.google_logging_project_sink.sink";
+  "module.dev-spoke-project.google_tags_tag_binding.binding" -> "module.dev-spoke-project.data.google_project.project";
+  "module.dev-spoke-project.google_tags_tag_binding.binding" -> "module.dev-spoke-project.google_project.project";
+  "module.dev-spoke-project.google_tags_tag_key.default" -> "module.dev-spoke-project.data.google_project.project";
+  "module.dev-spoke-project.google_tags_tag_key.default" -> "module.dev-spoke-project.google_project.project";
+  "module.dev-spoke-project.google_tags_tag_key_iam_binding.bindings" -> "module.dev-spoke-project.google_tags_tag_key.default";
+  "module.dev-spoke-project.google_tags_tag_key_iam_binding.default" -> "module.dev-spoke-project.google_tags_tag_key.default";
+  "module.dev-spoke-project.google_tags_tag_key_iam_member.bindings" -> "module.dev-spoke-project.google_tags_tag_key.default";
+  "module.dev-spoke-project.google_tags_tag_value.default" -> "module.dev-spoke-project.google_tags_tag_key.default";
+  "module.dev-spoke-project.google_tags_tag_value_iam_binding.bindings" -> "module.dev-spoke-project.google_tags_tag_value.default";
+  "module.dev-spoke-project.google_tags_tag_value_iam_binding.default" -> "module.dev-spoke-project.google_tags_tag_value.default";
+  "module.dev-spoke-project.google_tags_tag_value_iam_member.bindings" -> "module.dev-spoke-project.google_tags_tag_value.default";
+  "module.dev-spoke-vpc.google_compute_global_address.psa_ranges" -> "module.dev-spoke-vpc.google_compute_network.network";
+  "module.dev-spoke-vpc.google_compute_network.network" -> "module.dev-spoke-project.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-spoke-vpc.google_compute_network.network" -> "module.dev-spoke-project.google_compute_shared_vpc_service_project.shared_vpc_service";
+  "module.dev-spoke-vpc.google_compute_network.network" -> "module.dev-spoke-project.google_kms_crypto_key_iam_member.service_agent_cmek";
+  "module.dev-spoke-vpc.google_compute_network.network" -> "module.dev-spoke-project.google_project_iam_member.shared_vpc_host_robots";
+  "module.dev-spoke-vpc.google_compute_network_attachment.default" -> "module.dev-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.dev-spoke-vpc.google_compute_network_peering.local" -> "module.dev-spoke-vpc.google_compute_network.network";
+  "module.dev-spoke-vpc.google_compute_network_peering.remote" -> "module.dev-spoke-vpc.google_compute_network_peering.local";
+  "module.dev-spoke-vpc.google_compute_network_peering_routes_config.psa_routes" -> "module.dev-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.dev-spoke-vpc.google_compute_route.gateway" -> "module.dev-spoke-vpc.google_compute_network.network";
+  "module.dev-spoke-vpc.google_compute_route.ilb" -> "module.dev-spoke-vpc.google_compute_network.network";
+  "module.dev-spoke-vpc.google_compute_route.instance" -> "module.dev-spoke-vpc.google_compute_network.network";
+  "module.dev-spoke-vpc.google_compute_route.ip" -> "module.dev-spoke-vpc.google_compute_network.network";
+  "module.dev-spoke-vpc.google_compute_route.vpn_tunnel" -> "module.dev-spoke-vpc.google_compute_network.network";
+  "module.dev-spoke-vpc.google_compute_shared_vpc_host_project.shared_vpc_host" -> "module.dev-spoke-vpc.google_compute_network.network";
+  "module.dev-spoke-vpc.google_compute_shared_vpc_service_project.service_projects" -> "module.dev-spoke-vpc.google_compute_shared_vpc_host_project.shared_vpc_host";
+  "module.dev-spoke-vpc.google_compute_subnetwork.private_nat" -> "module.dev-spoke-vpc.google_compute_network.network";
+  "module.dev-spoke-vpc.google_compute_subnetwork.proxy_only" -> "module.dev-spoke-vpc.google_compute_network.network";
+  "module.dev-spoke-vpc.google_compute_subnetwork.psc" -> "module.dev-spoke-vpc.google_compute_network.network";
+  "module.dev-spoke-vpc.google_compute_subnetwork.subnetwork" -> "module.dev-spoke-vpc.google_compute_network.network";
+  "module.dev-spoke-vpc.google_compute_subnetwork_iam_binding.authoritative" -> "module.dev-spoke-vpc.google_compute_subnetwork.proxy_only";
+  "module.dev-spoke-vpc.google_compute_subnetwork_iam_binding.authoritative" -> "module.dev-spoke-vpc.google_compute_subnetwork.psc";
+  "module.dev-spoke-vpc.google_compute_subnetwork_iam_binding.authoritative" -> "module.dev-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.dev-spoke-vpc.google_compute_subnetwork_iam_binding.bindings" -> "module.dev-spoke-vpc.google_compute_subnetwork.proxy_only";
+  "module.dev-spoke-vpc.google_compute_subnetwork_iam_binding.bindings" -> "module.dev-spoke-vpc.google_compute_subnetwork.psc";
+  "module.dev-spoke-vpc.google_compute_subnetwork_iam_binding.bindings" -> "module.dev-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.dev-spoke-vpc.google_compute_subnetwork_iam_member.bindings" -> "module.dev-spoke-vpc.google_compute_subnetwork.proxy_only";
+  "module.dev-spoke-vpc.google_compute_subnetwork_iam_member.bindings" -> "module.dev-spoke-vpc.google_compute_subnetwork.psc";
+  "module.dev-spoke-vpc.google_compute_subnetwork_iam_member.bindings" -> "module.dev-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.dev-spoke-vpc.google_dns_policy.default" -> "module.dev-spoke-vpc.google_compute_network.network";
+  "module.dev-spoke-vpc.google_network_connectivity_policy_based_route.default" -> "module.dev-spoke-vpc.google_compute_network.network";
+  "module.dev-spoke-vpc.google_service_networking_connection.psa_connection" -> "module.dev-spoke-vpc.google_compute_global_address.psa_ranges";
+  "module.dev-spoke-vpc.google_service_networking_peered_dns_domain.name" -> "module.dev-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.dev-to-landing-primary-vpn.google_compute_external_vpn_gateway.external_gateway" -> "module.landing-to-spokes-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway";
+  "module.dev-to-landing-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.dev-spoke-vpc.google_compute_network_peering.remote";
+  "module.dev-to-landing-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.dev-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-to-landing-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.dev-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.dev-to-landing-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.dev-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.dev-to-landing-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.landing-vpc.google_compute_subnetwork.subnetwork";
+  "module.dev-to-landing-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.prod-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.dev-to-landing-primary-vpn.google_compute_router.router" -> "module.dev-spoke-vpc.google_compute_network_peering.remote";
+  "module.dev-to-landing-primary-vpn.google_compute_router.router" -> "module.dev-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.dev-to-landing-primary-vpn.google_compute_router.router" -> "module.dev-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.dev-to-landing-primary-vpn.google_compute_router.router" -> "module.dev-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.dev-to-landing-primary-vpn.google_compute_router.router" -> "module.landing-vpc.google_compute_subnetwork.subnetwork";
+  "module.dev-to-landing-primary-vpn.google_compute_router.router" -> "module.prod-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.dev-to-landing-primary-vpn.google_compute_router_interface.router_interface" -> "module.dev-to-landing-primary-vpn.google_compute_vpn_tunnel.tunnels";
+  "module.dev-to-landing-primary-vpn.google_compute_router_peer.bgp_peer" -> "module.dev-to-landing-primary-vpn.google_compute_router_interface.router_interface";
+  "module.dev-to-landing-primary-vpn.google_compute_router_peer.bgp_peer" -> "module.dev-to-landing-primary-vpn.random_id.md5_keys";
+  "module.dev-to-landing-primary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.dev-to-landing-primary-vpn.google_compute_external_vpn_gateway.external_gateway";
+  "module.dev-to-landing-primary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.dev-to-landing-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway";
+  "module.dev-to-landing-primary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.dev-to-landing-primary-vpn.google_compute_router.router";
+  "module.dev-to-landing-primary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.dev-to-landing-primary-vpn.random_id.secret";
+  "module.dev-to-landing-primary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.landing-to-spokes-primary-vpn.random_id.secret";
+  "module.dev-to-landing-primary-vpn.random_id.md5_keys" -> "module.landing-to-spokes-primary-vpn.random_id.secret";
+  "module.firewall-policy-default.google_compute_firewall_policy.hierarchical" -> "module.folder.google_folder_iam_binding.authoritative";
+  "module.firewall-policy-default.google_compute_firewall_policy.hierarchical" -> "module.folder.google_folder_iam_binding.bindings";
+  "module.firewall-policy-default.google_compute_firewall_policy.hierarchical" -> "module.folder.google_folder_iam_member.bindings";
+  "module.firewall-policy-default.google_compute_firewall_policy.hierarchical" -> "module.folder.google_org_policy_policy.default";
+  "module.firewall-policy-default.google_compute_firewall_policy_association.hierarchical" -> "module.firewall-policy-default.google_compute_firewall_policy.hierarchical";
+  "module.firewall-policy-default.google_compute_firewall_policy_rule.hierarchical" -> "module.firewall-policy-default.google_compute_firewall_policy.hierarchical";
+  "module.firewall-policy-default.google_compute_network_firewall_policy.net-global" -> "module.folder.google_folder_iam_binding.authoritative";
+  "module.firewall-policy-default.google_compute_network_firewall_policy.net-global" -> "module.folder.google_folder_iam_binding.bindings";
+  "module.firewall-policy-default.google_compute_network_firewall_policy.net-global" -> "module.folder.google_folder_iam_member.bindings";
+  "module.firewall-policy-default.google_compute_network_firewall_policy.net-global" -> "module.folder.google_org_policy_policy.default";
+  "module.firewall-policy-default.google_compute_network_firewall_policy_association.net-global" -> "module.firewall-policy-default.google_compute_network_firewall_policy.net-global";
+  "module.firewall-policy-default.google_compute_network_firewall_policy_rule.net-global" -> "module.firewall-policy-default.google_compute_network_firewall_policy.net-global";
+  "module.firewall-policy-default.google_compute_region_network_firewall_policy.net-regional" -> "module.folder.google_folder_iam_binding.authoritative";
+  "module.firewall-policy-default.google_compute_region_network_firewall_policy.net-regional" -> "module.folder.google_folder_iam_binding.bindings";
+  "module.firewall-policy-default.google_compute_region_network_firewall_policy.net-regional" -> "module.folder.google_folder_iam_member.bindings";
+  "module.firewall-policy-default.google_compute_region_network_firewall_policy.net-regional" -> "module.folder.google_org_policy_policy.default";
+  "module.firewall-policy-default.google_compute_region_network_firewall_policy_association.net-regional" -> "module.firewall-policy-default.google_compute_region_network_firewall_policy.net-regional";
+  "module.firewall-policy-default.google_compute_region_network_firewall_policy_rule.net-regional" -> "module.firewall-policy-default.google_compute_region_network_firewall_policy.net-regional";
+  "module.folder.google_bigquery_dataset_iam_member.bq-sinks-binding" -> "module.folder.google_logging_folder_sink.sink";
+  "module.folder.google_compute_firewall_policy_association.default" -> "module.firewall-policy-default.google_compute_firewall_policy.hierarchical";
+  "module.folder.google_compute_firewall_policy_association.default" -> "module.firewall-policy-default.google_compute_network_firewall_policy.net-global";
+  "module.folder.google_compute_firewall_policy_association.default" -> "module.firewall-policy-default.google_compute_region_network_firewall_policy.net-regional";
+  "module.folder.google_essential_contacts_contact.contact" -> "module.folder.google_folder_iam_binding.authoritative";
+  "module.folder.google_essential_contacts_contact.contact" -> "module.folder.google_folder_iam_binding.bindings";
+  "module.folder.google_essential_contacts_contact.contact" -> "module.folder.google_folder_iam_member.bindings";
+  "module.folder.google_folder_iam_audit_config.default" -> "module.folder.google_assured_workloads_workload.folder";
+  "module.folder.google_folder_iam_audit_config.default" -> "module.folder.google_folder.folder";
+  "module.folder.google_folder_iam_binding.authoritative" -> "module.folder.google_assured_workloads_workload.folder";
+  "module.folder.google_folder_iam_binding.authoritative" -> "module.folder.google_folder.folder";
+  "module.folder.google_folder_iam_binding.bindings" -> "module.folder.google_assured_workloads_workload.folder";
+  "module.folder.google_folder_iam_binding.bindings" -> "module.folder.google_folder.folder";
+  "module.folder.google_folder_iam_member.bindings" -> "module.folder.google_assured_workloads_workload.folder";
+  "module.folder.google_folder_iam_member.bindings" -> "module.folder.google_folder.folder";
+  "module.folder.google_logging_folder_exclusion.logging-exclusion" -> "module.folder.google_assured_workloads_workload.folder";
+  "module.folder.google_logging_folder_exclusion.logging-exclusion" -> "module.folder.google_folder.folder";
+  "module.folder.google_logging_folder_settings.default" -> "module.folder.google_assured_workloads_workload.folder";
+  "module.folder.google_logging_folder_settings.default" -> "module.folder.google_folder.folder";
+  "module.folder.google_logging_folder_sink.sink" -> "module.folder.google_folder_iam_binding.authoritative";
+  "module.folder.google_org_policy_policy.default" -> "module.folder.google_assured_workloads_workload.folder";
+  "module.folder.google_org_policy_policy.default" -> "module.folder.google_folder.folder";
+  "module.folder.google_project_iam_member.bucket-sinks-binding" -> "module.folder.google_logging_folder_sink.sink";
+  "module.folder.google_project_iam_member.project-sinks-binding" -> "module.folder.google_logging_folder_sink.sink";
+  "module.folder.google_pubsub_topic_iam_member.pubsub-sinks-binding" -> "module.folder.google_logging_folder_sink.sink";
+  "module.folder.google_storage_bucket_iam_member.gcs-sinks-binding" -> "module.folder.google_logging_folder_sink.sink";
+  "module.folder.google_tags_tag_binding.binding" -> "module.folder.google_assured_workloads_workload.folder";
+  "module.folder.google_tags_tag_binding.binding" -> "module.folder.google_folder.folder";
+  "module.landing-dns-fwd-onprem-example.data.google_dns_keys.dns_keys" -> "module.landing-dns-fwd-onprem-example.data.google_dns_managed_zone.dns_managed_zone";
+  "module.landing-dns-fwd-onprem-example.data.google_dns_keys.dns_keys" -> "module.landing-dns-fwd-onprem-example.google_dns_managed_zone.dns_managed_zone";
+  "module.landing-dns-fwd-onprem-example.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.landing-dns-fwd-onprem-example.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-dns-fwd-onprem-example.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.landing-dns-fwd-onprem-example.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.landing-dns-fwd-onprem-example.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-dns-fwd-onprem-example.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.landing-dns-fwd-onprem-example.google_dns_managed_zone_iam_binding.iam_bindings" -> "module.landing-dns-fwd-onprem-example.data.google_dns_managed_zone.dns_managed_zone";
+  "module.landing-dns-fwd-onprem-example.google_dns_managed_zone_iam_binding.iam_bindings" -> "module.landing-dns-fwd-onprem-example.google_dns_managed_zone.dns_managed_zone";
+  "module.landing-dns-fwd-onprem-example.google_dns_record_set.dns_record_set" -> "module.landing-dns-fwd-onprem-example.data.google_dns_managed_zone.dns_managed_zone";
+  "module.landing-dns-fwd-onprem-example.google_dns_record_set.dns_record_set" -> "module.landing-dns-fwd-onprem-example.google_dns_managed_zone.dns_managed_zone";
+  "module.landing-dns-fwd-onprem-rev-10.data.google_dns_keys.dns_keys" -> "module.landing-dns-fwd-onprem-rev-10.data.google_dns_managed_zone.dns_managed_zone";
+  "module.landing-dns-fwd-onprem-rev-10.data.google_dns_keys.dns_keys" -> "module.landing-dns-fwd-onprem-rev-10.google_dns_managed_zone.dns_managed_zone";
+  "module.landing-dns-fwd-onprem-rev-10.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.landing-dns-fwd-onprem-rev-10.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-dns-fwd-onprem-rev-10.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.landing-dns-fwd-onprem-rev-10.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.landing-dns-fwd-onprem-rev-10.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-dns-fwd-onprem-rev-10.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.landing-dns-fwd-onprem-rev-10.google_dns_managed_zone_iam_binding.iam_bindings" -> "module.landing-dns-fwd-onprem-rev-10.data.google_dns_managed_zone.dns_managed_zone";
+  "module.landing-dns-fwd-onprem-rev-10.google_dns_managed_zone_iam_binding.iam_bindings" -> "module.landing-dns-fwd-onprem-rev-10.google_dns_managed_zone.dns_managed_zone";
+  "module.landing-dns-fwd-onprem-rev-10.google_dns_record_set.dns_record_set" -> "module.landing-dns-fwd-onprem-rev-10.data.google_dns_managed_zone.dns_managed_zone";
+  "module.landing-dns-fwd-onprem-rev-10.google_dns_record_set.dns_record_set" -> "module.landing-dns-fwd-onprem-rev-10.google_dns_managed_zone.dns_managed_zone";
+  "module.landing-dns-policy-googleapis.google_dns_response_policy.default" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.landing-dns-policy-googleapis.google_dns_response_policy.default" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-dns-policy-googleapis.google_dns_response_policy.default" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.landing-dns-policy-googleapis.google_dns_response_policy_rule.default" -> "module.landing-dns-policy-googleapis.google_dns_response_policy.default";
+  "module.landing-dns-priv-gcp.data.google_dns_keys.dns_keys" -> "module.landing-dns-priv-gcp.data.google_dns_managed_zone.dns_managed_zone";
+  "module.landing-dns-priv-gcp.data.google_dns_keys.dns_keys" -> "module.landing-dns-priv-gcp.google_dns_managed_zone.dns_managed_zone";
+  "module.landing-dns-priv-gcp.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.landing-dns-priv-gcp.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-dns-priv-gcp.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.landing-dns-priv-gcp.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.landing-dns-priv-gcp.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-dns-priv-gcp.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.landing-dns-priv-gcp.google_dns_managed_zone_iam_binding.iam_bindings" -> "module.landing-dns-priv-gcp.data.google_dns_managed_zone.dns_managed_zone";
+  "module.landing-dns-priv-gcp.google_dns_managed_zone_iam_binding.iam_bindings" -> "module.landing-dns-priv-gcp.google_dns_managed_zone.dns_managed_zone";
+  "module.landing-dns-priv-gcp.google_dns_record_set.dns_record_set" -> "module.landing-dns-priv-gcp.data.google_dns_managed_zone.dns_managed_zone";
+  "module.landing-dns-priv-gcp.google_dns_record_set.dns_record_set" -> "module.landing-dns-priv-gcp.google_dns_managed_zone.dns_managed_zone";
+  "module.landing-dns-priv-googleapis.data.google_dns_keys.dns_keys" -> "module.landing-dns-priv-googleapis.data.google_dns_managed_zone.dns_managed_zone";
+  "module.landing-dns-priv-googleapis.data.google_dns_keys.dns_keys" -> "module.landing-dns-priv-googleapis.google_dns_managed_zone.dns_managed_zone";
+  "module.landing-dns-priv-googleapis.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.landing-dns-priv-googleapis.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-dns-priv-googleapis.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.landing-dns-priv-googleapis.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.landing-dns-priv-googleapis.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-dns-priv-googleapis.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.landing-dns-priv-googleapis.google_dns_managed_zone_iam_binding.iam_bindings" -> "module.landing-dns-priv-googleapis.data.google_dns_managed_zone.dns_managed_zone";
+  "module.landing-dns-priv-googleapis.google_dns_managed_zone_iam_binding.iam_bindings" -> "module.landing-dns-priv-googleapis.google_dns_managed_zone.dns_managed_zone";
+  "module.landing-dns-priv-googleapis.google_dns_record_set.dns_record_set" -> "module.landing-dns-priv-googleapis.data.google_dns_managed_zone.dns_managed_zone";
+  "module.landing-dns-priv-googleapis.google_dns_record_set.dns_record_set" -> "module.landing-dns-priv-googleapis.google_dns_managed_zone.dns_managed_zone";
+  "module.landing-firewall.google_compute_firewall.allow-admins" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.landing-firewall.google_compute_firewall.allow-admins" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-firewall.google_compute_firewall.allow-admins" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.landing-firewall.google_compute_firewall.allow-tag-http" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.landing-firewall.google_compute_firewall.allow-tag-http" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-firewall.google_compute_firewall.allow-tag-http" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.landing-firewall.google_compute_firewall.allow-tag-https" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.landing-firewall.google_compute_firewall.allow-tag-https" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-firewall.google_compute_firewall.allow-tag-https" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.landing-firewall.google_compute_firewall.allow-tag-ssh" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.landing-firewall.google_compute_firewall.allow-tag-ssh" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-firewall.google_compute_firewall.allow-tag-ssh" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.landing-firewall.google_compute_firewall.custom-rules" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.landing-firewall.google_compute_firewall.custom-rules" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-firewall.google_compute_firewall.custom-rules" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.landing-firewall-policy.google_compute_firewall_policy.hierarchical" -> "module.landing-project.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-firewall-policy.google_compute_firewall_policy.hierarchical" -> "module.landing-project.google_compute_shared_vpc_service_project.shared_vpc_service";
+  "module.landing-firewall-policy.google_compute_firewall_policy.hierarchical" -> "module.landing-project.google_kms_crypto_key_iam_member.service_agent_cmek";
+  "module.landing-firewall-policy.google_compute_firewall_policy.hierarchical" -> "module.landing-project.google_project_iam_member.shared_vpc_host_robots";
+  "module.landing-firewall-policy.google_compute_firewall_policy_association.hierarchical" -> "module.landing-firewall-policy.google_compute_firewall_policy.hierarchical";
+  "module.landing-firewall-policy.google_compute_firewall_policy_association.hierarchical" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.landing-firewall-policy.google_compute_firewall_policy_association.hierarchical" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-firewall-policy.google_compute_firewall_policy_association.hierarchical" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.landing-firewall-policy.google_compute_firewall_policy_rule.hierarchical" -> "module.landing-firewall-policy.google_compute_firewall_policy.hierarchical";
+  "module.landing-firewall-policy.google_compute_network_firewall_policy.net-global" -> "module.landing-project.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-firewall-policy.google_compute_network_firewall_policy.net-global" -> "module.landing-project.google_compute_shared_vpc_service_project.shared_vpc_service";
+  "module.landing-firewall-policy.google_compute_network_firewall_policy.net-global" -> "module.landing-project.google_kms_crypto_key_iam_member.service_agent_cmek";
+  "module.landing-firewall-policy.google_compute_network_firewall_policy.net-global" -> "module.landing-project.google_project_iam_member.shared_vpc_host_robots";
+  "module.landing-firewall-policy.google_compute_network_firewall_policy_association.net-global" -> "module.landing-firewall-policy.google_compute_network_firewall_policy.net-global";
+  "module.landing-firewall-policy.google_compute_network_firewall_policy_association.net-global" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.landing-firewall-policy.google_compute_network_firewall_policy_association.net-global" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-firewall-policy.google_compute_network_firewall_policy_association.net-global" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.landing-firewall-policy.google_compute_network_firewall_policy_rule.net-global" -> "module.landing-firewall-policy.google_compute_network_firewall_policy.net-global";
+  "module.landing-firewall-policy.google_compute_region_network_firewall_policy.net-regional" -> "module.landing-project.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-firewall-policy.google_compute_region_network_firewall_policy.net-regional" -> "module.landing-project.google_compute_shared_vpc_service_project.shared_vpc_service";
+  "module.landing-firewall-policy.google_compute_region_network_firewall_policy.net-regional" -> "module.landing-project.google_kms_crypto_key_iam_member.service_agent_cmek";
+  "module.landing-firewall-policy.google_compute_region_network_firewall_policy.net-regional" -> "module.landing-project.google_project_iam_member.shared_vpc_host_robots";
+  "module.landing-firewall-policy.google_compute_region_network_firewall_policy_association.net-regional" -> "module.landing-firewall-policy.google_compute_region_network_firewall_policy.net-regional";
+  "module.landing-firewall-policy.google_compute_region_network_firewall_policy_association.net-regional" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.landing-firewall-policy.google_compute_region_network_firewall_policy_association.net-regional" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-firewall-policy.google_compute_region_network_firewall_policy_association.net-regional" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.landing-firewall-policy.google_compute_region_network_firewall_policy_rule.net-regional" -> "module.landing-firewall-policy.google_compute_region_network_firewall_policy.net-regional";
+  "module.landing-nat-primary.google_compute_router.router" -> "module.dev-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-nat-primary.google_compute_router.router" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.landing-nat-primary.google_compute_router.router" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-nat-primary.google_compute_router.router" -> "module.landing-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-nat-primary.google_compute_router.router" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.landing-nat-primary.google_compute_router.router" -> "module.prod-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-nat-primary.google_compute_router_nat.nat" -> "module.landing-nat-primary.google_compute_router.router";
+  "module.landing-project.data.google_bigquery_default_service_account.bq_sa" -> "module.landing-project.google_project_service.project_services";
+  "module.landing-project.data.google_storage_project_service_account.gcs_sa" -> "module.landing-project.google_project_service.project_services";
+  "module.landing-project.google_access_context_manager_service_perimeter_dry_run_resource.default" -> "module.landing-project.data.google_project.project";
+  "module.landing-project.google_access_context_manager_service_perimeter_dry_run_resource.default" -> "module.landing-project.google_project.project";
+  "module.landing-project.google_access_context_manager_service_perimeter_resource.default" -> "module.landing-project.data.google_project.project";
+  "module.landing-project.google_access_context_manager_service_perimeter_resource.default" -> "module.landing-project.google_project.project";
+  "module.landing-project.google_bigquery_dataset_iam_member.bq-sinks-binding" -> "module.landing-project.google_logging_project_sink.sink";
+  "module.landing-project.google_cloud_quotas_quota_preference.default" -> "module.landing-project.google_project_service.project_services";
+  "module.landing-project.google_compute_project_metadata_item.default" -> "module.landing-project.google_project_service.project_services";
+  "module.landing-project.google_compute_shared_vpc_host_project.shared_vpc_host" -> "module.landing-project.google_project_service.project_services";
+  "module.landing-project.google_compute_shared_vpc_service_project.service_projects" -> "module.landing-project.google_compute_shared_vpc_host_project.shared_vpc_host";
+  "module.landing-project.google_compute_shared_vpc_service_project.shared_vpc_service" -> "module.landing-project.google_access_context_manager_service_perimeter_dry_run_resource.default";
+  "module.landing-project.google_compute_shared_vpc_service_project.shared_vpc_service" -> "module.landing-project.google_access_context_manager_service_perimeter_resource.default";
+  "module.landing-project.google_compute_subnetwork_iam_member.shared_vpc_host_robots" -> "module.landing-project.data.google_bigquery_default_service_account.bq_sa";
+  "module.landing-project.google_compute_subnetwork_iam_member.shared_vpc_host_robots" -> "module.landing-project.data.google_storage_project_service_account.gcs_sa";
+  "module.landing-project.google_compute_subnetwork_iam_member.shared_vpc_host_robots" -> "module.landing-project.google_project_default_service_accounts.default_service_accounts";
+  "module.landing-project.google_compute_subnetwork_iam_member.shared_vpc_host_robots" -> "module.landing-project.google_project_service_identity.default";
+  "module.landing-project.google_essential_contacts_contact.contact" -> "module.landing-project.google_project_iam_binding.authoritative";
+  "module.landing-project.google_essential_contacts_contact.contact" -> "module.landing-project.google_project_iam_binding.bindings";
+  "module.landing-project.google_essential_contacts_contact.contact" -> "module.landing-project.google_project_iam_member.bindings";
+  "module.landing-project.google_kms_crypto_key_iam_member.service_agent_cmek" -> "module.landing-project.data.google_bigquery_default_service_account.bq_sa";
+  "module.landing-project.google_kms_crypto_key_iam_member.service_agent_cmek" -> "module.landing-project.data.google_storage_project_service_account.gcs_sa";
+  "module.landing-project.google_kms_crypto_key_iam_member.service_agent_cmek" -> "module.landing-project.google_project_iam_member.service_agents";
+  "module.landing-project.google_logging_log_scope.log-scopes" -> "module.landing-project.data.google_project.project";
+  "module.landing-project.google_logging_log_scope.log-scopes" -> "module.landing-project.google_project.project";
+  "module.landing-project.google_logging_metric.metrics" -> "module.landing-project.data.google_project.project";
+  "module.landing-project.google_logging_metric.metrics" -> "module.landing-project.google_project.project";
+  "module.landing-project.google_logging_project_exclusion.logging-exclusion" -> "module.landing-project.data.google_project.project";
+  "module.landing-project.google_logging_project_exclusion.logging-exclusion" -> "module.landing-project.google_project.project";
+  "module.landing-project.google_logging_project_sink.sink" -> "module.landing-project.google_project_iam_binding.authoritative";
+  "module.landing-project.google_logging_project_sink.sink" -> "module.landing-project.google_project_iam_binding.bindings";
+  "module.landing-project.google_logging_project_sink.sink" -> "module.landing-project.google_project_iam_member.bindings";
+  "module.landing-project.google_monitoring_alert_policy.alerts" -> "module.landing-project.google_monitoring_notification_channel.channels";
+  "module.landing-project.google_monitoring_monitored_project.primary" -> "module.landing-project.data.google_project.project";
+  "module.landing-project.google_monitoring_monitored_project.primary" -> "module.landing-project.google_project.project";
+  "module.landing-project.google_monitoring_notification_channel.channels" -> "module.landing-project.data.google_project.project";
+  "module.landing-project.google_monitoring_notification_channel.channels" -> "module.landing-project.google_project.project";
+  "module.landing-project.google_org_policy_policy.default" -> "module.landing-project.data.google_project.project";
+  "module.landing-project.google_org_policy_policy.default" -> "module.landing-project.google_project.project";
+  "module.landing-project.google_project_default_service_accounts.default_service_accounts" -> "module.landing-project.google_project_service.project_services";
+  "module.landing-project.google_project_iam_audit_config.default" -> "module.landing-project.data.google_project.project";
+  "module.landing-project.google_project_iam_audit_config.default" -> "module.landing-project.google_project.project";
+  "module.landing-project.google_project_iam_binding.authoritative" -> "module.landing-project.google_project_iam_custom_role.roles";
+  "module.landing-project.google_project_iam_binding.authoritative" -> "module.landing-project.google_project_service.project_services";
+  "module.landing-project.google_project_iam_binding.bindings" -> "module.landing-project.google_project_iam_custom_role.roles";
+  "module.landing-project.google_project_iam_binding.bindings" -> "module.landing-project.google_project_service.project_services";
+  "module.landing-project.google_project_iam_custom_role.roles" -> "module.landing-project.data.google_project.project";
+  "module.landing-project.google_project_iam_custom_role.roles" -> "module.landing-project.google_project.project";
+  "module.landing-project.google_project_iam_member.bindings" -> "module.landing-project.google_project_iam_custom_role.roles";
+  "module.landing-project.google_project_iam_member.bindings" -> "module.landing-project.google_project_service.project_services";
+  "module.landing-project.google_project_iam_member.bucket-sinks-binding" -> "module.landing-project.google_logging_project_sink.sink";
+  "module.landing-project.google_project_iam_member.project-sinks-binding" -> "module.landing-project.google_logging_project_sink.sink";
+  "module.landing-project.google_project_iam_member.service_agents" -> "module.landing-project.google_project_service_identity.default";
+  "module.landing-project.google_project_iam_member.shared_vpc_host_robots" -> "module.landing-project.data.google_bigquery_default_service_account.bq_sa";
+  "module.landing-project.google_project_iam_member.shared_vpc_host_robots" -> "module.landing-project.data.google_storage_project_service_account.gcs_sa";
+  "module.landing-project.google_project_iam_member.shared_vpc_host_robots" -> "module.landing-project.google_project_default_service_accounts.default_service_accounts";
+  "module.landing-project.google_project_iam_member.shared_vpc_host_robots" -> "module.landing-project.google_project_service_identity.default";
+  "module.landing-project.google_project_service.project_services" -> "module.landing-project.google_org_policy_policy.default";
+  "module.landing-project.google_project_service_identity.default" -> "module.landing-project.google_project_service.project_services";
+  "module.landing-project.google_pubsub_topic_iam_member.pubsub-sinks-binding" -> "module.landing-project.google_logging_project_sink.sink";
+  "module.landing-project.google_resource_manager_lien.lien" -> "module.landing-project.data.google_project.project";
+  "module.landing-project.google_resource_manager_lien.lien" -> "module.landing-project.google_project.project";
+  "module.landing-project.google_storage_bucket_iam_member.gcs-sinks-binding" -> "module.landing-project.google_logging_project_sink.sink";
+  "module.landing-project.google_tags_tag_binding.binding" -> "module.landing-project.data.google_project.project";
+  "module.landing-project.google_tags_tag_binding.binding" -> "module.landing-project.google_project.project";
+  "module.landing-project.google_tags_tag_key.default" -> "module.landing-project.data.google_project.project";
+  "module.landing-project.google_tags_tag_key.default" -> "module.landing-project.google_project.project";
+  "module.landing-project.google_tags_tag_key_iam_binding.bindings" -> "module.landing-project.google_tags_tag_key.default";
+  "module.landing-project.google_tags_tag_key_iam_binding.default" -> "module.landing-project.google_tags_tag_key.default";
+  "module.landing-project.google_tags_tag_key_iam_member.bindings" -> "module.landing-project.google_tags_tag_key.default";
+  "module.landing-project.google_tags_tag_value.default" -> "module.landing-project.google_tags_tag_key.default";
+  "module.landing-project.google_tags_tag_value_iam_binding.bindings" -> "module.landing-project.google_tags_tag_value.default";
+  "module.landing-project.google_tags_tag_value_iam_binding.default" -> "module.landing-project.google_tags_tag_value.default";
+  "module.landing-project.google_tags_tag_value_iam_member.bindings" -> "module.landing-project.google_tags_tag_value.default";
+  "module.landing-to-onprem-primary-vpn.google_compute_external_vpn_gateway.external_gateway" -> "module.dev-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-to-onprem-primary-vpn.google_compute_external_vpn_gateway.external_gateway" -> "module.landing-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-to-onprem-primary-vpn.google_compute_external_vpn_gateway.external_gateway" -> "module.prod-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-to-onprem-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.dev-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-to-onprem-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.landing-to-onprem-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-to-onprem-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.landing-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-to-onprem-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.landing-to-onprem-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.prod-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-to-onprem-primary-vpn.google_compute_router.router" -> "module.dev-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-to-onprem-primary-vpn.google_compute_router.router" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.landing-to-onprem-primary-vpn.google_compute_router.router" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-to-onprem-primary-vpn.google_compute_router.router" -> "module.landing-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-to-onprem-primary-vpn.google_compute_router.router" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.landing-to-onprem-primary-vpn.google_compute_router.router" -> "module.prod-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-to-onprem-primary-vpn.google_compute_router_interface.router_interface" -> "module.landing-to-onprem-primary-vpn.google_compute_vpn_tunnel.tunnels";
+  "module.landing-to-onprem-primary-vpn.google_compute_router_peer.bgp_peer" -> "module.landing-to-onprem-primary-vpn.google_compute_router_interface.router_interface";
+  "module.landing-to-onprem-primary-vpn.google_compute_router_peer.bgp_peer" -> "module.landing-to-onprem-primary-vpn.random_id.md5_keys";
+  "module.landing-to-onprem-primary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.landing-to-onprem-primary-vpn.google_compute_external_vpn_gateway.external_gateway";
+  "module.landing-to-onprem-primary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.landing-to-onprem-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway";
+  "module.landing-to-onprem-primary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.landing-to-onprem-primary-vpn.google_compute_router.router";
+  "module.landing-to-onprem-primary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.landing-to-onprem-primary-vpn.random_id.secret";
+  "module.landing-to-spokes-primary-vpn.google_compute_external_vpn_gateway.external_gateway" -> "module.dev-to-landing-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway";
+  "module.landing-to-spokes-primary-vpn.google_compute_external_vpn_gateway.external_gateway" -> "module.prod-to-landing-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway";
+  "module.landing-to-spokes-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.dev-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-to-spokes-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.landing-to-spokes-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-to-spokes-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.landing-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-to-spokes-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.landing-to-spokes-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.prod-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-to-spokes-primary-vpn.google_compute_router.router" -> "module.dev-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-to-spokes-primary-vpn.google_compute_router.router" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.landing-to-spokes-primary-vpn.google_compute_router.router" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-to-spokes-primary-vpn.google_compute_router.router" -> "module.landing-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-to-spokes-primary-vpn.google_compute_router.router" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.landing-to-spokes-primary-vpn.google_compute_router.router" -> "module.prod-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-to-spokes-primary-vpn.google_compute_router_interface.router_interface" -> "module.landing-to-spokes-primary-vpn.google_compute_vpn_tunnel.tunnels";
+  "module.landing-to-spokes-primary-vpn.google_compute_router_peer.bgp_peer" -> "module.landing-to-spokes-primary-vpn.google_compute_router_interface.router_interface";
+  "module.landing-to-spokes-primary-vpn.google_compute_router_peer.bgp_peer" -> "module.landing-to-spokes-primary-vpn.random_id.md5_keys";
+  "module.landing-to-spokes-primary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.landing-to-spokes-primary-vpn.google_compute_external_vpn_gateway.external_gateway";
+  "module.landing-to-spokes-primary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.landing-to-spokes-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway";
+  "module.landing-to-spokes-primary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.landing-to-spokes-primary-vpn.google_compute_router.router";
+  "module.landing-to-spokes-primary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.landing-to-spokes-primary-vpn.random_id.secret";
+  "module.landing-to-spokes-secondary-vpn.google_compute_external_vpn_gateway.external_gateway" -> "module.prod-to-landing-secondary-vpn.google_compute_ha_vpn_gateway.ha_gateway";
+  "module.landing-to-spokes-secondary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.dev-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-to-spokes-secondary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.landing-to-spokes-secondary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-to-spokes-secondary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.landing-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-to-spokes-secondary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.landing-to-spokes-secondary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.prod-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-to-spokes-secondary-vpn.google_compute_router.router" -> "module.dev-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-to-spokes-secondary-vpn.google_compute_router.router" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.landing-to-spokes-secondary-vpn.google_compute_router.router" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-to-spokes-secondary-vpn.google_compute_router.router" -> "module.landing-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-to-spokes-secondary-vpn.google_compute_router.router" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.landing-to-spokes-secondary-vpn.google_compute_router.router" -> "module.prod-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-to-spokes-secondary-vpn.google_compute_router_interface.router_interface" -> "module.landing-to-spokes-secondary-vpn.google_compute_vpn_tunnel.tunnels";
+  "module.landing-to-spokes-secondary-vpn.google_compute_router_peer.bgp_peer" -> "module.landing-to-spokes-secondary-vpn.google_compute_router_interface.router_interface";
+  "module.landing-to-spokes-secondary-vpn.google_compute_router_peer.bgp_peer" -> "module.landing-to-spokes-secondary-vpn.random_id.md5_keys";
+  "module.landing-to-spokes-secondary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.landing-to-spokes-secondary-vpn.google_compute_external_vpn_gateway.external_gateway";
+  "module.landing-to-spokes-secondary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.landing-to-spokes-secondary-vpn.google_compute_ha_vpn_gateway.ha_gateway";
+  "module.landing-to-spokes-secondary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.landing-to-spokes-secondary-vpn.google_compute_router.router";
+  "module.landing-to-spokes-secondary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.landing-to-spokes-secondary-vpn.random_id.secret";
+  "module.landing-vpc.google_compute_global_address.psa_ranges" -> "module.landing-vpc.google_compute_network.network";
+  "module.landing-vpc.google_compute_network.network" -> "module.landing-project.google_compute_shared_vpc_service_project.service_projects";
+  "module.landing-vpc.google_compute_network.network" -> "module.landing-project.google_compute_shared_vpc_service_project.shared_vpc_service";
+  "module.landing-vpc.google_compute_network.network" -> "module.landing-project.google_kms_crypto_key_iam_member.service_agent_cmek";
+  "module.landing-vpc.google_compute_network.network" -> "module.landing-project.google_project_iam_member.shared_vpc_host_robots";
+  "module.landing-vpc.google_compute_network_attachment.default" -> "module.landing-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-vpc.google_compute_network_peering.local" -> "module.landing-vpc.google_compute_network.network";
+  "module.landing-vpc.google_compute_network_peering.remote" -> "module.landing-vpc.google_compute_network_peering.local";
+  "module.landing-vpc.google_compute_network_peering_routes_config.psa_routes" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.landing-vpc.google_compute_route.gateway" -> "module.landing-vpc.google_compute_network.network";
+  "module.landing-vpc.google_compute_route.ilb" -> "module.landing-vpc.google_compute_network.network";
+  "module.landing-vpc.google_compute_route.instance" -> "module.landing-vpc.google_compute_network.network";
+  "module.landing-vpc.google_compute_route.ip" -> "module.landing-vpc.google_compute_network.network";
+  "module.landing-vpc.google_compute_route.vpn_tunnel" -> "module.landing-vpc.google_compute_network.network";
+  "module.landing-vpc.google_compute_shared_vpc_host_project.shared_vpc_host" -> "module.landing-vpc.google_compute_network.network";
+  "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects" -> "module.landing-vpc.google_compute_shared_vpc_host_project.shared_vpc_host";
+  "module.landing-vpc.google_compute_subnetwork.private_nat" -> "module.landing-vpc.google_compute_network.network";
+  "module.landing-vpc.google_compute_subnetwork.proxy_only" -> "module.landing-vpc.google_compute_network.network";
+  "module.landing-vpc.google_compute_subnetwork.psc" -> "module.landing-vpc.google_compute_network.network";
+  "module.landing-vpc.google_compute_subnetwork.subnetwork" -> "module.landing-vpc.google_compute_network.network";
+  "module.landing-vpc.google_compute_subnetwork_iam_binding.authoritative" -> "module.landing-vpc.google_compute_subnetwork.proxy_only";
+  "module.landing-vpc.google_compute_subnetwork_iam_binding.authoritative" -> "module.landing-vpc.google_compute_subnetwork.psc";
+  "module.landing-vpc.google_compute_subnetwork_iam_binding.authoritative" -> "module.landing-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-vpc.google_compute_subnetwork_iam_binding.bindings" -> "module.landing-vpc.google_compute_subnetwork.proxy_only";
+  "module.landing-vpc.google_compute_subnetwork_iam_binding.bindings" -> "module.landing-vpc.google_compute_subnetwork.psc";
+  "module.landing-vpc.google_compute_subnetwork_iam_binding.bindings" -> "module.landing-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-vpc.google_compute_subnetwork_iam_member.bindings" -> "module.landing-vpc.google_compute_subnetwork.proxy_only";
+  "module.landing-vpc.google_compute_subnetwork_iam_member.bindings" -> "module.landing-vpc.google_compute_subnetwork.psc";
+  "module.landing-vpc.google_compute_subnetwork_iam_member.bindings" -> "module.landing-vpc.google_compute_subnetwork.subnetwork";
+  "module.landing-vpc.google_dns_policy.default" -> "module.landing-vpc.google_compute_network.network";
+  "module.landing-vpc.google_network_connectivity_policy_based_route.default" -> "module.landing-vpc.google_compute_network.network";
+  "module.landing-vpc.google_service_networking_connection.psa_connection" -> "module.landing-vpc.google_compute_global_address.psa_ranges";
+  "module.landing-vpc.google_service_networking_peered_dns_domain.name" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.peering-dev.google_compute_network_peering.local_network_peering" -> "module.dev-spoke-vpc.google_compute_network_peering.remote";
+  "module.peering-dev.google_compute_network_peering.local_network_peering" -> "module.dev-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.peering-dev.google_compute_network_peering.local_network_peering" -> "module.dev-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.peering-dev.google_compute_network_peering.local_network_peering" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.peering-dev.google_compute_network_peering.local_network_peering" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.peering-dev.google_compute_network_peering.local_network_peering" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.peering-dev.google_compute_network_peering.peer_network_peering" -> "module.peering-dev.google_compute_network_peering.local_network_peering";
+  "module.peering-prod.google_compute_network_peering.local_network_peering" -> "module.peering-dev.google_compute_network_peering.peer_network_peering";
+  "module.peering-prod.google_compute_network_peering.local_network_peering" -> "module.prod-spoke-vpc.google_compute_network_peering.remote";
+  "module.peering-prod.google_compute_network_peering.local_network_peering" -> "module.prod-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.peering-prod.google_compute_network_peering.local_network_peering" -> "module.prod-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.peering-prod.google_compute_network_peering.peer_network_peering" -> "module.peering-prod.google_compute_network_peering.local_network_peering";
+  "module.prod-dns-peer-landing-rev-10.data.google_dns_keys.dns_keys" -> "module.prod-dns-peer-landing-rev-10.data.google_dns_managed_zone.dns_managed_zone";
+  "module.prod-dns-peer-landing-rev-10.data.google_dns_keys.dns_keys" -> "module.prod-dns-peer-landing-rev-10.google_dns_managed_zone.dns_managed_zone";
+  "module.prod-dns-peer-landing-rev-10.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.prod-dns-peer-landing-rev-10.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-dns-peer-landing-rev-10.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.prod-dns-peer-landing-rev-10.data.google_dns_managed_zone.dns_managed_zone" -> "module.prod-spoke-vpc.google_compute_network_peering.remote";
+  "module.prod-dns-peer-landing-rev-10.data.google_dns_managed_zone.dns_managed_zone" -> "module.prod-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-dns-peer-landing-rev-10.data.google_dns_managed_zone.dns_managed_zone" -> "module.prod-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.prod-dns-peer-landing-rev-10.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.prod-dns-peer-landing-rev-10.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-dns-peer-landing-rev-10.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.prod-dns-peer-landing-rev-10.google_dns_managed_zone.dns_managed_zone" -> "module.prod-spoke-vpc.google_compute_network_peering.remote";
+  "module.prod-dns-peer-landing-rev-10.google_dns_managed_zone.dns_managed_zone" -> "module.prod-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-dns-peer-landing-rev-10.google_dns_managed_zone.dns_managed_zone" -> "module.prod-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.prod-dns-peer-landing-rev-10.google_dns_managed_zone_iam_binding.iam_bindings" -> "module.prod-dns-peer-landing-rev-10.data.google_dns_managed_zone.dns_managed_zone";
+  "module.prod-dns-peer-landing-rev-10.google_dns_managed_zone_iam_binding.iam_bindings" -> "module.prod-dns-peer-landing-rev-10.google_dns_managed_zone.dns_managed_zone";
+  "module.prod-dns-peer-landing-rev-10.google_dns_record_set.dns_record_set" -> "module.prod-dns-peer-landing-rev-10.data.google_dns_managed_zone.dns_managed_zone";
+  "module.prod-dns-peer-landing-rev-10.google_dns_record_set.dns_record_set" -> "module.prod-dns-peer-landing-rev-10.google_dns_managed_zone.dns_managed_zone";
+  "module.prod-dns-peer-landing-root.data.google_dns_keys.dns_keys" -> "module.prod-dns-peer-landing-root.data.google_dns_managed_zone.dns_managed_zone";
+  "module.prod-dns-peer-landing-root.data.google_dns_keys.dns_keys" -> "module.prod-dns-peer-landing-root.google_dns_managed_zone.dns_managed_zone";
+  "module.prod-dns-peer-landing-root.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.prod-dns-peer-landing-root.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-dns-peer-landing-root.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.prod-dns-peer-landing-root.data.google_dns_managed_zone.dns_managed_zone" -> "module.prod-spoke-vpc.google_compute_network_peering.remote";
+  "module.prod-dns-peer-landing-root.data.google_dns_managed_zone.dns_managed_zone" -> "module.prod-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-dns-peer-landing-root.data.google_dns_managed_zone.dns_managed_zone" -> "module.prod-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.prod-dns-peer-landing-root.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.prod-dns-peer-landing-root.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-dns-peer-landing-root.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.prod-dns-peer-landing-root.google_dns_managed_zone.dns_managed_zone" -> "module.prod-spoke-vpc.google_compute_network_peering.remote";
+  "module.prod-dns-peer-landing-root.google_dns_managed_zone.dns_managed_zone" -> "module.prod-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-dns-peer-landing-root.google_dns_managed_zone.dns_managed_zone" -> "module.prod-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.prod-dns-peer-landing-root.google_dns_managed_zone_iam_binding.iam_bindings" -> "module.prod-dns-peer-landing-root.data.google_dns_managed_zone.dns_managed_zone";
+  "module.prod-dns-peer-landing-root.google_dns_managed_zone_iam_binding.iam_bindings" -> "module.prod-dns-peer-landing-root.google_dns_managed_zone.dns_managed_zone";
+  "module.prod-dns-peer-landing-root.google_dns_record_set.dns_record_set" -> "module.prod-dns-peer-landing-root.data.google_dns_managed_zone.dns_managed_zone";
+  "module.prod-dns-peer-landing-root.google_dns_record_set.dns_record_set" -> "module.prod-dns-peer-landing-root.google_dns_managed_zone.dns_managed_zone";
+  "module.prod-dns-priv-example.data.google_dns_keys.dns_keys" -> "module.prod-dns-priv-example.data.google_dns_managed_zone.dns_managed_zone";
+  "module.prod-dns-priv-example.data.google_dns_keys.dns_keys" -> "module.prod-dns-priv-example.google_dns_managed_zone.dns_managed_zone";
+  "module.prod-dns-priv-example.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.prod-dns-priv-example.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-dns-priv-example.data.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.prod-dns-priv-example.data.google_dns_managed_zone.dns_managed_zone" -> "module.prod-spoke-project.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-dns-priv-example.data.google_dns_managed_zone.dns_managed_zone" -> "module.prod-spoke-project.google_compute_shared_vpc_service_project.shared_vpc_service";
+  "module.prod-dns-priv-example.data.google_dns_managed_zone.dns_managed_zone" -> "module.prod-spoke-project.google_kms_crypto_key_iam_member.service_agent_cmek";
+  "module.prod-dns-priv-example.data.google_dns_managed_zone.dns_managed_zone" -> "module.prod-spoke-project.google_project_iam_member.shared_vpc_host_robots";
+  "module.prod-dns-priv-example.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_network_peering.remote";
+  "module.prod-dns-priv-example.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-dns-priv-example.google_dns_managed_zone.dns_managed_zone" -> "module.landing-vpc.google_service_networking_connection.psa_connection";
+  "module.prod-dns-priv-example.google_dns_managed_zone.dns_managed_zone" -> "module.prod-spoke-project.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-dns-priv-example.google_dns_managed_zone.dns_managed_zone" -> "module.prod-spoke-project.google_compute_shared_vpc_service_project.shared_vpc_service";
+  "module.prod-dns-priv-example.google_dns_managed_zone.dns_managed_zone" -> "module.prod-spoke-project.google_kms_crypto_key_iam_member.service_agent_cmek";
+  "module.prod-dns-priv-example.google_dns_managed_zone.dns_managed_zone" -> "module.prod-spoke-project.google_project_iam_member.shared_vpc_host_robots";
+  "module.prod-dns-priv-example.google_dns_managed_zone_iam_binding.iam_bindings" -> "module.prod-dns-priv-example.data.google_dns_managed_zone.dns_managed_zone";
+  "module.prod-dns-priv-example.google_dns_managed_zone_iam_binding.iam_bindings" -> "module.prod-dns-priv-example.google_dns_managed_zone.dns_managed_zone";
+  "module.prod-dns-priv-example.google_dns_record_set.dns_record_set" -> "module.prod-dns-priv-example.data.google_dns_managed_zone.dns_managed_zone";
+  "module.prod-dns-priv-example.google_dns_record_set.dns_record_set" -> "module.prod-dns-priv-example.google_dns_managed_zone.dns_managed_zone";
+  "module.prod-firewall-policy.google_compute_firewall_policy.hierarchical" -> "module.prod-spoke-project.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-firewall-policy.google_compute_firewall_policy.hierarchical" -> "module.prod-spoke-project.google_compute_shared_vpc_service_project.shared_vpc_service";
+  "module.prod-firewall-policy.google_compute_firewall_policy.hierarchical" -> "module.prod-spoke-project.google_kms_crypto_key_iam_member.service_agent_cmek";
+  "module.prod-firewall-policy.google_compute_firewall_policy.hierarchical" -> "module.prod-spoke-project.google_project_iam_member.shared_vpc_host_robots";
+  "module.prod-firewall-policy.google_compute_firewall_policy_association.hierarchical" -> "module.prod-firewall-policy.google_compute_firewall_policy.hierarchical";
+  "module.prod-firewall-policy.google_compute_firewall_policy_association.hierarchical" -> "module.prod-spoke-vpc.google_compute_network_peering.remote";
+  "module.prod-firewall-policy.google_compute_firewall_policy_association.hierarchical" -> "module.prod-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-firewall-policy.google_compute_firewall_policy_association.hierarchical" -> "module.prod-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.prod-firewall-policy.google_compute_firewall_policy_rule.hierarchical" -> "module.prod-firewall-policy.google_compute_firewall_policy.hierarchical";
+  "module.prod-firewall-policy.google_compute_network_firewall_policy.net-global" -> "module.prod-spoke-project.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-firewall-policy.google_compute_network_firewall_policy.net-global" -> "module.prod-spoke-project.google_compute_shared_vpc_service_project.shared_vpc_service";
+  "module.prod-firewall-policy.google_compute_network_firewall_policy.net-global" -> "module.prod-spoke-project.google_kms_crypto_key_iam_member.service_agent_cmek";
+  "module.prod-firewall-policy.google_compute_network_firewall_policy.net-global" -> "module.prod-spoke-project.google_project_iam_member.shared_vpc_host_robots";
+  "module.prod-firewall-policy.google_compute_network_firewall_policy_association.net-global" -> "module.prod-firewall-policy.google_compute_network_firewall_policy.net-global";
+  "module.prod-firewall-policy.google_compute_network_firewall_policy_association.net-global" -> "module.prod-spoke-vpc.google_compute_network_peering.remote";
+  "module.prod-firewall-policy.google_compute_network_firewall_policy_association.net-global" -> "module.prod-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-firewall-policy.google_compute_network_firewall_policy_association.net-global" -> "module.prod-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.prod-firewall-policy.google_compute_network_firewall_policy_rule.net-global" -> "module.prod-firewall-policy.google_compute_network_firewall_policy.net-global";
+  "module.prod-firewall-policy.google_compute_region_network_firewall_policy.net-regional" -> "module.prod-spoke-project.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-firewall-policy.google_compute_region_network_firewall_policy.net-regional" -> "module.prod-spoke-project.google_compute_shared_vpc_service_project.shared_vpc_service";
+  "module.prod-firewall-policy.google_compute_region_network_firewall_policy.net-regional" -> "module.prod-spoke-project.google_kms_crypto_key_iam_member.service_agent_cmek";
+  "module.prod-firewall-policy.google_compute_region_network_firewall_policy.net-regional" -> "module.prod-spoke-project.google_project_iam_member.shared_vpc_host_robots";
+  "module.prod-firewall-policy.google_compute_region_network_firewall_policy_association.net-regional" -> "module.prod-firewall-policy.google_compute_region_network_firewall_policy.net-regional";
+  "module.prod-firewall-policy.google_compute_region_network_firewall_policy_association.net-regional" -> "module.prod-spoke-vpc.google_compute_network_peering.remote";
+  "module.prod-firewall-policy.google_compute_region_network_firewall_policy_association.net-regional" -> "module.prod-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-firewall-policy.google_compute_region_network_firewall_policy_association.net-regional" -> "module.prod-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.prod-firewall-policy.google_compute_region_network_firewall_policy_rule.net-regional" -> "module.prod-firewall-policy.google_compute_region_network_firewall_policy.net-regional";
+  "module.prod-spoke-cloudnat.google_compute_router.router" -> "module.dev-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.prod-spoke-cloudnat.google_compute_router.router" -> "module.landing-vpc.google_compute_subnetwork.subnetwork";
+  "module.prod-spoke-cloudnat.google_compute_router.router" -> "module.prod-spoke-vpc.google_compute_network_peering.remote";
+  "module.prod-spoke-cloudnat.google_compute_router.router" -> "module.prod-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-spoke-cloudnat.google_compute_router.router" -> "module.prod-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.prod-spoke-cloudnat.google_compute_router.router" -> "module.prod-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.prod-spoke-cloudnat.google_compute_router_nat.nat" -> "module.prod-spoke-cloudnat.google_compute_router.router";
+  "module.prod-spoke-firewall.google_compute_firewall.allow-admins" -> "module.prod-spoke-vpc.google_compute_network_peering.remote";
+  "module.prod-spoke-firewall.google_compute_firewall.allow-admins" -> "module.prod-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-spoke-firewall.google_compute_firewall.allow-admins" -> "module.prod-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.prod-spoke-firewall.google_compute_firewall.allow-tag-http" -> "module.prod-spoke-vpc.google_compute_network_peering.remote";
+  "module.prod-spoke-firewall.google_compute_firewall.allow-tag-http" -> "module.prod-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-spoke-firewall.google_compute_firewall.allow-tag-http" -> "module.prod-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.prod-spoke-firewall.google_compute_firewall.allow-tag-https" -> "module.prod-spoke-vpc.google_compute_network_peering.remote";
+  "module.prod-spoke-firewall.google_compute_firewall.allow-tag-https" -> "module.prod-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-spoke-firewall.google_compute_firewall.allow-tag-https" -> "module.prod-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.prod-spoke-firewall.google_compute_firewall.allow-tag-ssh" -> "module.prod-spoke-vpc.google_compute_network_peering.remote";
+  "module.prod-spoke-firewall.google_compute_firewall.allow-tag-ssh" -> "module.prod-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-spoke-firewall.google_compute_firewall.allow-tag-ssh" -> "module.prod-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.prod-spoke-firewall.google_compute_firewall.custom-rules" -> "module.prod-spoke-vpc.google_compute_network_peering.remote";
+  "module.prod-spoke-firewall.google_compute_firewall.custom-rules" -> "module.prod-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-spoke-firewall.google_compute_firewall.custom-rules" -> "module.prod-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.prod-spoke-project.data.google_bigquery_default_service_account.bq_sa" -> "module.prod-spoke-project.google_project_service.project_services";
+  "module.prod-spoke-project.data.google_storage_project_service_account.gcs_sa" -> "module.prod-spoke-project.google_project_service.project_services";
+  "module.prod-spoke-project.google_access_context_manager_service_perimeter_dry_run_resource.default" -> "module.prod-spoke-project.data.google_project.project";
+  "module.prod-spoke-project.google_access_context_manager_service_perimeter_dry_run_resource.default" -> "module.prod-spoke-project.google_project.project";
+  "module.prod-spoke-project.google_access_context_manager_service_perimeter_resource.default" -> "module.prod-spoke-project.data.google_project.project";
+  "module.prod-spoke-project.google_access_context_manager_service_perimeter_resource.default" -> "module.prod-spoke-project.google_project.project";
+  "module.prod-spoke-project.google_bigquery_dataset_iam_member.bq-sinks-binding" -> "module.prod-spoke-project.google_logging_project_sink.sink";
+  "module.prod-spoke-project.google_cloud_quotas_quota_preference.default" -> "module.prod-spoke-project.google_project_service.project_services";
+  "module.prod-spoke-project.google_compute_project_metadata_item.default" -> "module.prod-spoke-project.google_project_service.project_services";
+  "module.prod-spoke-project.google_compute_shared_vpc_host_project.shared_vpc_host" -> "module.prod-spoke-project.google_project_service.project_services";
+  "module.prod-spoke-project.google_compute_shared_vpc_service_project.service_projects" -> "module.prod-spoke-project.google_compute_shared_vpc_host_project.shared_vpc_host";
+  "module.prod-spoke-project.google_compute_shared_vpc_service_project.shared_vpc_service" -> "module.prod-spoke-project.google_access_context_manager_service_perimeter_dry_run_resource.default";
+  "module.prod-spoke-project.google_compute_shared_vpc_service_project.shared_vpc_service" -> "module.prod-spoke-project.google_access_context_manager_service_perimeter_resource.default";
+  "module.prod-spoke-project.google_compute_subnetwork_iam_member.shared_vpc_host_robots" -> "module.prod-spoke-project.data.google_bigquery_default_service_account.bq_sa";
+  "module.prod-spoke-project.google_compute_subnetwork_iam_member.shared_vpc_host_robots" -> "module.prod-spoke-project.data.google_storage_project_service_account.gcs_sa";
+  "module.prod-spoke-project.google_compute_subnetwork_iam_member.shared_vpc_host_robots" -> "module.prod-spoke-project.google_project_default_service_accounts.default_service_accounts";
+  "module.prod-spoke-project.google_compute_subnetwork_iam_member.shared_vpc_host_robots" -> "module.prod-spoke-project.google_project_service_identity.default";
+  "module.prod-spoke-project.google_essential_contacts_contact.contact" -> "module.prod-spoke-project.google_project_iam_binding.authoritative";
+  "module.prod-spoke-project.google_essential_contacts_contact.contact" -> "module.prod-spoke-project.google_project_iam_binding.bindings";
+  "module.prod-spoke-project.google_essential_contacts_contact.contact" -> "module.prod-spoke-project.google_project_iam_member.bindings";
+  "module.prod-spoke-project.google_kms_crypto_key_iam_member.service_agent_cmek" -> "module.prod-spoke-project.data.google_bigquery_default_service_account.bq_sa";
+  "module.prod-spoke-project.google_kms_crypto_key_iam_member.service_agent_cmek" -> "module.prod-spoke-project.data.google_storage_project_service_account.gcs_sa";
+  "module.prod-spoke-project.google_kms_crypto_key_iam_member.service_agent_cmek" -> "module.prod-spoke-project.google_project_iam_member.service_agents";
+  "module.prod-spoke-project.google_logging_log_scope.log-scopes" -> "module.prod-spoke-project.data.google_project.project";
+  "module.prod-spoke-project.google_logging_log_scope.log-scopes" -> "module.prod-spoke-project.google_project.project";
+  "module.prod-spoke-project.google_logging_metric.metrics" -> "module.prod-spoke-project.data.google_project.project";
+  "module.prod-spoke-project.google_logging_metric.metrics" -> "module.prod-spoke-project.google_project.project";
+  "module.prod-spoke-project.google_logging_project_exclusion.logging-exclusion" -> "module.prod-spoke-project.data.google_project.project";
+  "module.prod-spoke-project.google_logging_project_exclusion.logging-exclusion" -> "module.prod-spoke-project.google_project.project";
+  "module.prod-spoke-project.google_logging_project_sink.sink" -> "module.prod-spoke-project.google_project_iam_binding.authoritative";
+  "module.prod-spoke-project.google_logging_project_sink.sink" -> "module.prod-spoke-project.google_project_iam_binding.bindings";
+  "module.prod-spoke-project.google_logging_project_sink.sink" -> "module.prod-spoke-project.google_project_iam_member.bindings";
+  "module.prod-spoke-project.google_monitoring_alert_policy.alerts" -> "module.prod-spoke-project.google_monitoring_notification_channel.channels";
+  "module.prod-spoke-project.google_monitoring_monitored_project.primary" -> "module.landing-project.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-spoke-project.google_monitoring_monitored_project.primary" -> "module.landing-project.google_compute_shared_vpc_service_project.shared_vpc_service";
+  "module.prod-spoke-project.google_monitoring_monitored_project.primary" -> "module.landing-project.google_kms_crypto_key_iam_member.service_agent_cmek";
+  "module.prod-spoke-project.google_monitoring_monitored_project.primary" -> "module.landing-project.google_project_iam_member.shared_vpc_host_robots";
+  "module.prod-spoke-project.google_monitoring_monitored_project.primary" -> "module.prod-spoke-project.data.google_project.project";
+  "module.prod-spoke-project.google_monitoring_monitored_project.primary" -> "module.prod-spoke-project.google_project.project";
+  "module.prod-spoke-project.google_monitoring_notification_channel.channels" -> "module.prod-spoke-project.data.google_project.project";
+  "module.prod-spoke-project.google_monitoring_notification_channel.channels" -> "module.prod-spoke-project.google_project.project";
+  "module.prod-spoke-project.google_org_policy_policy.default" -> "module.prod-spoke-project.data.google_project.project";
+  "module.prod-spoke-project.google_org_policy_policy.default" -> "module.prod-spoke-project.google_project.project";
+  "module.prod-spoke-project.google_project_default_service_accounts.default_service_accounts" -> "module.prod-spoke-project.google_project_service.project_services";
+  "module.prod-spoke-project.google_project_iam_audit_config.default" -> "module.prod-spoke-project.data.google_project.project";
+  "module.prod-spoke-project.google_project_iam_audit_config.default" -> "module.prod-spoke-project.google_project.project";
+  "module.prod-spoke-project.google_project_iam_binding.authoritative" -> "module.prod-spoke-project.google_project_iam_custom_role.roles";
+  "module.prod-spoke-project.google_project_iam_binding.authoritative" -> "module.prod-spoke-project.google_project_service.project_services";
+  "module.prod-spoke-project.google_project_iam_binding.bindings" -> "module.prod-spoke-project.google_project_iam_custom_role.roles";
+  "module.prod-spoke-project.google_project_iam_binding.bindings" -> "module.prod-spoke-project.google_project_service.project_services";
+  "module.prod-spoke-project.google_project_iam_custom_role.roles" -> "module.prod-spoke-project.data.google_project.project";
+  "module.prod-spoke-project.google_project_iam_custom_role.roles" -> "module.prod-spoke-project.google_project.project";
+  "module.prod-spoke-project.google_project_iam_member.bindings" -> "module.prod-spoke-project.google_project_iam_custom_role.roles";
+  "module.prod-spoke-project.google_project_iam_member.bindings" -> "module.prod-spoke-project.google_project_service.project_services";
+  "module.prod-spoke-project.google_project_iam_member.bucket-sinks-binding" -> "module.prod-spoke-project.google_logging_project_sink.sink";
+  "module.prod-spoke-project.google_project_iam_member.project-sinks-binding" -> "module.prod-spoke-project.google_logging_project_sink.sink";
+  "module.prod-spoke-project.google_project_iam_member.service_agents" -> "module.prod-spoke-project.google_project_service_identity.default";
+  "module.prod-spoke-project.google_project_iam_member.shared_vpc_host_robots" -> "module.prod-spoke-project.data.google_bigquery_default_service_account.bq_sa";
+  "module.prod-spoke-project.google_project_iam_member.shared_vpc_host_robots" -> "module.prod-spoke-project.data.google_storage_project_service_account.gcs_sa";
+  "module.prod-spoke-project.google_project_iam_member.shared_vpc_host_robots" -> "module.prod-spoke-project.google_project_default_service_accounts.default_service_accounts";
+  "module.prod-spoke-project.google_project_iam_member.shared_vpc_host_robots" -> "module.prod-spoke-project.google_project_service_identity.default";
+  "module.prod-spoke-project.google_project_service.project_services" -> "module.prod-spoke-project.google_org_policy_policy.default";
+  "module.prod-spoke-project.google_project_service_identity.default" -> "module.prod-spoke-project.google_project_service.project_services";
+  "module.prod-spoke-project.google_pubsub_topic_iam_member.pubsub-sinks-binding" -> "module.prod-spoke-project.google_logging_project_sink.sink";
+  "module.prod-spoke-project.google_resource_manager_lien.lien" -> "module.prod-spoke-project.data.google_project.project";
+  "module.prod-spoke-project.google_resource_manager_lien.lien" -> "module.prod-spoke-project.google_project.project";
+  "module.prod-spoke-project.google_storage_bucket_iam_member.gcs-sinks-binding" -> "module.prod-spoke-project.google_logging_project_sink.sink";
+  "module.prod-spoke-project.google_tags_tag_binding.binding" -> "module.prod-spoke-project.data.google_project.project";
+  "module.prod-spoke-project.google_tags_tag_binding.binding" -> "module.prod-spoke-project.google_project.project";
+  "module.prod-spoke-project.google_tags_tag_key.default" -> "module.prod-spoke-project.data.google_project.project";
+  "module.prod-spoke-project.google_tags_tag_key.default" -> "module.prod-spoke-project.google_project.project";
+  "module.prod-spoke-project.google_tags_tag_key_iam_binding.bindings" -> "module.prod-spoke-project.google_tags_tag_key.default";
+  "module.prod-spoke-project.google_tags_tag_key_iam_binding.default" -> "module.prod-spoke-project.google_tags_tag_key.default";
+  "module.prod-spoke-project.google_tags_tag_key_iam_member.bindings" -> "module.prod-spoke-project.google_tags_tag_key.default";
+  "module.prod-spoke-project.google_tags_tag_value.default" -> "module.prod-spoke-project.google_tags_tag_key.default";
+  "module.prod-spoke-project.google_tags_tag_value_iam_binding.bindings" -> "module.prod-spoke-project.google_tags_tag_value.default";
+  "module.prod-spoke-project.google_tags_tag_value_iam_binding.default" -> "module.prod-spoke-project.google_tags_tag_value.default";
+  "module.prod-spoke-project.google_tags_tag_value_iam_member.bindings" -> "module.prod-spoke-project.google_tags_tag_value.default";
+  "module.prod-spoke-vpc.google_compute_global_address.psa_ranges" -> "module.prod-spoke-vpc.google_compute_network.network";
+  "module.prod-spoke-vpc.google_compute_network.network" -> "module.prod-spoke-project.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-spoke-vpc.google_compute_network.network" -> "module.prod-spoke-project.google_compute_shared_vpc_service_project.shared_vpc_service";
+  "module.prod-spoke-vpc.google_compute_network.network" -> "module.prod-spoke-project.google_kms_crypto_key_iam_member.service_agent_cmek";
+  "module.prod-spoke-vpc.google_compute_network.network" -> "module.prod-spoke-project.google_project_iam_member.shared_vpc_host_robots";
+  "module.prod-spoke-vpc.google_compute_network_attachment.default" -> "module.prod-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.prod-spoke-vpc.google_compute_network_peering.local" -> "module.prod-spoke-vpc.google_compute_network.network";
+  "module.prod-spoke-vpc.google_compute_network_peering.remote" -> "module.prod-spoke-vpc.google_compute_network_peering.local";
+  "module.prod-spoke-vpc.google_compute_network_peering_routes_config.psa_routes" -> "module.prod-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.prod-spoke-vpc.google_compute_route.gateway" -> "module.prod-spoke-vpc.google_compute_network.network";
+  "module.prod-spoke-vpc.google_compute_route.ilb" -> "module.prod-spoke-vpc.google_compute_network.network";
+  "module.prod-spoke-vpc.google_compute_route.instance" -> "module.prod-spoke-vpc.google_compute_network.network";
+  "module.prod-spoke-vpc.google_compute_route.ip" -> "module.prod-spoke-vpc.google_compute_network.network";
+  "module.prod-spoke-vpc.google_compute_route.vpn_tunnel" -> "module.prod-spoke-vpc.google_compute_network.network";
+  "module.prod-spoke-vpc.google_compute_shared_vpc_host_project.shared_vpc_host" -> "module.prod-spoke-vpc.google_compute_network.network";
+  "module.prod-spoke-vpc.google_compute_shared_vpc_service_project.service_projects" -> "module.prod-spoke-vpc.google_compute_shared_vpc_host_project.shared_vpc_host";
+  "module.prod-spoke-vpc.google_compute_subnetwork.private_nat" -> "module.prod-spoke-vpc.google_compute_network.network";
+  "module.prod-spoke-vpc.google_compute_subnetwork.proxy_only" -> "module.prod-spoke-vpc.google_compute_network.network";
+  "module.prod-spoke-vpc.google_compute_subnetwork.psc" -> "module.prod-spoke-vpc.google_compute_network.network";
+  "module.prod-spoke-vpc.google_compute_subnetwork.subnetwork" -> "module.prod-spoke-vpc.google_compute_network.network";
+  "module.prod-spoke-vpc.google_compute_subnetwork_iam_binding.authoritative" -> "module.prod-spoke-vpc.google_compute_subnetwork.proxy_only";
+  "module.prod-spoke-vpc.google_compute_subnetwork_iam_binding.authoritative" -> "module.prod-spoke-vpc.google_compute_subnetwork.psc";
+  "module.prod-spoke-vpc.google_compute_subnetwork_iam_binding.authoritative" -> "module.prod-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.prod-spoke-vpc.google_compute_subnetwork_iam_binding.bindings" -> "module.prod-spoke-vpc.google_compute_subnetwork.proxy_only";
+  "module.prod-spoke-vpc.google_compute_subnetwork_iam_binding.bindings" -> "module.prod-spoke-vpc.google_compute_subnetwork.psc";
+  "module.prod-spoke-vpc.google_compute_subnetwork_iam_binding.bindings" -> "module.prod-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.prod-spoke-vpc.google_compute_subnetwork_iam_member.bindings" -> "module.prod-spoke-vpc.google_compute_subnetwork.proxy_only";
+  "module.prod-spoke-vpc.google_compute_subnetwork_iam_member.bindings" -> "module.prod-spoke-vpc.google_compute_subnetwork.psc";
+  "module.prod-spoke-vpc.google_compute_subnetwork_iam_member.bindings" -> "module.prod-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.prod-spoke-vpc.google_dns_policy.default" -> "module.prod-spoke-vpc.google_compute_network.network";
+  "module.prod-spoke-vpc.google_network_connectivity_policy_based_route.default" -> "module.prod-spoke-vpc.google_compute_network.network";
+  "module.prod-spoke-vpc.google_service_networking_connection.psa_connection" -> "module.prod-spoke-vpc.google_compute_global_address.psa_ranges";
+  "module.prod-spoke-vpc.google_service_networking_peered_dns_domain.name" -> "module.prod-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.prod-to-landing-primary-vpn.google_compute_external_vpn_gateway.external_gateway" -> "module.landing-to-spokes-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway";
+  "module.prod-to-landing-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.dev-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.prod-to-landing-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.landing-vpc.google_compute_subnetwork.subnetwork";
+  "module.prod-to-landing-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.prod-spoke-vpc.google_compute_network_peering.remote";
+  "module.prod-to-landing-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.prod-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-to-landing-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.prod-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.prod-to-landing-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.prod-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.prod-to-landing-primary-vpn.google_compute_router.router" -> "module.dev-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.prod-to-landing-primary-vpn.google_compute_router.router" -> "module.landing-vpc.google_compute_subnetwork.subnetwork";
+  "module.prod-to-landing-primary-vpn.google_compute_router.router" -> "module.prod-spoke-vpc.google_compute_network_peering.remote";
+  "module.prod-to-landing-primary-vpn.google_compute_router.router" -> "module.prod-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-to-landing-primary-vpn.google_compute_router.router" -> "module.prod-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.prod-to-landing-primary-vpn.google_compute_router.router" -> "module.prod-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.prod-to-landing-primary-vpn.google_compute_router_interface.router_interface" -> "module.prod-to-landing-primary-vpn.google_compute_vpn_tunnel.tunnels";
+  "module.prod-to-landing-primary-vpn.google_compute_router_peer.bgp_peer" -> "module.prod-to-landing-primary-vpn.google_compute_router_interface.router_interface";
+  "module.prod-to-landing-primary-vpn.google_compute_router_peer.bgp_peer" -> "module.prod-to-landing-primary-vpn.random_id.md5_keys";
+  "module.prod-to-landing-primary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.landing-to-spokes-primary-vpn.random_id.secret";
+  "module.prod-to-landing-primary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.prod-to-landing-primary-vpn.google_compute_external_vpn_gateway.external_gateway";
+  "module.prod-to-landing-primary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.prod-to-landing-primary-vpn.google_compute_ha_vpn_gateway.ha_gateway";
+  "module.prod-to-landing-primary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.prod-to-landing-primary-vpn.google_compute_router.router";
+  "module.prod-to-landing-primary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.prod-to-landing-primary-vpn.random_id.secret";
+  "module.prod-to-landing-primary-vpn.random_id.md5_keys" -> "module.landing-to-spokes-primary-vpn.random_id.secret";
+  "module.prod-to-landing-secondary-vpn.google_compute_external_vpn_gateway.external_gateway" -> "module.landing-to-spokes-secondary-vpn.google_compute_ha_vpn_gateway.ha_gateway";
+  "module.prod-to-landing-secondary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.dev-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.prod-to-landing-secondary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.landing-vpc.google_compute_subnetwork.subnetwork";
+  "module.prod-to-landing-secondary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.prod-spoke-vpc.google_compute_network_peering.remote";
+  "module.prod-to-landing-secondary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.prod-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-to-landing-secondary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.prod-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.prod-to-landing-secondary-vpn.google_compute_ha_vpn_gateway.ha_gateway" -> "module.prod-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.prod-to-landing-secondary-vpn.google_compute_router.router" -> "module.dev-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.prod-to-landing-secondary-vpn.google_compute_router.router" -> "module.landing-vpc.google_compute_subnetwork.subnetwork";
+  "module.prod-to-landing-secondary-vpn.google_compute_router.router" -> "module.prod-spoke-vpc.google_compute_network_peering.remote";
+  "module.prod-to-landing-secondary-vpn.google_compute_router.router" -> "module.prod-spoke-vpc.google_compute_shared_vpc_service_project.service_projects";
+  "module.prod-to-landing-secondary-vpn.google_compute_router.router" -> "module.prod-spoke-vpc.google_compute_subnetwork.subnetwork";
+  "module.prod-to-landing-secondary-vpn.google_compute_router.router" -> "module.prod-spoke-vpc.google_service_networking_connection.psa_connection";
+  "module.prod-to-landing-secondary-vpn.google_compute_router_interface.router_interface" -> "module.prod-to-landing-secondary-vpn.google_compute_vpn_tunnel.tunnels";
+  "module.prod-to-landing-secondary-vpn.google_compute_router_peer.bgp_peer" -> "module.prod-to-landing-secondary-vpn.google_compute_router_interface.router_interface";
+  "module.prod-to-landing-secondary-vpn.google_compute_router_peer.bgp_peer" -> "module.prod-to-landing-secondary-vpn.random_id.md5_keys";
+  "module.prod-to-landing-secondary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.landing-to-spokes-secondary-vpn.random_id.secret";
+  "module.prod-to-landing-secondary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.prod-to-landing-secondary-vpn.google_compute_external_vpn_gateway.external_gateway";
+  "module.prod-to-landing-secondary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.prod-to-landing-secondary-vpn.google_compute_ha_vpn_gateway.ha_gateway";
+  "module.prod-to-landing-secondary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.prod-to-landing-secondary-vpn.google_compute_router.router";
+  "module.prod-to-landing-secondary-vpn.google_compute_vpn_tunnel.tunnels" -> "module.prod-to-landing-secondary-vpn.random_id.secret";
+  "module.prod-to-landing-secondary-vpn.random_id.md5_keys" -> "module.landing-to-spokes-secondary-vpn.random_id.secret";
+}

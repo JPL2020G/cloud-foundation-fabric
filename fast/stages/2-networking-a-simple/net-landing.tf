@@ -44,7 +44,7 @@ locals {
 module "landing-project" {
   source          = "../../../modules/project"
   billing_account = var.billing_account.id
-  name            = "prod-net-landing-0"
+  name            = "gcp-prod-net-prj-landing-0"
   parent = coalesce(
     var.folder_ids.networking-prod,
     var.folder_ids.networking
@@ -69,7 +69,7 @@ module "landing-project" {
 module "landing-vpc" {
   source                          = "../../../modules/net-vpc"
   project_id                      = module.landing-project.project_id
-  name                            = "prod-landing-0"
+  name                            = "gcp-prod-net-landing-0"
   mtu                             = var.vpc_configs.landing.mtu
   delete_default_routes_on_create = true
   dns_policy = !local.landing_cfg.dns_policy ? {} : {

@@ -2,7 +2,7 @@
 
 # yaml-language-server: $schema=../../../schemas/subnet.schema.json
 
-name: prod-default
+name: rd-gcp-prod-net-spoke-0
 region: primary
-ip_cidr_range: 10.72.0.0/24
+ip_cidr_range: 10.239.0.0/18
 description: Default primary-region subnet for prod

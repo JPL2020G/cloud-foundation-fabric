@@ -35,7 +35,7 @@ locals {
 module "dev-spoke-project" {
   source          = "../../../modules/project"
   billing_account = var.billing_account.id
-  name            = "dev-net-spoke-0"
+  name            = "gcp-dev-net-prj-spoke-0" 
   parent = coalesce(
     var.folder_ids.networking-dev,
     var.folder_ids.networking
@@ -85,7 +85,7 @@ module "dev-spoke-project" {
 module "dev-spoke-vpc" {
   source                          = "../../../modules/net-vpc"
   project_id                      = module.dev-spoke-project.project_id
-  name                            = "dev-spoke-0"
+  name                            = "gcp-dev-net-spoke-0"
   mtu                             = var.vpc_configs.dev.mtu
   delete_default_routes_on_create = true
   dns_policy = !local.dev_cfg.dns_policy ? {} : {

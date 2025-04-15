@@ -106,6 +106,16 @@ variable "environments" {
       name       = "Production"
       is_default = true
     }
+    qa = {
+      name       = "Quality"
+    }
+    stg = {
+      name       = "Staging"
+    }
+    poc = {
+      name       = "Proof of concept"
+
+    }
   }
   validation {
     condition = anytrue([

@@ -16,8 +16,9 @@
 
 short_name: net
 folder_config:
-  name: Networking
-  create_env_folders: true
+  parent_id: "folders/483681077669"
+  name: network-shared
+  #create_env_folders: true
   iam_by_principals:
     rw:
       - roles/logging.admin

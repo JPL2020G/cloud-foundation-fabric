@@ -96,7 +96,26 @@ variable "psa_ranges" {
       import_routes  = optional(bool, false)
       peered_domains = optional(list(string), [])
     })), [])
+    stg = optional(list(object({
+      ranges         = map(string)
+      export_routes  = optional(bool, false)
+      import_routes  = optional(bool, false)
+      peered_domains = optional(list(string), [])
+    })), [])
+    poc = optional(list(object({
+      ranges         = map(string)
+      export_routes  = optional(bool, false)
+      import_routes  = optional(bool, false)
+      peered_domains = optional(list(string), [])
+    })), [])
+    qa = optional(list(object({
+      ranges         = map(string)
+      export_routes  = optional(bool, false)
+      import_routes  = optional(bool, false)
+      peered_domains = optional(list(string), [])
+    })), [])
   })
+
   nullable = false
   default  = {}
 }
@@ -107,9 +126,10 @@ variable "regions" {
     primary   = string
     secondary = string
   })
+  # RD Saude customization
   default = {
-    primary   = "europe-west1"
-    secondary = "europe-west4"
+    primary   = "southamerica-east1"
+    secondary = "us-east1"
   }
 }
 
@@ -128,6 +148,21 @@ variable "spoke_configs" {
         }), {
         exclude_export_ranges = []
       })
+      qa = optional(object({
+        exclude_export_ranges = list(string)
+        }), {
+        exclude_export_ranges = []
+      })
+      stg = optional(object({
+        exclude_export_ranges = list(string)
+        }), {
+        exclude_export_ranges = []
+      })
+      poc = optional(object({
+        exclude_export_ranges = list(string)
+        }), {
+        exclude_export_ranges = []
+      })
     }))
     peering_configs = optional(object({
       dev = optional(object({
@@ -137,6 +172,24 @@ variable "spoke_configs" {
         public_import = optional(bool)
       }), {})
       prod = optional(object({
+        export        = optional(bool, true)
+        import        = optional(bool, true)
+        public_export = optional(bool)
+        public_import = optional(bool)
+      }), {})
+      qa = optional(object({
+        export        = optional(bool, true)
+        import        = optional(bool, true)
+        public_export = optional(bool)
+        public_import = optional(bool)
+      }), {})
+      stg = optional(object({
+        export        = optional(bool, true)
+        import        = optional(bool, true)
+        public_export = optional(bool)
+        public_import = optional(bool)
+      }), {})
+      poc = optional(object({
         export        = optional(bool, true)
         import        = optional(bool, true)
         public_export = optional(bool)
@@ -165,6 +218,27 @@ variable "spoke_configs" {
           ip_ranges   = map(string)
         }))
       }), {})
+      qa = optional(object({
+        asn = optional(number, 65500)
+        custom_advertise = optional(object({
+          all_subnets = bool
+          ip_ranges   = map(string)
+        }))
+      }), {})
+      stg = optional(object({
+        asn = optional(number, 65500)
+        custom_advertise = optional(object({
+          all_subnets = bool
+          ip_ranges   = map(string)
+        }))
+      }), {})
+      poc = optional(object({
+        asn = optional(number, 65500)
+        custom_advertise = optional(object({
+          all_subnets = bool
+          ip_ranges   = map(string)
+        }))
+      }), {})
     }))
   })
   default = {
@@ -186,6 +260,51 @@ variable "vpc_configs" {
   description = "Optional VPC network configurations."
   type = object({
     dev = optional(object({
+      mtu = optional(number, 1500)
+      cloudnat = optional(object({
+        enable = optional(bool, false)
+      }), {})
+      dns = optional(object({
+        create_inbound_policy = optional(bool, true)
+        enable_logging        = optional(bool, true)
+      }), {})
+      firewall = optional(object({
+        create_policy       = optional(bool, false)
+        policy_has_priority = optional(bool, false)
+        use_classic         = optional(bool, true)
+      }), {})
+    }), {})
+    qa = optional(object({
+      mtu = optional(number, 1500)
+      cloudnat = optional(object({
+        enable = optional(bool, false)
+      }), {})
+      dns = optional(object({
+        create_inbound_policy = optional(bool, true)
+        enable_logging        = optional(bool, true)
+      }), {})
+      firewall = optional(object({
+        create_policy       = optional(bool, false)
+        policy_has_priority = optional(bool, false)
+        use_classic         = optional(bool, true)
+      }), {})
+    }), {})
+    stg = optional(object({
+      mtu = optional(number, 1500)
+      cloudnat = optional(object({
+        enable = optional(bool, false)
+      }), {})
+      dns = optional(object({
+        create_inbound_policy = optional(bool, true)
+        enable_logging        = optional(bool, true)
+      }), {})
+      firewall = optional(object({
+        create_policy       = optional(bool, false)
+        policy_has_priority = optional(bool, false)
+        use_classic         = optional(bool, true)
+      }), {})
+    }), {})
+    poc = optional(object({
       mtu = optional(number, 1500)
       cloudnat = optional(object({
         enable = optional(bool, false)

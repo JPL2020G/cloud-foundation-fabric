@@ -2,7 +2,7 @@
 
 # yaml-language-server: $schema=../../../schemas/subnet.schema.json
 
-name: dev-default
+name: rd-gcp-dev-net-spoke-0
 region: primary
-ip_cidr_range: 10.68.0.0/24
+ip_cidr_range: 10.239.192.0/19
 description: Default primary-region subnet for dev
