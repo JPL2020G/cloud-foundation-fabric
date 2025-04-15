@@ -61,3 +61,68 @@ module "peering-prod" {
   depends_on = [module.peering-dev]
 }
 
+module "stg-dev" {
+  count         = local.spoke_connection == "peering" ? 1 : 0
+  source        = "../../../modules/net-vpc-peering"
+  prefix        = "stg-peering-0"
+  local_network = module.stg-spoke-vpc.self_link
+  peer_network  = module.landing-vpc.self_link
+  routes_config = {
+    local = {
+      export        = var.spoke_configs.peering_configs.stg.export
+      import        = var.spoke_configs.peering_configs.stg.import
+      public_export = var.spoke_configs.peering_configs.stg.public_export
+      public_import = var.spoke_configs.peering_configs.stg.public_import
+    }
+    peer = {
+      export        = var.spoke_configs.peering_configs.stg.import
+      import        = var.spoke_configs.peering_configs.stg.export
+      public_export = var.spoke_configs.peering_configs.stg.public_import
+      public_import = var.spoke_configs.peering_configs.stg.public_export
+    }
+  }
+}
+
+module "qa-dev" {
+  count         = local.spoke_connection == "peering" ? 1 : 0
+  source        = "../../../modules/net-vpc-peering"
+  prefix        = "qa-peering-0"
+  local_network = module.qa-spoke-vpc.self_link
+  peer_network  = module.landing-vpc.self_link
+  routes_config = {
+    local = {
+      export        = var.spoke_configs.peering_configs.qa.export
+      import        = var.spoke_configs.peering_configs.qa.import
+      public_export = var.spoke_configs.peering_configs.qa.public_export
+      public_import = var.spoke_configs.peering_configs.qa.public_import
+    }
+    peer = {
+      export        = var.spoke_configs.peering_configs.qa.import
+      import        = var.spoke_configs.peering_configs.qa.export
+      public_export = var.spoke_configs.peering_configs.qa.public_import
+      public_import = var.spoke_configs.peering_configs.qa.public_export
+    }
+  }
+}
+
+module "poc-dev" {
+  count         = local.spoke_connection == "peering" ? 1 : 0
+  source        = "../../../modules/net-vpc-peering"
+  prefix        = "poc-peering-0"
+  local_network = module.poc-spoke-vpc.self_link
+  peer_network  = module.landing-vpc.self_link
+  routes_config = {
+    local = {
+      export        = var.spoke_configs.peering_configs.poc.export
+      import        = var.spoke_configs.peering_configs.poc.import
+      public_export = var.spoke_configs.peering_configs.poc.public_export
+      public_import = var.spoke_configs.peering_configs.poc.public_import
+    }
+    peer = {
+      export        = var.spoke_configs.peering_configs.poc.import
+      import        = var.spoke_configs.peering_configs.poc.export
+      public_export = var.spoke_configs.peering_configs.poc.public_import
+      public_import = var.spoke_configs.peering_configs.poc.public_export
+    }
+  }
+}
