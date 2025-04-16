@@ -22,9 +22,9 @@ module "landing-dns-fwd-onprem-example" {
   source     = "../../../modules/dns"
   count      = length(var.dns.resolvers) > 0 ? 1 : 0
   project_id = module.landing-project.project_id
-  name       = "example-com"
+  name       = "rd-com.br"
   zone_config = {
-    domain = "onprem.example.com."
+    domain = "onprem.rd.com.br."
     forwarding = {
       client_networks = [module.landing-vpc.self_link]
       forwarders      = { for ip in var.dns.resolvers : ip => null }
@@ -49,9 +49,9 @@ module "landing-dns-fwd-onprem-rev-10" {
 module "landing-dns-priv-gcp" {
   source     = "../../../modules/dns"
   project_id = module.landing-project.project_id
-  name       = "gcp-example-com"
+  name       = "gcp-rd-com-br"
   zone_config = {
-    domain = "gcp.example.com."
+    domain = "gcp.rd.com.br."
     private = {
       client_networks = [module.landing-vpc.self_link]
     }

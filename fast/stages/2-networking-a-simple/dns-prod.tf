@@ -21,9 +21,9 @@
 module "prod-dns-priv-example" {
   source     = "../../../modules/dns"
   project_id = module.prod-spoke-project.project_id
-  name       = "prod-gcp-example-com"
+  name       = "prod-gcp-rd-com-br"
   zone_config = {
-    domain = "prod.gcp.example.com."
+    domain = "prod.gcp.rd.com.br."
     private = {
       client_networks = [module.landing-vpc.self_link]
     }

@@ -21,9 +21,9 @@
 module "stg-dns-priv-example" {
   source     = "../../../modules/dns"
   project_id = module.stg-spoke-project.project_id
-  name       = "stg-gcp-example-com"
+  name       = "stg-gcp-rd-com-br"
   zone_config = {
-    domain = "stg.gcp.example.com."
+    domain = "stg.gcp.rd.com.br."
     private = {
       client_networks = [module.landing-vpc.self_link]
     }

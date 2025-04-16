@@ -21,9 +21,9 @@
 module "qa-dns-priv-example" {
   source     = "../../../modules/dns"
   project_id = module.qa-spoke-project.project_id
-  name       = "qa-gcp-example-com"
+  name       = "qa-gcp-rd-com-br"
   zone_config = {
-    domain = "qa.gcp.example.com."
+    domain = "qa.gcp.rd.com.br."
     private = {
       client_networks = [module.landing-vpc.self_link]
     }

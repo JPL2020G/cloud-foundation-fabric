@@ -23,7 +23,7 @@ module "dev-dns-priv-example" {
   project_id = module.dev-spoke-project.project_id
   name       = "dev-gcp-example-com"
   zone_config = {
-    domain = "dev.gcp.example.com."
+    domain = "dev.gcp.rd.com.br."
     private = {
       client_networks = [module.landing-vpc.self_link]
     }
