@@ -35,7 +35,7 @@ locals {
 module "dev-spoke-project" {
   source          = "../../../modules/project"
   billing_account = var.billing_account.id
-  name            = "gcp-dev-net-prj-spoke-0" 
+  name            = "gcp-dev-net-spoke-0" 
   parent = coalesce(
     var.folder_ids.networking-dev,
     var.folder_ids.networking

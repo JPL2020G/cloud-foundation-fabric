@@ -1,8 +1,0 @@
-# skip boilerplate check
-
-# yaml-language-server: $schema=../../../schemas/subnet.schema.json
-
-name: rd-gcp-qa-net-spoke-0
-region: primary
-ip_cidr_range: 10.239.128.0/18
-description: Default primary-region subnet for QA

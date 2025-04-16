@@ -1,0 +1,8 @@
+# skip boilerplate check
+
+# yaml-language-server: $schema=../../../schemas/subnet.schema.json
+
+name: psa-range
+region: primary
+ip_cidr_range: 10.239.244.0/23
+description: Default primary-region subnet for qa Private services access

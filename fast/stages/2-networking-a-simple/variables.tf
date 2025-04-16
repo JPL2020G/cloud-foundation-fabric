@@ -102,12 +102,12 @@ variable "psa_ranges" {
       import_routes  = optional(bool, false)
       peered_domains = optional(list(string), [])
     })), [])
-    poc = optional(list(object({
+/*     poc = optional(list(object({
       ranges         = map(string)
       export_routes  = optional(bool, false)
       import_routes  = optional(bool, false)
       peered_domains = optional(list(string), [])
-    })), [])
+    })), []) */
     qa = optional(list(object({
       ranges         = map(string)
       export_routes  = optional(bool, false)
@@ -128,8 +128,8 @@ variable "regions" {
   })
   # RD Saude customization
   default = {
-    primary   = "southamerica-east1"
-    secondary = "us-east1"
+    primary   = "us-east1"
+    secondary = "southamerica-east1"
   }
 }
 
@@ -158,11 +158,11 @@ variable "spoke_configs" {
         }), {
         exclude_export_ranges = []
       })
-      poc = optional(object({
+/*       poc = optional(object({
         exclude_export_ranges = list(string)
         }), {
         exclude_export_ranges = []
-      })
+      }) */
     }))
     peering_configs = optional(object({
       dev = optional(object({
@@ -189,12 +189,12 @@ variable "spoke_configs" {
         public_export = optional(bool)
         public_import = optional(bool)
       }), {})
-      poc = optional(object({
+/*       poc = optional(object({
         export        = optional(bool, true)
         import        = optional(bool, true)
         public_export = optional(bool)
         public_import = optional(bool)
-      }), {})
+      }), {}) */
     }))
     vpn_configs = optional(object({
       dev = optional(object({
@@ -232,13 +232,13 @@ variable "spoke_configs" {
           ip_ranges   = map(string)
         }))
       }), {})
-      poc = optional(object({
+/*       poc = optional(object({
         asn = optional(number, 65500)
         custom_advertise = optional(object({
           all_subnets = bool
           ip_ranges   = map(string)
         }))
-      }), {})
+      }), {}) */
     }))
   })
   default = {
@@ -304,7 +304,7 @@ variable "vpc_configs" {
         use_classic         = optional(bool, true)
       }), {})
     }), {})
-    poc = optional(object({
+/*     poc = optional(object({
       mtu = optional(number, 1500)
       cloudnat = optional(object({
         enable = optional(bool, false)
@@ -318,7 +318,7 @@ variable "vpc_configs" {
         policy_has_priority = optional(bool, false)
         use_classic         = optional(bool, true)
       }), {})
-    }), {})
+    }), {}) */
     landing = optional(object({
       mtu = optional(number, 1500)
       cloudnat = optional(object({

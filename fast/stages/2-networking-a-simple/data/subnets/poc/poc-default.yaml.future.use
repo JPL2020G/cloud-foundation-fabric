@@ -1,0 +1,9 @@
+# # skip boilerplate check
+
+# # yaml-language-server: $schema=../../../schemas/subnet.schema.json
+
+### POC doesn't use networking at the present
+# name: sb-use1-
+# region: primary
+# ip_cidr_range: 10.240.0.0/18 # Check with customer
+# description: Default primary-region subnet for POC

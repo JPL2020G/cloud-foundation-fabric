@@ -18,45 +18,45 @@
 
 # GCP-specific environment zone
 
-module "poc-dns-priv-example" {
-  source     = "../../../modules/dns"
-  project_id = module.poc-spoke-project.project_id
-  name       = "poc-gcp-example-com"
-  zone_config = {
-    domain = "poc.gcp.example.com."
-    private = {
-      client_networks = [module.landing-vpc.self_link]
-    }
-  }
-  recordsets = {
-    "A localhost" = { records = ["127.0.0.1"] }
-  }
-}
+# module "poc-dns-priv-example" {
+#   source     = "../../../modules/dns"
+#   project_id = module.poc-spoke-project.project_id
+#   name       = "poc-gcp-example-com"
+#   zone_config = {
+#     domain = "poc.gcp.example.com."
+#     private = {
+#       client_networks = [module.landing-vpc.self_link]
+#     }
+#   }
+#   recordsets = {
+#     "A localhost" = { records = ["127.0.0.1"] }
+#   }
+# }
 
-# root zone peering to landing to centralize configuration; remove if unneeded
+# # root zone peering to landing to centralize configuration; remove if unneeded
 
-module "poc-dns-peer-landing-root" {
-  source     = "../../../modules/dns"
-  project_id = module.poc-spoke-project.project_id
-  name       = "poc-root-dns-peering"
-  zone_config = {
-    domain = "."
-    peering = {
-      client_networks = [module.poc-spoke-vpc.self_link]
-      peer_network    = module.landing-vpc.self_link
-    }
-  }
-}
+# module "poc-dns-peer-landing-root" {
+#   source     = "../../../modules/dns"
+#   project_id = module.poc-spoke-project.project_id
+#   name       = "poc-root-dns-peering"
+#   zone_config = {
+#     domain = "."
+#     peering = {
+#       client_networks = [module.poc-spoke-vpc.self_link]
+#       peer_network    = module.landing-vpc.self_link
+#     }
+#   }
+# }
 
-module "poc-dns-peer-landing-rev-10" {
-  source     = "../../../modules/dns"
-  project_id = module.poc-spoke-project.project_id
-  name       = "poc-reverse-10-dns-peering"
-  zone_config = {
-    domain = "10.in-addr.arpa."
-    peering = {
-      client_networks = [module.poc-spoke-vpc.self_link]
-      peer_network    = module.landing-vpc.self_link
-    }
-  }
-}
+# module "poc-dns-peer-landing-rev-10" {
+#   source     = "../../../modules/dns"
+#   project_id = module.poc-spoke-project.project_id
+#   name       = "poc-reverse-10-dns-peering"
+#   zone_config = {
+#     domain = "10.in-addr.arpa."
+#     peering = {
+#       client_networks = [module.poc-spoke-vpc.self_link]
+#       peer_network    = module.landing-vpc.self_link
+#     }
+#   }
+# }
