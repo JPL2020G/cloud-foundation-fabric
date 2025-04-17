@@ -262,7 +262,7 @@ variable "vpc_configs" {
     dev = optional(object({
       mtu = optional(number, 1500)
       cloudnat = optional(object({
-        enable = optional(bool, false)
+        enable = optional(bool, true)
       }), {})
       dns = optional(object({
         create_inbound_policy = optional(bool, true)
@@ -277,7 +277,7 @@ variable "vpc_configs" {
     qa = optional(object({
       mtu = optional(number, 1500)
       cloudnat = optional(object({
-        enable = optional(bool, false)
+        enable = optional(bool, true)
       }), {})
       dns = optional(object({
         create_inbound_policy = optional(bool, true)
@@ -292,7 +292,7 @@ variable "vpc_configs" {
     stg = optional(object({
       mtu = optional(number, 1500)
       cloudnat = optional(object({
-        enable = optional(bool, false)
+        enable = optional(bool, true)
       }), {})
       dns = optional(object({
         create_inbound_policy = optional(bool, true)
@@ -322,7 +322,7 @@ variable "vpc_configs" {
     landing = optional(object({
       mtu = optional(number, 1500)
       cloudnat = optional(object({
-        enable = optional(bool, false)
+        enable = optional(bool, true)
       }), {})
       dns = optional(object({
         create_inbound_policy = optional(bool, true)
@@ -337,7 +337,7 @@ variable "vpc_configs" {
     prod = optional(object({
       mtu = optional(number, 1500)
       cloudnat = optional(object({
-        enable = optional(bool, false)
+        enable = optional(bool, true)
       }), {})
       dns = optional(object({
         create_inbound_policy = optional(bool, true)
@@ -351,7 +351,76 @@ variable "vpc_configs" {
     }), {})
   })
   nullable = false
-  default  = {}
+
+    default = {
+    dev= {
+        cloudnat = {
+            enable = true 
+        dns = {
+            create_inbound_policy = true
+            enable_logging = true
+        }
+        firewall = {
+            create_policy = false
+            policy_has_priority = false
+            use_classic = true
+        }
+    } 
+        } 
+    qa = {
+        cloudnat = {
+            enable = true 
+        dns = {
+            create_inbound_policy = true
+            enable_logging = true
+        }
+        firewall = {
+            create_policy = false
+            policy_has_priority = false
+            use_classic = true
+        }
+    } 
+        } 
+    stg= {
+        dns = {
+            create_inbound_policy = true
+            enable_logging = true
+        }
+        firewall = {
+            create_policy = false
+            policy_has_priority = false
+            use_classic = true
+        }
+    }
+    landing = {
+        cloudnat = {
+            enable = true 
+        dns = {
+            create_inbound_policy = true
+            enable_logging = true
+        }
+        firewall = {
+            create_policy = false
+            policy_has_priority = false
+            use_classic = true
+        }
+    } 
+        } 
+    prod = {
+        cloudnat = {
+            enable = true 
+        dns = {
+            create_inbound_policy = true
+            enable_logging = true
+        }
+        firewall = {
+            create_policy = false
+            policy_has_priority = false
+            use_classic = true
+        }
+    } 
+        } 
+    }
 }
 
 variable "vpn_onprem_primary_config" {

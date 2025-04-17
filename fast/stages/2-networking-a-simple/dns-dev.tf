@@ -21,7 +21,7 @@
 module "dev-dns-priv-example" {
   source     = "../../../modules/dns"
   project_id = module.dev-spoke-project.project_id
-  name       = "dev-gcp-example-com"
+  name       = "dev-gcp-rd-com"
   zone_config = {
     domain = "dev.gcp.rd.com.br."
     private = {

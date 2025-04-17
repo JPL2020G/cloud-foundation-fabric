@@ -24,7 +24,7 @@ module "landing-dns-fwd-onprem-example" {
   project_id = module.landing-project.project_id
   name       = "rd-com.br"
   zone_config = {
-    domain = "onprem.rd.com.br."
+    domain = "rd.com.br."
     forwarding = {
       client_networks = [module.landing-vpc.self_link]
       forwarders      = { for ip in var.dns.resolvers : ip => null }

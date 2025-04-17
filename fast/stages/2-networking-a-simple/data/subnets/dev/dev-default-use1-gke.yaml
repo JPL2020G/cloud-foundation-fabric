@@ -6,3 +6,4 @@ name: sb-use1-data-eng-gke-dev
 region: primary
 ip_cidr_range: 10.239.192.0/24
 description: Default primary-region subnet for dev gke
+nat: true
