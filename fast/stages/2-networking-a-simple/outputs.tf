@@ -19,23 +19,23 @@ locals {
     dev-spoke-0  = module.dev-spoke-project.project_id
     prod-landing = module.landing-project.project_id
     prod-spoke-0 = module.prod-spoke-project.project_id
-    qa-spoke-0 = module.qa-spoke-project.project_id
-    stg-spoke-0 = module.stg-spoke-project.project_id
+    qa-spoke-0   = module.qa-spoke-project.project_id
+    stg-spoke-0  = module.stg-spoke-project.project_id
     # poc-spoke-0 = module.poc-spoke-project.project_id
   }
   host_project_numbers = {
     dev-spoke-0  = module.dev-spoke-project.number
     prod-landing = module.landing-project.number
     prod-spoke-0 = module.prod-spoke-project.number
-    qa-spoke-0 = module.qa-spoke-project.number
-    stg-spoke-0 = module.stg-spoke-project.number
+    qa-spoke-0   = module.qa-spoke-project.number
+    stg-spoke-0  = module.stg-spoke-project.number
     # poc-spoke-0 = module.poc-spoke-project.number
   }
   subnet_self_links = {
     prod-landing = module.landing-vpc.subnet_ids
     dev-spoke-0  = module.dev-spoke-vpc.subnet_ids
     prod-spoke-0 = module.prod-spoke-vpc.subnet_ids
-    qa-spoke-0 = module.qa-spoke-vpc.subnet_ids
+    qa-spoke-0   = module.qa-spoke-vpc.subnet_ids
     stg-spoke-0  = module.stg-spoke-vpc.subnet_ids
     # poc-spoke-0 = module.poc-spoke-vpc.subnet_ids
   }
@@ -92,8 +92,8 @@ locals {
     prod-landing = module.landing-vpc.id
     dev-spoke-0  = module.dev-spoke-vpc.id
     prod-spoke-0 = module.prod-spoke-vpc.id
-    qa-spoke-0  = module.qa-spoke-vpc.id
-    stg-spoke-0 = module.stg-spoke-vpc.id
+    qa-spoke-0   = module.qa-spoke-vpc.id
+    stg-spoke-0  = module.stg-spoke-vpc.id
     # poc-spoke-0 = module.poc-spoke-vpc.id
   }
 }

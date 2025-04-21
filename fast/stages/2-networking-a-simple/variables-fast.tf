@@ -70,8 +70,8 @@ variable "folder_ids" {
     networking      = string
     networking-dev  = optional(string)
     networking-prod = optional(string)
-    networking-qa  = optional(string)
-    networking-stg = optional(string)
+    networking-qa   = optional(string)
+    networking-stg  = optional(string)
     # networking-poc = optional(string)
   })
 }

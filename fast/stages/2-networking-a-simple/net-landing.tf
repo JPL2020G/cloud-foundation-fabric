@@ -131,4 +131,11 @@ module "landing-nat-primary" {
   router_create  = true
   router_name    = "prod-nat-${local.region_shortnames[var.regions.primary]}"
   router_network = module.landing-vpc.name
+  config_port_allocation = {
+    enable_endpoint_independent_mapping = false
+    enable_dynamic_port_allocation      = true
+    min_ports_per_vm                    = 32
+    max_ports_per_vm                    = 2048
+  }
+
 }

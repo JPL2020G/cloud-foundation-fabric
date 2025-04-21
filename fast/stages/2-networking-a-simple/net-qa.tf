@@ -85,7 +85,7 @@ module "qa-spoke-project" {
 module "qa-spoke-vpc" {
   source                          = "../../../modules/net-vpc"
   project_id                      = module.qa-spoke-project.project_id
-  name                            = "gcp-qa-net-spoke-0"  
+  name                            = "gcp-qa-net-spoke-0"
   mtu                             = var.vpc_configs.qa.mtu
   delete_default_routes_on_create = true
   dns_policy = !local.qa_cfg.dns_policy ? {} : {
@@ -150,4 +150,11 @@ module "qa-spoke-cloudnat" {
   router_create  = true
   router_network = module.qa-spoke-vpc.name
   logging_filter = "ERRORS_ONLY"
+  config_port_allocation = {
+    enable_endpoint_independent_mapping = false
+    enable_dynamic_port_allocation      = true
+    min_ports_per_vm                    = 32
+    max_ports_per_vm                    = 2048
+  }
+
 }

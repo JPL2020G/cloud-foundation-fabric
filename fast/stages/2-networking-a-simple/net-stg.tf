@@ -77,9 +77,9 @@ module "stg-spoke-project" {
       }
     }
   )
-   tag_bindings = local.has_env_folders ? {} : {
-     environment = local.env_tag_values["stg"]
-   }
+  tag_bindings = local.has_env_folders ? {} : {
+    environment = local.env_tag_values["stg"]
+  }
 }
 
 module "stg-spoke-vpc" {
@@ -150,4 +150,11 @@ module "stg-spoke-cloudnat" {
   router_create  = true
   router_network = module.stg-spoke-vpc.name
   logging_filter = "ERRORS_ONLY"
+  config_port_allocation = {
+    enable_endpoint_independent_mapping = false
+    enable_dynamic_port_allocation      = true
+    min_ports_per_vm                    = 32
+    max_ports_per_vm                    = 2048
+  }
+
 }

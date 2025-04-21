@@ -150,4 +150,11 @@
 #   router_create  = true
 #   router_network = module.poc-spoke-vpc.name
 #   logging_filter = "ERRORS_ONLY"
+#   config_port_allocation = {
+#     enable_endpoint_independent_mapping = false
+#     enable_dynamic_port_allocation      = true
+#     min_ports_per_vm                    = 32
+#     max_ports_per_vm                    = 2048
+#   }
+
 # }
