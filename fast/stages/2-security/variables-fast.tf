@@ -69,6 +69,9 @@ variable "folder_ids" {
     security      = string
     security-dev  = optional(string)
     security-prod = optional(string)
+    security-qa = optional(string)
+    security-stg = optional(string)
+    security-poc = optional(string)
   })
 }
 

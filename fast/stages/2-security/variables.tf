@@ -125,7 +125,7 @@ variable "kms_keys" {
     })), {})
     labels = optional(map(string))
     locations = optional(list(string), [
-      "europe", "europe-west1", "europe-west3", "global"
+      "us-east1", "southamerica-east1", "global"
     ])
     purpose                       = optional(string, "ENCRYPT_DECRYPT")
     rotation_period               = optional(string, "7776000s")
