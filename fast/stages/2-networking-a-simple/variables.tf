@@ -117,32 +117,32 @@ variable "psa_ranges" {
   })
 
   nullable = false
-   default = {
-    dev = [ {
-  ranges = {
-    psa = "10.239.246.0/23"
-  }
-    } ]
-    prod = [ {
-  ranges = {
-    psa = "10.239.240.0/23"
-  }
-    } ]
-    stg = [ {
-  ranges = {
-    psa = "10.239.242.0/23"
-  }
-    } ]
+  default = {
+    dev = [{
+      ranges = {
+        psa = "10.239.246.0/23"
+      }
+    }]
+    prod = [{
+      ranges = {
+        psa = "10.239.240.0/23"
+      }
+    }]
+    stg = [{
+      ranges = {
+        psa = "10.239.242.0/23"
+      }
+    }]
     /*     poc = [ {
   ranges = {
     psa = "10.239.246.0/23"
   }
     } ] */
-    qa = [ {
-  ranges = {
-    psa = "10.239.244.0/23"
-  }
-    } ]
+    qa = [{
+      ranges = {
+        psa = "10.239.244.0/23"
+      }
+    }]
   }
 }
 
