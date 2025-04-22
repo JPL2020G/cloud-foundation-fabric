@@ -4,5 +4,5 @@
 
 name: sb-sae1-landing-prod
 region: secondary
-ip_cidr_range:  10.1.242.0/24 #10.239.242.0/24 por error de peering ip overlap
+ip_cidr_range:  10.239.242.0/24
 description: Default primary-region subnet for landing in sae1
