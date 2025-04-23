@@ -109,7 +109,7 @@ module "root-landing-dns-peer-dev" {
   project_id = module.landing-project.project_id
   name       = "root-dev-dns-peering"
   zone_config = {
-    domain ="dev.gcp.rd.com.br."
+    domain = "dev.gcp.rd.com.br."
     peering = {
       client_networks = [module.landing-vpc.self_link]
       peer_network    = module.dev-spoke-vpc.self_link

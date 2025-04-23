@@ -16,39 +16,112 @@
 
 # tfdoc:file:description VPN between landing and onprem.
 
-resource "google_compute_router" "interconnect-router" {
-  name    = "landing-interconnect-router"
+
+##
+resource "google_compute_router" "interconnect-router-primary" {
+  name    = "interconnect-router-primary"
+  network = module.landing-vpc.self_link
+  project = module.landing-project.project_id
+  region  = var.regions.primary
+  bgp {
+    asn            = 16550
+    advertise_mode = "CUSTOM"
+    advertised_ip_ranges {
+      range = "10.239.0.0/16"
+    }
+    advertised_ip_ranges {
+      range = "199.36.153.8/30"
+    }
+    # advertised_ip_ranges {
+    #   range = "35.199.192.0/19"
+    # }
+  }
+}
+
+resource "google_compute_router" "interconnect-router-secondary" {
+  name    = "interconnect-router-secondary"
   network = module.landing-vpc.self_link
   project = module.landing-project.project_id
   region  = var.regions.secondary
   bgp {
+    asn            = 16550
     advertise_mode = "CUSTOM"
-    asn            = 64514
     advertised_ip_ranges {
       range = "10.239.0.0/16"
     }
+    advertised_ip_ranges {
+      range = "199.36.153.8/30"
+    }
+    # advertised_ip_ranges {
+    #   range = "35.199.192.0/19"
+    # }
   }
 }
 
-# cliente deve primeiro provisionar uma interconexão no GCP 
-# module "landing-va" {
-#   source      = "../../../modules/net-vlan-attachment"
-#   network     = module.landing-vpc.self_link
-#   project_id  = module.landing-project.project_id
-#   region      = var.regions.secondary
-#   name        = "landing-vlan-attachment"
-#   description = "landing vlan attachment"
-#   peer_asn    = "65000"
-#   router_config = {
-#     create = false
-#     name   = google_compute_router.interconnect-router.name
-#   }
-#   dedicated_interconnect_config = {
-#     # cloud router gets 169.254.0.1 peer router gets 169.254.0.2
-#     bandwidth    = "BPS_10G"
-#     bgp_range    = "169.254.0.0/29"
-#     interconnect = "https://www.googleapis.com/compute/v1/projects/my-project/global/interconnects/interconnect-a"
-#     vlan_tag     = 4093
-#   }
-# }
-# # 
+module "rd-va-a-primary" {
+  source      = "../../../modules/net-vlan-attachment"
+  network     = module.landing-vpc.self_link
+  project_id  = module.landing-project.project_id
+  region      = var.regions.primary
+  name        = "vlan-attachment-a-primary"
+  description = "interconnect-a-primary vlan attachment 0"
+  peer_asn    = "65000"
+  router_config = {
+    create = false
+    name   = google_compute_router.interconnect-router-primary.name
+  }
+  partner_interconnect_config = {
+    edge_availability_domain = "AVAILABILITY_DOMAIN_1"
+  }
+}
+
+module "rd-va-b-primary" {
+  source      = "../../../modules/net-vlan-attachment"
+  network     = module.landing-vpc.self_link
+  project_id  = module.landing-project.project_id
+  region      = var.regions.primary
+  name        = "vlan-attachment-b-primary"
+  description = "interconnect-b-primary vlan attachment 0"
+  peer_asn    = "65000"
+  router_config = {
+    create = false
+    name   = google_compute_router.interconnect-router-primary.name
+  }
+  partner_interconnect_config = {
+    edge_availability_domain = "AVAILABILITY_DOMAIN_2"
+  }
+}
+
+module "rd-va-a-secondary" {
+  source      = "../../../modules/net-vlan-attachment"
+  network     = module.landing-vpc.self_link
+  project_id  = module.landing-project.project_id
+  region      = var.regions.secondary
+  name        = "vlan-attachment-a-secondary"
+  description = "interconnect-a-secondary vlan attachment 0"
+  peer_asn    = "65000"
+  router_config = {
+    create = false
+    name   = google_compute_router.interconnect-router-secondary.name
+  }
+  partner_interconnect_config = {
+    edge_availability_domain = "AVAILABILITY_DOMAIN_1"
+  }
+}
+
+module "rd-va-b-secondary" {
+  source      = "../../../modules/net-vlan-attachment"
+  network     = module.landing-vpc.self_link
+  project_id  = module.landing-project.project_id
+  region      = var.regions.secondary
+  name        = "vlan-attachment-b-secondary"
+  description = "interconnect-b-secondary vlan attachment 0"
+  peer_asn    = "65000"
+  router_config = {
+    create = false
+    name   = google_compute_router.interconnect-router-secondary.name
+  }
+  partner_interconnect_config = {
+    edge_availability_domain = "AVAILABILITY_DOMAIN_2"
+  }
+}
