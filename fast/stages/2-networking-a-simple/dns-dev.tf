@@ -25,7 +25,7 @@ module "dev-dns-priv-example" {
   zone_config = {
     domain = "dev.gcp.rd.com.br."
     private = {
-      client_networks = [module.landing-vpc.self_link]
+      client_networks = [module.dev-spoke-vpc.self_link]
     }
   }
   recordsets = {

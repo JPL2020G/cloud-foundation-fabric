@@ -25,7 +25,7 @@ module "stg-dns-priv-example" {
   zone_config = {
     domain = "stg.gcp.rd.com.br."
     private = {
-      client_networks = [module.landing-vpc.self_link]
+      client_networks = [module.stg-spoke-vpc.self_link]
     }
   }
   recordsets = {

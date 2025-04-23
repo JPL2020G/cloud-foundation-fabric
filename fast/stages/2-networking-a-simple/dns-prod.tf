@@ -25,7 +25,7 @@ module "prod-dns-priv-example" {
   zone_config = {
     domain = "prod.gcp.rd.com.br."
     private = {
-      client_networks = [module.landing-vpc.self_link]
+      client_networks = [module.prod-spoke-vpc.self_link]
     }
   }
   recordsets = {

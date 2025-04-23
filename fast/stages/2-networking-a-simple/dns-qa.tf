@@ -25,7 +25,7 @@ module "qa-dns-priv-example" {
   zone_config = {
     domain = "qa.gcp.rd.com.br."
     private = {
-      client_networks = [module.landing-vpc.self_link]
+      client_networks = [module.qa-spoke-vpc.self_link]
     }
   }
   recordsets = {
