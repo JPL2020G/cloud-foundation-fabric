@@ -24,10 +24,6 @@ resource "google_compute_router" "interconnect-router" {
   bgp {
     advertise_mode    = "CUSTOM"
     asn               = 64514
-    advertised_groups = ["ALL_SUBNETS"]
-    # advertised_ip_ranges {
-    #   range = "10.255.255.0/24"
-    # }
     advertised_ip_ranges {
       range = "10.239.0.0/16"
     }
