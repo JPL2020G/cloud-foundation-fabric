@@ -87,3 +87,58 @@ module "landing-dns-policy-googleapis" {
     landing = module.landing-vpc.self_link
   }
 }
+
+
+# DNS peering with spokes
+
+module "root-landing-dns-peer-prod" {
+  source     = "../../../modules/dns"
+  project_id = module.landing-project.project_id
+  name       = "root-prod-dns-peering"
+  zone_config = {
+    domain = "prod.gcp.rd.com.br."
+    peering = {
+      client_networks = [module.landing-vpc.self_link]
+      peer_network    = module.prod-spoke-vpc.self_link
+    }
+  }
+}
+
+module "root-landing-dns-peer-dev" {
+  source     = "../../../modules/dns"
+  project_id = module.landing-project.project_id
+  name       = "root-dev-dns-peering"
+  zone_config = {
+    domain ="dev.gcp.rd.com.br."
+    peering = {
+      client_networks = [module.landing-vpc.self_link]
+      peer_network    = module.dev-spoke-vpc.self_link
+    }
+  }
+}
+
+module "root-landing-dns-peer-qa" {
+  source     = "../../../modules/dns"
+  project_id = module.landing-project.project_id
+  name       = "root-qa-dns-peering"
+  zone_config = {
+    domain = "qa.gcp.rd.com.br."
+    peering = {
+      client_networks = [module.landing-vpc.self_link]
+      peer_network    = module.qa-spoke-vpc.self_link
+    }
+  }
+}
+
+module "root-landing-dns-peer-stg" {
+  source     = "../../../modules/dns"
+  project_id = module.landing-project.project_id
+  name       = "root-stg-dns-peering"
+  zone_config = {
+    domain = "stg.gcp.rd.com.br."
+    peering = {
+      client_networks = [module.landing-vpc.self_link]
+      peer_network    = module.stg-spoke-vpc.self_link
+    }
+  }
+}

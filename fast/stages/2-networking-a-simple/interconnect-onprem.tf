@@ -22,8 +22,8 @@ resource "google_compute_router" "interconnect-router" {
   project = module.landing-project.project_id
   region  = var.regions.secondary
   bgp {
-    advertise_mode    = "CUSTOM"
-    asn               = 64514
+    advertise_mode = "CUSTOM"
+    asn            = 64514
     advertised_ip_ranges {
       range = "10.239.0.0/16"
     }
