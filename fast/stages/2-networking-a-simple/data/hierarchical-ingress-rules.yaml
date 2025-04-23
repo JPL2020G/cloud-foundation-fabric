@@ -42,7 +42,9 @@ allow-nat-ranges:
 
 allow-rdp:
   description: Enable RDP
+  deny: true
   priority: 65533
+  action: deny
   enable_logging: true
   match:
     source_ranges:
@@ -54,6 +56,7 @@ allow-rdp:
 allow-ssh:
   description: Enable SSH
   priority: 65532
+  action: deny
   enable_logging: true
   match:
     source_ranges:
