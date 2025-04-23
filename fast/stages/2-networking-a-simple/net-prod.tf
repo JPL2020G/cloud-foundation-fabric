@@ -89,7 +89,7 @@ module "prod-spoke-vpc" {
   mtu                             = var.vpc_configs.prod.mtu
   delete_default_routes_on_create = true
   dns_policy = !local.prod_cfg.dns_policy ? {} : {
-    inbound = true
+    inbound = false
     logging = local.prod_cfg.dns_logging
   }
   factories_config = {
