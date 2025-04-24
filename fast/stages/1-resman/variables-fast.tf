@@ -97,6 +97,7 @@ variable "groups" {
     gcp-network-admins      = optional(string, "gcp-vpc-network-admins")
     gcp-organization-admins = optional(string, "gcp-organization-admins")
     gcp-security-admins     = optional(string, "gcp-security-admins")
+    gcp-systemteam-np= optional(string, "gcp-systemteam-np")
   })
   nullable = false
   default  = {}

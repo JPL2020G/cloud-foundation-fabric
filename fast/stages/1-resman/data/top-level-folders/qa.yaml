@@ -1,3 +1,13 @@
 name: qa
 parent_id: "folders/883376142041"
-
+iam_by_principals:
+    gcp-systemteam-np:
+      - roles/errorreporting.admin
+      - roles/logging.viewer
+      - roles/monitoring.viewer
+      - roles/container.viewer
+      - roles/compute.viewer
+      - roles/cloudsql.viewer
+      - roles/iam.serviceAccountCreator        
+      - roles/cloudfunctions.admin
+      - roles/cloudscheduler.admin
