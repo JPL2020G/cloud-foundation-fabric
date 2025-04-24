@@ -27,6 +27,6 @@ storage.publicAccessPrevention:
     - enforce: true
 
 
-storage.secureHttpTransport:
-  rules:
-    - enforce: true
+#storage.secureHttpTransport:
+#  rules:
+#    - enforce: true

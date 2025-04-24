@@ -18,8 +18,48 @@
 
 # yaml-language-server: $schema=../../schemas/org-policies.schema.json
 
-# gcp.resourceLocations:
-#   rules:
-#   - allow:
-#       values:
-#       - "in:europe-locations"
+gcp.resourceLocations:
+  rules:
+  - allow:
+      values:
+      - "in:southamerica-east1-locations"
+      - "in:us-central1-locations"     
+      - "in:us-east1-locations"
+      - "in:us-locations"
+
+#resourcemanager.allowedExportDestinations:
+#  rules:
+#    - allow:
+#        values:
+#          - "under:organizations/454001640156" #for test only, this org belongs to fabio salamanca
+
+#resourcemanager.allowEnabledServicesForExport:
+#  rules:
+#    - allow:
+#        values:
+#          - "bigquery.googleapis.com"
+#          - "storage.googleapis.com"
+
+#commerceorggovernance.marketplaceServices:
+#  rules:
+#    - deny:
+#        values:
+#          - "all"
+
+#appengine.runtimeDeploymentExemption:
+#  rules:
+#    - allow:
+#        values:
+#          - "python39"
+#          - "java11"
+        
+#custom.requireLabelsEnvProdStaging:
+#  rules:
+#    - enforce: true
+
+#custom.disableKubeletReadOnlyPort:
+#  rules:
+#    - enforce: true
+
+    
+          

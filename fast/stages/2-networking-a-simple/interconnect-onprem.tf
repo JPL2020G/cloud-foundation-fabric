@@ -18,28 +18,8 @@
 
 
 ##
-resource "google_compute_router" "interconnect-router-primary" {
-  name    = "interconnect-router-primary"
-  network = module.landing-vpc.self_link
-  project = module.landing-project.project_id
-  region  = var.regions.primary
-  bgp {
-    asn            = 16550
-    advertise_mode = "CUSTOM"
-    advertised_ip_ranges {
-      range = "10.239.0.0/16"
-    }
-    advertised_ip_ranges {
-      range = "199.36.153.8/30"
-    }
-    # advertised_ip_ranges {
-    #   range = "35.199.192.0/19"
-    # }
-  }
-}
-
-resource "google_compute_router" "interconnect-router-secondary" {
-  name    = "interconnect-router-secondary"
+resource "google_compute_router" "interconnect-router-secondary-a" {
+  name    = "interconnect-router-secondary-a"
   network = module.landing-vpc.self_link
   project = module.landing-project.project_id
   region  = var.regions.secondary
@@ -58,68 +38,88 @@ resource "google_compute_router" "interconnect-router-secondary" {
   }
 }
 
-module "rd-va-a-primary" {
+resource "google_compute_router" "interconnect-router-secondary-b" {
+  name    = "interconnect-router-secondary-b"
+  network = module.landing-vpc.self_link
+  project = module.landing-project.project_id
+  region  = var.regions.secondary
+  bgp {
+    asn            = 16550
+    advertise_mode = "CUSTOM"
+    advertised_ip_ranges {
+      range = "10.239.0.0/16"
+    }
+    advertised_ip_ranges {
+      range = "199.36.153.8/30"
+    }
+    # advertised_ip_ranges {
+    #   range = "35.199.192.0/19"
+    # }
+  }
+}
+
+module "rd-va-a-secondary-a" {
   source      = "../../../modules/net-vlan-attachment"
   network     = module.landing-vpc.self_link
   project_id  = module.landing-project.project_id
-  region      = var.regions.primary
-  name        = "vlan-attachment-a-primary"
-  description = "interconnect-a-primary vlan attachment 0"
+  region      = var.regions.secondary
+  name        = "vlan-attachment-a-secondary-a"
+  description = "interconnect-a-secondary vlan attachment 0"
   peer_asn    = "65000"
   router_config = {
     create = false
-    name   = google_compute_router.interconnect-router-primary.name
+    name   = google_compute_router.interconnect-router-secondary-a.name
   }
   partner_interconnect_config = {
     edge_availability_domain = "AVAILABILITY_DOMAIN_1"
   }
 }
 
-module "rd-va-b-primary" {
+module "rd-va-b-secondary-a" {
   source      = "../../../modules/net-vlan-attachment"
   network     = module.landing-vpc.self_link
   project_id  = module.landing-project.project_id
-  region      = var.regions.primary
-  name        = "vlan-attachment-b-primary"
-  description = "interconnect-b-primary vlan attachment 0"
+  region      = var.regions.secondary
+  name        = "vlan-attachment-b-secondary-a"
+  description = "interconnect-b-secondary vlan attachment 0"
   peer_asn    = "65000"
   router_config = {
     create = false
-    name   = google_compute_router.interconnect-router-primary.name
+    name   = google_compute_router.interconnect-router-secondary-a.name
   }
   partner_interconnect_config = {
     edge_availability_domain = "AVAILABILITY_DOMAIN_2"
   }
 }
 
-module "rd-va-a-secondary" {
+module "rd-va-a-secondary-b" {
   source      = "../../../modules/net-vlan-attachment"
   network     = module.landing-vpc.self_link
   project_id  = module.landing-project.project_id
   region      = var.regions.secondary
-  name        = "vlan-attachment-a-secondary"
+  name        = "vlan-attachment-a-secondary-b"
   description = "interconnect-a-secondary vlan attachment 0"
   peer_asn    = "65000"
   router_config = {
     create = false
-    name   = google_compute_router.interconnect-router-secondary.name
+    name   = google_compute_router.interconnect-router-secondary-b.name
   }
   partner_interconnect_config = {
     edge_availability_domain = "AVAILABILITY_DOMAIN_1"
   }
 }
 
-module "rd-va-b-secondary" {
+module "rd-va-b-secondary-b" {
   source      = "../../../modules/net-vlan-attachment"
   network     = module.landing-vpc.self_link
   project_id  = module.landing-project.project_id
   region      = var.regions.secondary
-  name        = "vlan-attachment-b-secondary"
+  name        = "vlan-attachment-b-secondary-b"
   description = "interconnect-b-secondary vlan attachment 0"
   peer_asn    = "65000"
   router_config = {
     create = false
-    name   = google_compute_router.interconnect-router-secondary.name
+    name   = google_compute_router.interconnect-router-secondary-b.name
   }
   partner_interconnect_config = {
     edge_availability_domain = "AVAILABILITY_DOMAIN_2"

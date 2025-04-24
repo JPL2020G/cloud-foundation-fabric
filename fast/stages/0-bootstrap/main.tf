@@ -31,9 +31,9 @@ locals {
 }
 
 module "my_custom_folder" {
-  source  = "../../../modules/folder"  
-  name    = "neworg4"
-  parent  = "organizations/${var.organization.id}"
-  folder_create = true
+  source              = "../../../modules/folder"
+  name                = "neworg4"
+  parent              = "organizations/${var.organization.id}"
+  folder_create       = true
   deletion_protection = false
 }

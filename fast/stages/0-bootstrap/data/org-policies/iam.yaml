@@ -19,49 +19,86 @@
 # yaml-language-server: $schema=../../schemas/org-policies.schema.json
 
 iam.allowedPolicyMemberDomains:
-  rules:
-    - allow:
-        values:
-          - ${organization.customer_id}
-      condition:
-        title: Restrict member domains
-        expression: |
-          !resource.matchTag('${tags.org_policies_tag_name}', 'allowed-policy-member-domains-all')
-    - allow:
-        all: true
-      condition:
-        title: Allow any member domain
-        expression: |
-          resource.matchTag('${tags.org_policies_tag_name}', 'allowed-policy-member-domains-all')
+ rules:
+   - allow:
+       values:
+         - ${organization.customer_id}
+     condition:
+       title: Restrict member domains
+       expression: |
+         !resource.matchTag('${tags.org_policies_tag_name}', 'allowed-policy-member-domains-all')
+   - allow:
+       all: true
+     condition:
+       title: Allow any member domain
+       expression: |
+         resource.matchTag('${tags.org_policies_tag_name}', 'allowed-policy-member-domains-all')
 
 iam.automaticIamGrantsForDefaultServiceAccounts:
-  rules:
-    - enforce: true
+ rules:
+   - enforce: true
 
-iam.disableAuditLoggingExemption:
-  rules:
-    - enforce: true
+#iam.disableAuditLoggingExemption:
+#  rules:
+#    - enforce: true
 
-iam.disableServiceAccountKeyCreation:
-  rules:
-    - enforce: true
+# iam.disableServiceAccountKeyCreation:
+#   rules:
+#     - enforce: false
+
+iam.managed.disableServiceAccountKeyCreation:
+ rules:
+   - enforce: true
 
 iam.disableServiceAccountKeyUpload:
   rules:
     - enforce: true
 
-iam.serviceAccountKeyExposureResponse:
-  rules:
-    - allow:
-        values:
-          - DISABLE_KEY
+#iam.serviceAccountKeyExposureResponse:
+#  rules:
+#    - allow:
+#        values:
+#          - DISABLE_KEY
 
-iam.workloadIdentityPoolAwsAccounts:
-  rules:
-    - deny:
-        all: true
+#iam.workloadIdentityPoolAwsAccounts:
+#  rules:
+#    - deny:
+#        all: true
 
-iam.workloadIdentityPoolProviders:
-  rules:
-    - deny:
-        all: true
+#iam.workloadIdentityPoolProviders:
+#  rules:
+#    - deny:
+#        all: true
+
+#iam.allowServiceAccountCredentialLifetimeExtension:
+#  rules:
+#    - deny:
+#        values:
+#          - "all"
+
+iam.managed.allowedPolicyMembers:
+ rules:
+   - enforce: false
+     condition:
+       title: Allow any member domain
+       expression: |
+         resource.matchTag('${tags.org_policies_tag_name}', 'allowed-policy-member-domains-all')
+
+   - enforce: true
+     parameters: >-
+       {
+         "allowedPrincipalSets": [
+            "//cloudresourcemanager.googleapis.com/organizations/${organization.id}"
+         ]
+       }
+
+
+
+iam.managed.disableServiceAccountKeyUpload:
+ rules:
+   - enforce: true
+
+
+iam.managed.preventPrivilegedBasicRolesForDefaultServiceAccounts:
+ rules:
+   - enforce: true

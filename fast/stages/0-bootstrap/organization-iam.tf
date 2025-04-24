@@ -92,6 +92,14 @@ locals {
       ]
       additive = []
     }
+        (local.principals.gcp-systemteam-np) = {
+      authoritative = [
+        "roles/cloudsupport.techSupportEditor",
+        "roles/resourcemanager.folderViewer",
+        "roles/browser",
+      ]
+      additive = []
+    }
   }
   # machine (service accounts) IAM bindings, in logical format
   # the service account module's "magic" outputs allow us to use dynamic values

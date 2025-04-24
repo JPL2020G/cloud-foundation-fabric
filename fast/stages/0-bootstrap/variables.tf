@@ -107,13 +107,13 @@ variable "environments" {
       is_default = true
     }
     qa = {
-      name       = "Quality"
+      name = "Quality"
     }
     stg = {
-      name       = "Staging"
+      name = "Staging"
     }
     poc = {
-      name       = "Proof of concept"
+      name = "Proof of concept"
 
     }
   }
@@ -168,6 +168,7 @@ variable "groups" {
     gcp-security-admins     = optional(string, "gcp-security-admins")
     # aliased to gcp-devops as the checklist does not create it
     gcp-support = optional(string, "gcp-devops")
+    gcp-systemteam-np= optional(string, "gcp-systemteam-np")
   })
   nullable = false
   default  = {}
