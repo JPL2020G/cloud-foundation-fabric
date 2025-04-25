@@ -65,14 +65,14 @@ allow-ssh:
       - protocol: tcp
         ports: ["22"]
 
-allow-googleapis-ranges:
-  description: Enable Google APIs Traffic ranges
-  priority: 1005
-  match:
-    source_ranges:
-      - 199.36.153.8/30
-      - 199.36.153.4/30
-      - 34.126.0.0/18
+# allow-googleapis-ranges:
+#   description: Enable Google APIs Traffic ranges
+#   priority: 1005
+#   match:
+#     source_ranges:
+#       - 199.36.153.8/30
+#       - 199.36.153.4/30
+#       - 34.126.0.0/18
 
 # allow-rdp-from-JumpServer:
 #   description: Enable RDP from JumpServer

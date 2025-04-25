@@ -139,6 +139,14 @@ module "prod-firewall-policy" {
   security_profile_group_ids = var.security_profile_groups
 }
 
+resource "google_compute_address" "prod-external-ip-nat" {
+  name         = "external-primary-ip"
+  project      = module.prod-spoke-project.project_id
+  region       = var.regions.primary
+  address_type = "EXTERNAL"
+  network_tier = "PREMIUM"
+}
+
 module "prod-spoke-cloudnat" {
   source = "../../../modules/net-cloudnat"
   for_each = toset(
@@ -150,6 +158,7 @@ module "prod-spoke-cloudnat" {
   router_create  = true
   router_network = module.prod-spoke-vpc.name
   logging_filter = "ERRORS_ONLY"
+  addresses = [google_compute_address.prod-external-ip-nat.self_link]
   config_port_allocation = {
     enable_endpoint_independent_mapping = false
     enable_dynamic_port_allocation      = true

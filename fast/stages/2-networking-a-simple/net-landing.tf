@@ -122,6 +122,14 @@ module "landing-firewall-policy" {
   security_profile_group_ids = var.security_profile_groups
 }
 
+resource "google_compute_address" "landing-external-ip-nat" {
+  name         = "external-primary-ip"
+  project      = module.landing-project.project_id
+  region       = var.regions.primary
+  address_type = "EXTERNAL"
+  network_tier = "PREMIUM"
+}
+
 module "landing-nat-primary" {
   source         = "../../../modules/net-cloudnat"
   count          = local.landing_cfg.cloudnat ? 1 : 0
@@ -131,6 +139,7 @@ module "landing-nat-primary" {
   router_create  = true
   router_name    = "prod-nat-${local.region_shortnames[var.regions.primary]}"
   router_network = module.landing-vpc.name
+  addresses = [google_compute_address.landing-external-ip-nat.self_link]
   config_port_allocation = {
     enable_endpoint_independent_mapping = false
     enable_dynamic_port_allocation      = true
