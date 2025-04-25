@@ -18,6 +18,11 @@ short_name: sec
 folder_config:
   parent_id: "folders/483681077669"
   name: security-shared
+  org_policies:
+   iam.managed.disableServiceAccountKeyCreation:
+    rules:
+    - enforce: false
+    
   iam_by_principals:
     rw:
       - roles/logging.admin
@@ -55,4 +60,5 @@ organization_config:
     sa_sec_cloudasset:
       member: rw
       role: roles/cloudasset.viewer
-      
+
+
