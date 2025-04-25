@@ -18,25 +18,25 @@
 
 # yaml-language-server: $schema=../../schemas/org-policies.schema.json
 
-iam.allowedPolicyMemberDomains:
- rules:
-   - allow:
-       values:
-         - ${organization.customer_id}
-     condition:
-       title: Restrict member domains
-       expression: |
-         !resource.matchTag('${tags.org_policies_tag_name}', 'allowed-policy-member-domains-all')
-   - allow:
-       all: true
-     condition:
-       title: Allow any member domain
-       expression: |
-         resource.matchTag('${tags.org_policies_tag_name}', 'allowed-policy-member-domains-all')
+# iam.allowedPolicyMemberDomains:
+#  rules:
+#    - allow:
+#        values:
+#          - ${organization.customer_id}
+#      condition:
+#        title: Restrict member domains
+#        expression: |
+#          !resource.matchTag('${tags.org_policies_tag_name}', 'allowed-policy-member-domains-all')
+#    - allow:
+#        all: true
+#      condition:
+#        title: Allow any member domain
+#        expression: |
+#          resource.matchTag('${tags.org_policies_tag_name}', 'allowed-policy-member-domains-all')
 
-iam.automaticIamGrantsForDefaultServiceAccounts:
- rules:
-   - enforce: true
+# iam.automaticIamGrantsForDefaultServiceAccounts:
+#  rules:
+#    - enforce: true
 
 #iam.disableAuditLoggingExemption:
 #  rules:

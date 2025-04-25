@@ -49,8 +49,10 @@ folder_config:
           api.getAttribute('iam.googleapis.com/modifiedGrantsByRole', []).hasOnly([
             'roles/cloudkms.cryptoKeyEncrypterDecrypter'
           ])
+    
 organization_config:
   iam_bindings_additive:
     sa_sec_cloudasset:
       member: rw
       role: roles/cloudasset.viewer
+      
